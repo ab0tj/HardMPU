@@ -1,0 +1,617 @@
+Archive member included because of file (symbol)
+
+c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+                              MPU401.o (__udivmodhi4)
+c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+                              c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o (exit)
+c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+                              MPU401.o (__tablejump2__)
+c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+                              MIDI.o (__do_copy_data)
+c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+                              HardMPU.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+MIDI_sysex_delay    0x2               MIDI.o
+tracked_channels    0xa0              MIDI.o
+
+Discarded input sections
+
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o
+ .text          0x00000000        0x0 HardMPU.o
+ .data          0x00000000        0x0 HardMPU.o
+ .bss           0x00000000        0x0 HardMPU.o
+ .text.send_isa_byte
+                0x00000000       0x14 HardMPU.o
+ .text.recv_isa_byte
+                0x00000000        0xe HardMPU.o
+ .bss.uart_mode
+                0x00000000        0x1 HardMPU.o
+ .text          0x00000000        0x0 MIDI.o
+ .data          0x00000000        0x0 MIDI.o
+ .bss           0x00000000        0x0 MIDI.o
+ .text          0x00000000        0x0 MPU401.o
+ .data          0x00000000        0x0 MPU401.o
+ .bss           0x00000000        0x0 MPU401.o
+ .text.MPU401_SetEnableMPUVerFix
+                0x00000000        0x6 MPU401.o
+ .text          0x00000000        0x0 PIC.o
+ .data          0x00000000        0x0 PIC.o
+ .bss           0x00000000        0x0 PIC.o
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800100         0x0000ff00         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+user_signatures  0x00850000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o
+LOAD HardMPU.o
+LOAD MIDI.o
+LOAD MPU401.o
+LOAD PIC.o
+START GROUP
+LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51\libm.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a
+LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51\libm.a
+LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51\libc.a
+END GROUP
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x1aca
+ *(.vectors)
+ .vectors       0x00000000       0x8c c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o
+                0x00000000                __vector_default
+                0x00000000                __vectors
+ *(.vectors)
+ *(.progmem.gcc*)
+ .progmem.gcc_sw_table.MPU401_WriteCommand
+                0x0000008c      0x182 MPU401.o
+                0x0000020e                . = ALIGN (0x2)
+                0x0000020e                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x0000020e        0x0 linker stubs
+ *(.trampolines*)
+                0x0000020e                __trampolines_end = .
+ *(.progmem*)
+                0x0000020e                . = ALIGN (0x2)
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x0000020e                __ctors_start = .
+ *(.ctors)
+                0x0000020e                __ctors_end = .
+                0x0000020e                __dtors_start = .
+ *(.dtors)
+                0x0000020e                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x0000020e        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o
+                0x0000020e                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x0000020e        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x0000021a       0x1a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_copy_data.o)
+                0x0000021a                __do_copy_data
+ .init4         0x00000234       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_clear_bss.o)
+                0x00000234                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000244        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o
+ *(.init9)
+ *(.text)
+ .text          0x0000024a        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr51/crtm1284.o
+                0x0000024a                __vector_22
+                0x0000024a                __vector_28
+                0x0000024a                __vector_1
+                0x0000024a                __vector_32
+                0x0000024a                __vector_34
+                0x0000024a                __vector_24
+                0x0000024a                __vector_12
+                0x0000024a                __bad_interrupt
+                0x0000024a                __vector_6
+                0x0000024a                __vector_31
+                0x0000024a                __vector_3
+                0x0000024a                __vector_23
+                0x0000024a                __vector_30
+                0x0000024a                __vector_25
+                0x0000024a                __vector_11
+                0x0000024a                __vector_17
+                0x0000024a                __vector_19
+                0x0000024a                __vector_7
+                0x0000024a                __vector_27
+                0x0000024a                __vector_5
+                0x0000024a                __vector_33
+                0x0000024a                __vector_4
+                0x0000024a                __vector_9
+                0x0000024a                __vector_2
+                0x0000024a                __vector_21
+                0x0000024a                __vector_15
+                0x0000024a                __vector_29
+                0x0000024a                __vector_8
+                0x0000024a                __vector_26
+                0x0000024a                __vector_14
+                0x0000024a                __vector_10
+                0x0000024a                __vector_16
+                0x0000024a                __vector_18
+                0x0000024a                __vector_20
+                0x0000024c                . = ALIGN (0x2)
+ *(.text.*)
+ .text.startup.main
+                0x0000024c       0xa2 HardMPU.o
+                0x0000024c                main
+ .text.MIDI_RawOutByte
+                0x000002ee      0x3a4 MIDI.o
+                0x000002ee                MIDI_RawOutByte
+ .text.MIDI_Available
+                0x00000692        0x6 MIDI.o
+                0x00000692                MIDI_Available
+ .text.MIDI_Init
+                0x00000698       0xfc MIDI.o
+                0x00000698                MIDI_Init
+ .text.MPU401_Reset
+                0x00000794      0x11e MPU401.o
+ .text.QueueByte.part.0
+                0x000008b2       0x4e MPU401.o
+ .text.UpdateTrack
+                0x00000900      0x144 MPU401.o
+ .text.QueueUsed
+                0x00000a44        0xa MPU401.o
+                0x00000a44                QueueUsed
+ .text.MPU401_WriteCommand
+                0x00000a4e      0x44a MPU401.o
+                0x00000a4e                MPU401_WriteCommand
+ .text.MPU401_EOIHandler
+                0x00000e98      0x1c0 MPU401.o
+                0x00000e98                MPU401_EOIHandler
+ .text.MPU401_EOIHandlerDispatch
+                0x00001058       0x20 MPU401.o
+ .text.MPU401_Event
+                0x00001078      0x254 MPU401.o
+                0x00001078                MPU401_Event
+ .text.MPU401_WriteData
+                0x000012cc      0x532 MPU401.o
+                0x000012cc                MPU401_WriteData
+ .text.MPU401_ReadData
+                0x000017fe       0xde MPU401.o
+                0x000017fe                MPU401_ReadData
+ .text.MPU401_ResetDone
+                0x000018dc       0x20 MPU401.o
+                0x000018dc                MPU401_ResetDone
+ .text.MPU401_Init
+                0x000018fc       0x54 MPU401.o
+                0x000018fc                MPU401_Init
+ .text.PIC_AddEvent
+                0x00001950       0x5c PIC.o
+                0x00001950                PIC_AddEvent
+ .text.PIC_RemoveEvents
+                0x000019ac       0x12 PIC.o
+                0x000019ac                PIC_RemoveEvents
+ .text.PIC_Init
+                0x000019be       0x1a PIC.o
+                0x000019be                PIC_Init
+ .text.__vector_13
+                0x000019d8       0xba PIC.o
+                0x000019d8                __vector_13
+ .text.libgcc.div
+                0x00001a92       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_udivmodhi4.o)
+                0x00001a92                __udivmodhi4
+ .text.libgcc   0x00001aba        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_tablejump.o)
+                0x00001aba                __tablejump2__
+                0x00001abe                __tablejump__
+                0x00001ac6                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00001ac6        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+                0x00001ac6                _exit
+                0x00001ac6                exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00001ac6        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr51\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00001aca                _etext = .
+
+.data           0x00800100      0x122 load address 0x00001aca
+                0x00800100                PROVIDE (__data_start, .)
+ *(.data)
+ *(.data*)
+ .data.MIDI_note_off
+                0x00800100        0x3 MIDI.o
+ *(.rodata)
+ .rodata        0x00800103       0x1f MIDI.o
+ *(.rodata*)
+ .rodata.MIDI_evt_len
+                0x00800122      0x100 MIDI.o
+ *(.gnu.linkonce.d*)
+                0x00800222                . = ALIGN (0x2)
+                0x00800222                _edata = .
+                0x00800222                PROVIDE (__data_end, .)
+
+.bss            0x00800222      0x59c
+                0x00800222                PROVIDE (__bss_start, .)
+ *(.bss)
+ *(.bss*)
+ .bss.midi      0x00800222      0x422 MIDI.o
+ .bss.posd.1618
+                0x00800644        0x2 MPU401.o
+ .bss.length.1616
+                0x00800646        0x2 MPU401.o
+ .bss.cnt.1617  0x00800648        0x2 MPU401.o
+ .bss.mpu       0x0080064a       0xcc MPU401.o
+ .bss.event_countdown
+                0x00800716        0x6 PIC.o
+ *(COMMON)
+ COMMON         0x0080071c       0xa2 MIDI.o
+                0x0080071c                MIDI_sysex_delay
+                0x0080071e                tracked_channels
+                0x008007be                PROVIDE (__bss_end, .)
+                0x00001aca                __data_load_start = LOADADDR (.data)
+                0x00001bec                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x008007be        0x0
+                0x008007be                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x008007be                PROVIDE (__noinit_end, .)
+                0x008007be                _end = .
+                0x008007be                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.user_signatures
+ *(.user_signatures*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x30
+ *(.comment)
+ .comment       0x00000000       0x30 HardMPU.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000000       0x31 MIDI.o
+ .comment       0x00000000       0x31 MPU401.o
+ .comment       0x00000000       0x31 PIC.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x118
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x30 HardMPU.o
+ .debug_aranges
+                0x00000030       0x30 MIDI.o
+ .debug_aranges
+                0x00000060       0x80 MPU401.o
+ .debug_aranges
+                0x000000e0       0x38 PIC.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0x186c
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x264 HardMPU.o
+ .debug_info    0x00000264      0x5c5 MIDI.o
+ .debug_info    0x00000829      0xe4c MPU401.o
+ .debug_info    0x00001675      0x1f7 PIC.o
+
+.debug_abbrev   0x00000000      0x8a7
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x190 HardMPU.o
+ .debug_abbrev  0x00000190      0x226 MIDI.o
+ .debug_abbrev  0x000003b6      0x3ad MPU401.o
+ .debug_abbrev  0x00000763      0x144 PIC.o
+
+.debug_line     0x00000000     0x13d3
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x00000000      0x200 HardMPU.o
+ .debug_line    0x00000200      0x493 MIDI.o
+ .debug_line    0x00000693      0xc2f MPU401.o
+ .debug_line    0x000012c2      0x111 PIC.o
+
+.debug_frame    0x00000000      0x288
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x44 HardMPU.o
+ .debug_frame   0x00000044       0x5c MIDI.o
+ .debug_frame   0x000000a0      0x13c MPU401.o
+ .debug_frame   0x000001dc       0xac PIC.o
+
+.debug_str      0x00000000      0x694
+ *(.debug_str)
+ .debug_str     0x00000000      0x1bd HardMPU.o
+                                0x1fb (size before relaxing)
+ .debug_str     0x000001bd      0x172 MIDI.o
+                                0x2fa (size before relaxing)
+ .debug_str     0x0000032f      0x33e MPU401.o
+                                0x524 (size before relaxing)
+ .debug_str     0x0000066d       0x27 PIC.o
+                                0x218 (size before relaxing)
+
+.debug_loc      0x00000000     0x1556
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x72 HardMPU.o
+ .debug_loc     0x00000072      0x4ca MIDI.o
+ .debug_loc     0x0000053c      0xdb8 MPU401.o
+ .debug_loc     0x000012f4      0x262 PIC.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000      0x358
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x38 HardMPU.o
+ .debug_ranges  0x00000038       0x20 MIDI.o
+ .debug_ranges  0x00000058      0x2d8 MPU401.o
+ .debug_ranges  0x00000330       0x28 PIC.o
+
+.debug_macro
+ *(.debug_macro)
+OUTPUT(HardMPU.elf elf32-avr)
+LOAD linker stubs
