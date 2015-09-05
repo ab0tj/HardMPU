@@ -183,7 +183,7 @@ void MIDI_RawOutByte(Bit8u data) {
                 /*Bit32u passed_ticks = GetTicks() - midi.sysex.start;
                 if (passed_ticks < midi.sysex.delay) SDL_Delay(midi.sysex.delay - passed_ticks);*/ /* SOFTMPU */
 				
-				while (MIDI_sysex_delay) {
+				while (MIDI_sysex_delay--) {
 					_delay_us(250);	// HardMPU
 				}
         }
