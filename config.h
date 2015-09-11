@@ -10,7 +10,6 @@
 
 // parameters
 #define F_CPU		20000000UL
-#define BUFFER_SIZE	1024
 #define BAUD_MIDI	39			// 31250
 #define BAUD_UART	10			// 115200-ish
 

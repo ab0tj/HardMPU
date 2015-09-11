@@ -43,7 +43,7 @@ int main(void)
 	
     while(1)	// main loop
     {
-        // first do isa i/o
+		// do isa i/o
 		if (PINB & PIN_DRR) {		// isa data input latch is full
 			MPU401_WriteData(recv_isa_byte());
 		}
@@ -55,26 +55,30 @@ int main(void)
 		}
 		
 		/* if (UCSR0A & (1<<RXC0)) {	// midi uart rx buffer is full
-			//process_midi_byte();
+			process_midi_byte();
 		} */
     }
 }
 
 void send_isa_byte(unsigned char byte) {
+	cli();							// disable interrupts
 	DDRA = 0xff;					// set porta to output
 	PORTA = byte;					// output byte on porta
 	PORTB &= ~PIN_IDW;				// lower IDW
-	__builtin_avr_delay_cycles(6);	// wait for logic to stabilize
+	__builtin_avr_delay_cycles(3);	// wait for logic to stabilize
 	PORTB |= PIN_IDW;				// raise IDW
 	DDRA = 0;						// set the port back to input
+	sei();							// re-enable interrupts
 }
 
 unsigned char recv_isa_byte() {
+	cli();							// disable interrupts
 	PORTB &= ~PIN_IDR;				// lower IDR
-	__builtin_avr_delay_cycles(6);	// wait for i/o to settle
+	__builtin_avr_delay_cycles(3);	// wait for i/o to settle
 	unsigned char temp = PINA;		// capture what we find there
 	PORTB |= PIN_IDR;				// raise IDR
 	return temp;					// report back with the results
+	sei();							// re-enable interrupts
 }
 
 //void send_midi_byte() {

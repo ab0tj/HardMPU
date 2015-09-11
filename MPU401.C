@@ -87,7 +87,7 @@ static struct {
         bool mpu_ver_fix; /* SOFTMPU */
         MpuMode mode;
 	Bit8u queue[MPU401_QUEUE];
-	Bitu queue_pos,queue_used;
+	Bit8u queue_pos,queue_used;
 	struct track {
 		Bits counter;
 		Bit8u value[8],sys_val;
@@ -118,14 +118,14 @@ static struct {
 	} clock;
 } mpu;
 
-Bitu QueueUsed() {
+Bit8u QueueUsed() {
 	return mpu.queue_used;
 }
 
 static void QueueByte(Bit8u data) {
 	if (mpu.state.block_ack) {mpu.state.block_ack=false;return;}
 	if (mpu.queue_used<MPU401_QUEUE) {
-		Bitu pos=mpu.queue_used+mpu.queue_pos;
+		Bit8u pos=mpu.queue_used+mpu.queue_pos;
 		if (mpu.queue_pos>=MPU401_QUEUE) mpu.queue_pos-=MPU401_QUEUE;
 		if (pos>=MPU401_QUEUE) pos-=MPU401_QUEUE;
 		mpu.queue_used++;
@@ -139,7 +139,7 @@ static void ClrQueue(void) {
 }
 
 void MPU401_WriteCommand(Bit8u val) { /* SOFTMPU */
-	Bitu i; /* SOFTMPU */
+	Bit8u i; /* SOFTMPU */
 	if (mpu.state.reset) {
 		if (mpu.state.cmd_pending || (val!=0x3f && val!=0xff)) {
 			mpu.state.cmd_pending=val+1;
@@ -295,12 +295,12 @@ void MPU401_WriteCommand(Bit8u val) { /* SOFTMPU */
 }
 
 Bit8u MPU401_ReadData(void) { /* SOFTMPU */
-	// Bit8u ret=MSG_MPU_ACK;	// HardMPU: we shouldn't be running this function if the queue is empty.
-	// if (mpu.queue_used) {
+	Bit8u ret=MSG_MPU_ACK;	// HardMPU: we shouldn't be running this function if the queue is empty.
+	if (mpu.queue_used) {
 		if (mpu.queue_pos>=MPU401_QUEUE) mpu.queue_pos-=MPU401_QUEUE;
-		Bit8u ret=mpu.queue[mpu.queue_pos];
+		ret=mpu.queue[mpu.queue_pos];
 		mpu.queue_pos++;mpu.queue_used--;
-	// }
+	}
 	if (!mpu.intelligent) return ret;
 
 	if (ret>=0xf0 && ret<=0xf7) { /* MIDI data request */
@@ -552,7 +552,7 @@ static void UpdateConductor(void) {
 
 void MPU401_Event(void) {
 	/* SOFTMPU */
-	Bitu i;
+	Bit8u i;
 	Bitu new_time;
 	if (mpu.mode==M_UART) return;
 	if (mpu.state.irq_pending) goto next_event;
@@ -590,7 +590,7 @@ static void MPU401_EOIHandlerDispatch(void) {
 
 //Updates counters and requests new data on "End of Input"
 void MPU401_EOIHandler(void) {
-	Bitu i=0; /* SOFTMPU */
+	Bit8u i=0; /* SOFTMPU */
 	mpu.state.eoi_scheduled=false;
 	if (mpu.state.send_now) {
 		mpu.state.send_now=false;
@@ -617,7 +617,7 @@ void MPU401_ResetDone(void) { /* SOFTMPU */
 }
 
 static void MPU401_Reset(void) {
-	Bitu i; /* SOFTMPU */
+	Bit8u i; /* SOFTMPU */
 
 	mpu.mode=(mpu.intelligent ? M_INTELLIGENT : M_UART);
 	PIC_RemoveEvents(EOI_HANDLER);
@@ -677,59 +677,3 @@ void MPU401_Init(bool delaysysex,bool fakeallnotesoff)
         /* SOFTMPU: Moved IRQ 9 handler init to asm */
 	MPU401_Reset();
 }
-
-/* DOSBox initialisation code */
-#if 0
-class MPU401:public Module_base{
-private:
-	IO_ReadHandleObject ReadHandler[2];
-	IO_WriteHandleObject WriteHandler[2];
-	bool installed; /*as it can fail to install by 2 ways (config and no midi)*/
-public:
-	MPU401(Section* configuration):Module_base(configuration){
-		installed = false;
-		Section_prop * section=static_cast<Section_prop *>(configuration);
-		const char* s_mpu = section->Get_string("mpu401");
-		if(strcasecmp(s_mpu,"none") == 0) return;
-		if(strcasecmp(s_mpu,"off") == 0) return;
-		if(strcasecmp(s_mpu,"false") == 0) return;
-		if (!MIDI_Available()) return;
-		/*Enabled and there is a Midi */
-		installed = true;
-		
-		WriteHandler[0].Install(0x330,&MPU401_WriteData,IO_MB);
-		WriteHandler[1].Install(0x331,&MPU401_WriteCommand,IO_MB);
-		ReadHandler[0].Install(0x330,&MPU401_ReadData,IO_MB);
-		ReadHandler[1].Install(0x331,&MPU401_ReadStatus,IO_MB);
-	
-		mpu.queue_used=0;
-		mpu.queue_pos=0;
-		mpu.mode=M_UART;
-		mpu.irq=9;      /* Princess Maker 2 wants it on irq 9 */
-
-		mpu.intelligent = true; //Default is on
-		if(strcasecmp(s_mpu,"uart") == 0) mpu.intelligent = false;
-		if (!mpu.intelligent) return;
-		/*Set IRQ and unmask it(for timequest/princess maker 2) */
-		PIC_SetIRQMask(mpu.irq,false);
-		MPU401_Reset();
-	}
-	~MPU401(){
-		if(!installed) return;
-		Section_prop * section=static_cast<Section_prop *>(m_configuration);
-		if(strcasecmp(section->Get_string("mpu401"),"intelligent")) return;
-		PIC_SetIRQMask(mpu.irq,true);
-		}
-};
-
-static MPU401* test;
-
-void MPU401_Destroy(Section* sec){
-	delete test;
-}
-
-void MPU401_Init(Section* sec) {
-	test = new MPU401(sec);
-	sec->AddDestroyFunction(&MPU401_Destroy,true);
-}
-#endif /* if 0 */

@@ -1,0 +1,3068 @@
+
+HardMPU.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000122  00800100  00001660  000016f4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00001660  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000059a  00800222  00800222  00001816  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00001816  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000120  00000000  00000000  00001846  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000172a  00000000  00000000  00001966  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000008eb  00000000  00000000  00003090  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00001166  00000000  00000000  0000397b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000002b8  00000000  00000000  00004ae4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000006a7  00000000  00000000  00004d9c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000010f4  00000000  00000000  00005443  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000002b0  00000000  00000000  00006537  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	06 c1       	rjmp	.+524    	; 0x20e <__ctors_end>
+       2:	00 00       	nop
+       4:	22 c1       	rjmp	.+580    	; 0x24a <__bad_interrupt>
+       6:	00 00       	nop
+       8:	20 c1       	rjmp	.+576    	; 0x24a <__bad_interrupt>
+       a:	00 00       	nop
+       c:	1e c1       	rjmp	.+572    	; 0x24a <__bad_interrupt>
+       e:	00 00       	nop
+      10:	1c c1       	rjmp	.+568    	; 0x24a <__bad_interrupt>
+      12:	00 00       	nop
+      14:	1a c1       	rjmp	.+564    	; 0x24a <__bad_interrupt>
+      16:	00 00       	nop
+      18:	18 c1       	rjmp	.+560    	; 0x24a <__bad_interrupt>
+      1a:	00 00       	nop
+      1c:	16 c1       	rjmp	.+556    	; 0x24a <__bad_interrupt>
+      1e:	00 00       	nop
+      20:	14 c1       	rjmp	.+552    	; 0x24a <__bad_interrupt>
+      22:	00 00       	nop
+      24:	12 c1       	rjmp	.+548    	; 0x24a <__bad_interrupt>
+      26:	00 00       	nop
+      28:	10 c1       	rjmp	.+544    	; 0x24a <__bad_interrupt>
+      2a:	00 00       	nop
+      2c:	0e c1       	rjmp	.+540    	; 0x24a <__bad_interrupt>
+      2e:	00 00       	nop
+      30:	0c c1       	rjmp	.+536    	; 0x24a <__bad_interrupt>
+      32:	00 00       	nop
+      34:	0c 94 b7 0a 	jmp	0x156e	; 0x156e <__vector_13>
+      38:	08 c1       	rjmp	.+528    	; 0x24a <__bad_interrupt>
+      3a:	00 00       	nop
+      3c:	06 c1       	rjmp	.+524    	; 0x24a <__bad_interrupt>
+      3e:	00 00       	nop
+      40:	04 c1       	rjmp	.+520    	; 0x24a <__bad_interrupt>
+      42:	00 00       	nop
+      44:	02 c1       	rjmp	.+516    	; 0x24a <__bad_interrupt>
+      46:	00 00       	nop
+      48:	00 c1       	rjmp	.+512    	; 0x24a <__bad_interrupt>
+      4a:	00 00       	nop
+      4c:	fe c0       	rjmp	.+508    	; 0x24a <__bad_interrupt>
+      4e:	00 00       	nop
+      50:	fc c0       	rjmp	.+504    	; 0x24a <__bad_interrupt>
+      52:	00 00       	nop
+      54:	fa c0       	rjmp	.+500    	; 0x24a <__bad_interrupt>
+      56:	00 00       	nop
+      58:	f8 c0       	rjmp	.+496    	; 0x24a <__bad_interrupt>
+      5a:	00 00       	nop
+      5c:	f6 c0       	rjmp	.+492    	; 0x24a <__bad_interrupt>
+      5e:	00 00       	nop
+      60:	f4 c0       	rjmp	.+488    	; 0x24a <__bad_interrupt>
+      62:	00 00       	nop
+      64:	f2 c0       	rjmp	.+484    	; 0x24a <__bad_interrupt>
+      66:	00 00       	nop
+      68:	f0 c0       	rjmp	.+480    	; 0x24a <__bad_interrupt>
+      6a:	00 00       	nop
+      6c:	ee c0       	rjmp	.+476    	; 0x24a <__bad_interrupt>
+      6e:	00 00       	nop
+      70:	ec c0       	rjmp	.+472    	; 0x24a <__bad_interrupt>
+      72:	00 00       	nop
+      74:	ea c0       	rjmp	.+468    	; 0x24a <__bad_interrupt>
+      76:	00 00       	nop
+      78:	e8 c0       	rjmp	.+464    	; 0x24a <__bad_interrupt>
+      7a:	00 00       	nop
+      7c:	e6 c0       	rjmp	.+460    	; 0x24a <__bad_interrupt>
+      7e:	00 00       	nop
+      80:	e4 c0       	rjmp	.+456    	; 0x24a <__bad_interrupt>
+      82:	00 00       	nop
+      84:	e2 c0       	rjmp	.+452    	; 0x24a <__bad_interrupt>
+      86:	00 00       	nop
+      88:	e0 c0       	rjmp	.+448    	; 0x24a <__bad_interrupt>
+      8a:	00 00       	nop
+      8c:	53 06       	cpc	r5, r19
+      8e:	88 05       	cpc	r24, r8
+      90:	88 05       	cpc	r24, r8
+      92:	88 05       	cpc	r24, r8
+      94:	88 05       	cpc	r24, r8
+      96:	88 05       	cpc	r24, r8
+      98:	88 05       	cpc	r24, r8
+      9a:	88 05       	cpc	r24, r8
+      9c:	88 05       	cpc	r24, r8
+      9e:	88 05       	cpc	r24, r8
+      a0:	88 05       	cpc	r24, r8
+      a2:	88 05       	cpc	r24, r8
+      a4:	88 05       	cpc	r24, r8
+      a6:	88 05       	cpc	r24, r8
+      a8:	88 05       	cpc	r24, r8
+      aa:	88 05       	cpc	r24, r8
+      ac:	88 05       	cpc	r24, r8
+      ae:	88 05       	cpc	r24, r8
+      b0:	88 05       	cpc	r24, r8
+      b2:	88 05       	cpc	r24, r8
+      b4:	88 05       	cpc	r24, r8
+      b6:	88 05       	cpc	r24, r8
+      b8:	88 05       	cpc	r24, r8
+      ba:	88 05       	cpc	r24, r8
+      bc:	88 05       	cpc	r24, r8
+      be:	88 05       	cpc	r24, r8
+      c0:	88 05       	cpc	r24, r8
+      c2:	88 05       	cpc	r24, r8
+      c4:	88 05       	cpc	r24, r8
+      c6:	88 05       	cpc	r24, r8
+      c8:	88 05       	cpc	r24, r8
+      ca:	88 05       	cpc	r24, r8
+      cc:	88 05       	cpc	r24, r8
+      ce:	88 05       	cpc	r24, r8
+      d0:	88 05       	cpc	r24, r8
+      d2:	88 05       	cpc	r24, r8
+      d4:	88 05       	cpc	r24, r8
+      d6:	88 05       	cpc	r24, r8
+      d8:	88 05       	cpc	r24, r8
+      da:	88 05       	cpc	r24, r8
+      dc:	88 05       	cpc	r24, r8
+      de:	88 05       	cpc	r24, r8
+      e0:	88 05       	cpc	r24, r8
+      e2:	88 05       	cpc	r24, r8
+      e4:	88 05       	cpc	r24, r8
+      e6:	88 05       	cpc	r24, r8
+      e8:	88 05       	cpc	r24, r8
+      ea:	88 05       	cpc	r24, r8
+      ec:	88 05       	cpc	r24, r8
+      ee:	88 05       	cpc	r24, r8
+      f0:	88 05       	cpc	r24, r8
+      f2:	88 05       	cpc	r24, r8
+      f4:	88 05       	cpc	r24, r8
+      f6:	88 05       	cpc	r24, r8
+      f8:	88 05       	cpc	r24, r8
+      fa:	88 05       	cpc	r24, r8
+      fc:	88 05       	cpc	r24, r8
+      fe:	88 05       	cpc	r24, r8
+     100:	88 05       	cpc	r24, r8
+     102:	88 05       	cpc	r24, r8
+     104:	88 05       	cpc	r24, r8
+     106:	88 05       	cpc	r24, r8
+     108:	88 05       	cpc	r24, r8
+     10a:	88 05       	cpc	r24, r8
+     10c:	88 05       	cpc	r24, r8
+     10e:	88 05       	cpc	r24, r8
+     110:	88 05       	cpc	r24, r8
+     112:	88 05       	cpc	r24, r8
+     114:	88 05       	cpc	r24, r8
+     116:	88 05       	cpc	r24, r8
+     118:	88 05       	cpc	r24, r8
+     11a:	88 05       	cpc	r24, r8
+     11c:	88 05       	cpc	r24, r8
+     11e:	88 05       	cpc	r24, r8
+     120:	88 05       	cpc	r24, r8
+     122:	88 05       	cpc	r24, r8
+     124:	88 05       	cpc	r24, r8
+     126:	88 05       	cpc	r24, r8
+     128:	88 05       	cpc	r24, r8
+     12a:	56 06       	cpc	r5, r22
+     12c:	3f 06       	cpc	r3, r31
+     12e:	88 05       	cpc	r24, r8
+     130:	88 05       	cpc	r24, r8
+     132:	88 05       	cpc	r24, r8
+     134:	88 05       	cpc	r24, r8
+     136:	47 06       	cpc	r4, r23
+     138:	43 06       	cpc	r4, r19
+     13a:	88 05       	cpc	r24, r8
+     13c:	88 05       	cpc	r24, r8
+     13e:	88 05       	cpc	r24, r8
+     140:	88 05       	cpc	r24, r8
+     142:	88 05       	cpc	r24, r8
+     144:	88 05       	cpc	r24, r8
+     146:	88 05       	cpc	r24, r8
+     148:	88 05       	cpc	r24, r8
+     14a:	88 05       	cpc	r24, r8
+     14c:	88 05       	cpc	r24, r8
+     14e:	88 05       	cpc	r24, r8
+     150:	88 05       	cpc	r24, r8
+     152:	88 05       	cpc	r24, r8
+     154:	88 05       	cpc	r24, r8
+     156:	88 05       	cpc	r24, r8
+     158:	88 05       	cpc	r24, r8
+     15a:	88 05       	cpc	r24, r8
+     15c:	88 05       	cpc	r24, r8
+     15e:	88 05       	cpc	r24, r8
+     160:	88 05       	cpc	r24, r8
+     162:	88 05       	cpc	r24, r8
+     164:	4a 06       	cpc	r4, r26
+     166:	30 06       	cpc	r3, r16
+     168:	26 06       	cpc	r2, r22
+     16a:	88 05       	cpc	r24, r8
+     16c:	1b 06       	cpc	r1, r27
+     16e:	88 05       	cpc	r24, r8
+     170:	17 06       	cpc	r1, r23
+     172:	88 05       	cpc	r24, r8
+     174:	88 05       	cpc	r24, r8
+     176:	88 05       	cpc	r24, r8
+     178:	88 05       	cpc	r24, r8
+     17a:	88 05       	cpc	r24, r8
+     17c:	88 05       	cpc	r24, r8
+     17e:	e7 05       	cpc	r30, r7
+     180:	e7 05       	cpc	r30, r7
+     182:	88 05       	cpc	r24, r8
+     184:	88 05       	cpc	r24, r8
+     186:	88 05       	cpc	r24, r8
+     188:	88 05       	cpc	r24, r8
+     18a:	88 05       	cpc	r24, r8
+     18c:	88 05       	cpc	r24, r8
+     18e:	88 05       	cpc	r24, r8
+     190:	88 05       	cpc	r24, r8
+     192:	e3 05       	cpc	r30, r3
+     194:	df 05       	cpc	r29, r15
+     196:	db 05       	cpc	r29, r11
+     198:	d7 05       	cpc	r29, r7
+     19a:	d3 05       	cpc	r29, r3
+     19c:	cf 05       	cpc	r28, r15
+     19e:	cb 05       	cpc	r28, r11
+     1a0:	88 05       	cpc	r24, r8
+     1a2:	88 05       	cpc	r24, r8
+     1a4:	88 05       	cpc	r24, r8
+     1a6:	88 05       	cpc	r24, r8
+     1a8:	88 05       	cpc	r24, r8
+     1aa:	88 05       	cpc	r24, r8
+     1ac:	88 05       	cpc	r24, r8
+     1ae:	88 05       	cpc	r24, r8
+     1b0:	88 05       	cpc	r24, r8
+     1b2:	88 05       	cpc	r24, r8
+     1b4:	88 05       	cpc	r24, r8
+     1b6:	88 05       	cpc	r24, r8
+     1b8:	88 05       	cpc	r24, r8
+     1ba:	88 05       	cpc	r24, r8
+     1bc:	88 05       	cpc	r24, r8
+     1be:	88 05       	cpc	r24, r8
+     1c0:	88 05       	cpc	r24, r8
+     1c2:	88 05       	cpc	r24, r8
+     1c4:	88 05       	cpc	r24, r8
+     1c6:	88 05       	cpc	r24, r8
+     1c8:	88 05       	cpc	r24, r8
+     1ca:	88 05       	cpc	r24, r8
+     1cc:	c3 05       	cpc	r28, r3
+     1ce:	bc 05       	cpc	r27, r12
+     1d0:	bc 05       	cpc	r27, r12
+     1d2:	bc 05       	cpc	r27, r12
+     1d4:	88 05       	cpc	r24, r8
+     1d6:	bc 05       	cpc	r27, r12
+     1d8:	88 05       	cpc	r24, r8
+     1da:	bc 05       	cpc	r27, r12
+     1dc:	bc 05       	cpc	r27, r12
+     1de:	88 05       	cpc	r24, r8
+     1e0:	88 05       	cpc	r24, r8
+     1e2:	88 05       	cpc	r24, r8
+     1e4:	88 05       	cpc	r24, r8
+     1e6:	bc 05       	cpc	r27, r12
+     1e8:	bc 05       	cpc	r27, r12
+     1ea:	bc 05       	cpc	r27, r12
+     1ec:	bc 05       	cpc	r27, r12
+     1ee:	88 05       	cpc	r24, r8
+     1f0:	88 05       	cpc	r24, r8
+     1f2:	88 05       	cpc	r24, r8
+     1f4:	88 05       	cpc	r24, r8
+     1f6:	88 05       	cpc	r24, r8
+     1f8:	88 05       	cpc	r24, r8
+     1fa:	88 05       	cpc	r24, r8
+     1fc:	88 05       	cpc	r24, r8
+     1fe:	88 05       	cpc	r24, r8
+     200:	88 05       	cpc	r24, r8
+     202:	88 05       	cpc	r24, r8
+     204:	88 05       	cpc	r24, r8
+     206:	88 05       	cpc	r24, r8
+     208:	88 05       	cpc	r24, r8
+     20a:	88 05       	cpc	r24, r8
+     20c:	af 05       	cpc	r26, r15
+
+0000020e <__ctors_end>:
+     20e:	11 24       	eor	r1, r1
+     210:	1f be       	out	0x3f, r1	; 63
+     212:	cf ef       	ldi	r28, 0xFF	; 255
+     214:	d0 e4       	ldi	r29, 0x40	; 64
+     216:	de bf       	out	0x3e, r29	; 62
+     218:	cd bf       	out	0x3d, r28	; 61
+
+0000021a <__do_copy_data>:
+     21a:	12 e0       	ldi	r17, 0x02	; 2
+     21c:	a0 e0       	ldi	r26, 0x00	; 0
+     21e:	b1 e0       	ldi	r27, 0x01	; 1
+     220:	e0 e6       	ldi	r30, 0x60	; 96
+     222:	f6 e1       	ldi	r31, 0x16	; 22
+     224:	00 e0       	ldi	r16, 0x00	; 0
+     226:	0b bf       	out	0x3b, r16	; 59
+     228:	02 c0       	rjmp	.+4      	; 0x22e <__do_copy_data+0x14>
+     22a:	07 90       	elpm	r0, Z+
+     22c:	0d 92       	st	X+, r0
+     22e:	a2 32       	cpi	r26, 0x22	; 34
+     230:	b1 07       	cpc	r27, r17
+     232:	d9 f7       	brne	.-10     	; 0x22a <__do_copy_data+0x10>
+
+00000234 <__do_clear_bss>:
+     234:	27 e0       	ldi	r18, 0x07	; 7
+     236:	a2 e2       	ldi	r26, 0x22	; 34
+     238:	b2 e0       	ldi	r27, 0x02	; 2
+     23a:	01 c0       	rjmp	.+2      	; 0x23e <.do_clear_bss_start>
+
+0000023c <.do_clear_bss_loop>:
+     23c:	1d 92       	st	X+, r1
+
+0000023e <.do_clear_bss_start>:
+     23e:	ac 3b       	cpi	r26, 0xBC	; 188
+     240:	b2 07       	cpc	r27, r18
+     242:	e1 f7       	brne	.-8      	; 0x23c <.do_clear_bss_loop>
+     244:	03 d0       	rcall	.+6      	; 0x24c <main>
+     246:	0c 94 2e 0b 	jmp	0x165c	; 0x165c <_exit>
+
+0000024a <__bad_interrupt>:
+     24a:	da ce       	rjmp	.-588    	; 0x0 <__vectors>
+
+0000024c <main>:
+char uart_mode = 0;
+
+int main(void)
+{
+	// init GPIO
+	PORTA = 0b11111111;	// pullups enabled
+     24c:	8f ef       	ldi	r24, 0xFF	; 255
+     24e:	82 b9       	out	0x02, r24	; 2
+	PORTB = 0b11111000;	// bits 0-2 are driven externally
+     250:	98 ef       	ldi	r25, 0xF8	; 248
+     252:	95 b9       	out	0x05, r25	; 5
+	DDRB  = 0b00011000;	// data read and data write latches
+     254:	28 e1       	ldi	r18, 0x18	; 24
+     256:	24 b9       	out	0x04, r18	; 4
+	PORTC = 0b11111111;	// pullups enabled
+     258:	88 b9       	out	0x08, r24	; 8
+	PORTD = 0b11111111;	// pullups enabled
+     25a:	8b b9       	out	0x0b, r24	; 11
+	
+	// init UART
+	UCSR0B = (1<<TXEN0)|(1<<RXEN0);
+     25c:	20 93 c1 00 	sts	0x00C1, r18
+	UBRR0  = BAUD_MIDI;
+     260:	47 e2       	ldi	r20, 0x27	; 39
+     262:	50 e0       	ldi	r21, 0x00	; 0
+     264:	50 93 c5 00 	sts	0x00C5, r21
+     268:	40 93 c4 00 	sts	0x00C4, r20
+	
+	// init timer
+	TCCR1B |= (1<<WGM12);		// timer1 ctc mode
+     26c:	30 91 81 00 	lds	r19, 0x0081
+     270:	38 60       	ori	r19, 0x08	; 8
+     272:	30 93 81 00 	sts	0x0081, r19
+	TIMSK1 |= (1<<OCIE1A);		// enable ctc interrupt
+     276:	50 91 6f 00 	lds	r21, 0x006F
+     27a:	52 60       	ori	r21, 0x02	; 2
+     27c:	50 93 6f 00 	sts	0x006F, r21
+	sei();						// enable global interrupts
+     280:	78 94       	sei
+	OCR1A   = F_CPU / RTCFREQ;	// ctc value
+     282:	68 e8       	ldi	r22, 0x88	; 136
+     284:	73 e1       	ldi	r23, 0x13	; 19
+     286:	70 93 89 00 	sts	0x0089, r23
+     28a:	60 93 88 00 	sts	0x0088, r22
+	TCCR1B |= (1<<CS10);		// start timer with no prescaler
+     28e:	70 91 81 00 	lds	r23, 0x0081
+     292:	71 60       	ori	r23, 0x01	; 1
+     294:	70 93 81 00 	sts	0x0081, r23
+	
+	// init emulator
+	MPU401_Init(false, false);
+     298:	60 e0       	ldi	r22, 0x00	; 0
+     29a:	80 e0       	ldi	r24, 0x00	; 0
+     29c:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <MPU401_Init>
+    }
+}
+
+void send_isa_byte(unsigned char byte) {
+	cli();							// disable interrupts
+	DDRA = 0xff;					// set porta to output
+     2a0:	cf ef       	ldi	r28, 0xFF	; 255
+	MPU401_Init(false, false);
+	
+    while(1)	// main loop
+    {
+		// do isa i/o
+		if (PINB & PIN_DRR) {		// isa data input latch is full
+     2a2:	19 99       	sbic	0x03, 1	; 3
+     2a4:	14 c0       	rjmp	.+40     	; 0x2ce <main+0x82>
+			MPU401_WriteData(recv_isa_byte());
+		}
+		if (PINB & PIN_CRR) {		// isa control input latch is full
+     2a6:	1a 99       	sbic	0x03, 2	; 3
+     2a8:	1b c0       	rjmp	.+54     	; 0x2e0 <main+0x94>
+			MPU401_WriteCommand(recv_isa_byte());
+		}
+		if (QueueUsed() && (~PINB & PIN_DSR)) {	// isa data output latch is empty, and data is waiting to be sent
+     2aa:	ac d3       	rcall	.+1880   	; 0xa04 <QueueUsed>
+     2ac:	88 23       	and	r24, r24
+     2ae:	c9 f3       	breq	.-14     	; 0x2a2 <main+0x56>
+     2b0:	18 99       	sbic	0x03, 0	; 3
+     2b2:	f7 cf       	rjmp	.-18     	; 0x2a2 <main+0x56>
+			send_isa_byte(MPU401_ReadData());		// send data if there's any in the buffer
+     2b4:	0e 94 66 09 	call	0x12cc	; 0x12cc <MPU401_ReadData>
+		} */
+    }
+}
+
+void send_isa_byte(unsigned char byte) {
+	cli();							// disable interrupts
+     2b8:	f8 94       	cli
+	DDRA = 0xff;					// set porta to output
+     2ba:	c1 b9       	out	0x01, r28	; 1
+	PORTA = byte;					// output byte on porta
+     2bc:	82 b9       	out	0x02, r24	; 2
+	PORTB &= ~PIN_IDW;				// lower IDW
+     2be:	2b 98       	cbi	0x05, 3	; 5
+	__builtin_avr_delay_cycles(3);	// wait for logic to stabilize
+     2c0:	00 c0       	rjmp	.+0      	; 0x2c2 <main+0x76>
+     2c2:	00 00       	nop
+	PORTB |= PIN_IDW;				// raise IDW
+     2c4:	2b 9a       	sbi	0x05, 3	; 5
+	DDRA = 0;						// set the port back to input
+     2c6:	11 b8       	out	0x01, r1	; 1
+	sei();							// re-enable interrupts
+     2c8:	78 94       	sei
+	MPU401_Init(false, false);
+	
+    while(1)	// main loop
+    {
+		// do isa i/o
+		if (PINB & PIN_DRR) {		// isa data input latch is full
+     2ca:	19 9b       	sbis	0x03, 1	; 3
+     2cc:	ec cf       	rjmp	.-40     	; 0x2a6 <main+0x5a>
+	DDRA = 0;						// set the port back to input
+	sei();							// re-enable interrupts
+}
+
+unsigned char recv_isa_byte() {
+	cli();							// disable interrupts
+     2ce:	f8 94       	cli
+	PORTB &= ~PIN_IDR;				// lower IDR
+     2d0:	2c 98       	cbi	0x05, 4	; 5
+	__builtin_avr_delay_cycles(3);	// wait for i/o to settle
+     2d2:	00 c0       	rjmp	.+0      	; 0x2d4 <main+0x88>
+     2d4:	00 00       	nop
+	unsigned char temp = PINA;		// capture what we find there
+     2d6:	80 b1       	in	r24, 0x00	; 0
+	PORTB |= PIN_IDR;				// raise IDR
+     2d8:	2c 9a       	sbi	0x05, 4	; 5
+	
+    while(1)	// main loop
+    {
+		// do isa i/o
+		if (PINB & PIN_DRR) {		// isa data input latch is full
+			MPU401_WriteData(recv_isa_byte());
+     2da:	75 d5       	rcall	.+2794   	; 0xdc6 <MPU401_WriteData>
+		}
+		if (PINB & PIN_CRR) {		// isa control input latch is full
+     2dc:	1a 9b       	sbis	0x03, 2	; 3
+     2de:	e5 cf       	rjmp	.-54     	; 0x2aa <main+0x5e>
+	DDRA = 0;						// set the port back to input
+	sei();							// re-enable interrupts
+}
+
+unsigned char recv_isa_byte() {
+	cli();							// disable interrupts
+     2e0:	f8 94       	cli
+	PORTB &= ~PIN_IDR;				// lower IDR
+     2e2:	2c 98       	cbi	0x05, 4	; 5
+	__builtin_avr_delay_cycles(3);	// wait for i/o to settle
+     2e4:	00 c0       	rjmp	.+0      	; 0x2e6 <main+0x9a>
+     2e6:	00 00       	nop
+	unsigned char temp = PINA;		// capture what we find there
+     2e8:	80 b1       	in	r24, 0x00	; 0
+	PORTB |= PIN_IDR;				// raise IDR
+     2ea:	2c 9a       	sbi	0x05, 4	; 5
+		// do isa i/o
+		if (PINB & PIN_DRR) {		// isa data input latch is full
+			MPU401_WriteData(recv_isa_byte());
+		}
+		if (PINB & PIN_CRR) {		// isa control input latch is full
+			MPU401_WriteCommand(recv_isa_byte());
+     2ec:	8e d3       	rcall	.+1820   	; 0xa0a <MPU401_WriteCommand>
+     2ee:	dd cf       	rjmp	.-70     	; 0x2aa <main+0x5e>
+
+000002f0 <MIDI_RawOutByte>:
+
+        pChan->used=0;
+        pChan->next=0;
+}
+
+void MIDI_RawOutByte(Bit8u data) {
+     2f0:	cf 93       	push	r28
+     2f2:	df 93       	push	r29
+        channel* pChan; /* SOFTMPU */
+
+        if (midi.sysex.start && MIDI_sysex_delay) {
+     2f4:	40 91 3e 06 	lds	r20, 0x063E
+     2f8:	50 91 3f 06 	lds	r21, 0x063F
+     2fc:	60 91 40 06 	lds	r22, 0x0640
+     300:	70 91 41 06 	lds	r23, 0x0641
+     304:	45 2b       	or	r20, r21
+     306:	46 2b       	or	r20, r22
+     308:	47 2b       	or	r20, r23
+     30a:	41 f0       	breq	.+16     	; 0x31c <MIDI_RawOutByte+0x2c>
+     30c:	20 91 1a 07 	lds	r18, 0x071A
+     310:	30 91 1b 07 	lds	r19, 0x071B
+     314:	21 15       	cp	r18, r1
+     316:	31 05       	cpc	r19, r1
+     318:	09 f0       	breq	.+2      	; 0x31c <MIDI_RawOutByte+0x2c>
+     31a:	5b c0       	rjmp	.+182    	; 0x3d2 <MIDI_RawOutByte+0xe2>
+					_delay_us(250);	// HardMPU
+				}
+        }
+
+	/* Test for a realtime MIDI message */
+	if (data>=0xf8) {
+     31c:	88 3f       	cpi	r24, 0xF8	; 248
+     31e:	58 f0       	brcs	.+22     	; 0x336 <MIDI_RawOutByte+0x46>
+		midi.rt_buf[0]=data;
+     320:	80 93 30 02 	sts	0x0230, r24
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     324:	70 91 c0 00 	lds	r23, 0x00C0
+     328:	75 ff       	sbrs	r23, 5
+     32a:	fc cf       	rjmp	.-8      	; 0x324 <MIDI_RawOutByte+0x34>
+			UDR0 = msg[i];							// output the next byte
+     32c:	80 93 c6 00 	sts	0x00C6, r24
+                                PlayMsg(midi.cmd_buf,midi.cmd_len);
+                        }
+                        midi.cmd_pos=1;         //Use Running status
+		}
+	}
+}
+     330:	df 91       	pop	r29
+     332:	cf 91       	pop	r28
+     334:	08 95       	ret
+		midi.rt_buf[0]=data;
+		PlayMsg(midi.rt_buf,1);
+		return;
+	}        
+	/* Test for a active sysex tranfer */
+	if (midi.status==0xf0) {
+     336:	c0 91 22 02 	lds	r28, 0x0222
+     33a:	d0 91 23 02 	lds	r29, 0x0223
+     33e:	c0 3f       	cpi	r28, 0xF0	; 240
+     340:	d1 05       	cpc	r29, r1
+     342:	09 f4       	brne	.+2      	; 0x346 <MIDI_RawOutByte+0x56>
+     344:	60 c0       	rjmp	.+192    	; 0x406 <MIDI_RawOutByte+0x116>
+			/*if (CaptureState & CAPTURE_MIDI) {
+				CAPTURE_AddMidi( true, midi.sysex.used-1, &midi.sysex.buf[1]);
+			}*/ /* SOFTMPU */
+		}
+	}
+	if (data&0x80) {
+     346:	87 fd       	sbrc	r24, 7
+     348:	ee c0       	rjmp	.+476    	; 0x526 <MIDI_RawOutByte+0x236>
+     34a:	20 91 24 02 	lds	r18, 0x0224
+     34e:	30 91 25 02 	lds	r19, 0x0225
+			midi.sysex.buf[0]=0xf0;
+			midi.sysex.used=1;
+                        midi.sysex.usedbufs=0;
+		}
+	}
+	if (midi.cmd_len) {
+     352:	21 15       	cp	r18, r1
+     354:	31 05       	cpc	r19, r1
+     356:	61 f3       	breq	.-40     	; 0x330 <MIDI_RawOutByte+0x40>
+		midi.cmd_buf[midi.cmd_pos++]=data;
+     358:	a0 91 26 02 	lds	r26, 0x0226
+     35c:	b0 91 27 02 	lds	r27, 0x0227
+     360:	ad 01       	movw	r20, r26
+     362:	4f 5f       	subi	r20, 0xFF	; 255
+     364:	5f 4f       	sbci	r21, 0xFF	; 255
+     366:	50 93 27 02 	sts	0x0227, r21
+     36a:	40 93 26 02 	sts	0x0226, r20
+     36e:	fd 01       	movw	r30, r26
+     370:	ee 5d       	subi	r30, 0xDE	; 222
+     372:	fd 4f       	sbci	r31, 0xFD	; 253
+     374:	86 83       	std	Z+6, r24	; 0x06
+		if (midi.cmd_pos >= midi.cmd_len) {
+     376:	42 17       	cp	r20, r18
+     378:	53 07       	cpc	r21, r19
+     37a:	d0 f2       	brcs	.-76     	; 0x330 <MIDI_RawOutByte+0x40>
+			/*if (CaptureState & CAPTURE_MIDI) {
+				CAPTURE_AddMidi(false, midi.cmd_len, midi.cmd_buf);
+                        }*/ /* SOFTMPU */
+
+                        if (midi.fakeallnotesoff)
+     37c:	80 91 42 06 	lds	r24, 0x0642
+     380:	88 23       	and	r24, r24
+     382:	09 f4       	brne	.+2      	; 0x386 <MIDI_RawOutByte+0x96>
+     384:	f5 c0       	rjmp	.+490    	; 0x570 <MIDI_RawOutByte+0x280>
+                        {
+                                /* SOFTMPU: Test for "Note On" */
+                                if ((midi.status&0xf0)==0x90)
+     386:	80 91 22 02 	lds	r24, 0x0222
+     38a:	90 91 23 02 	lds	r25, 0x0223
+     38e:	bc 01       	movw	r22, r24
+     390:	60 7f       	andi	r22, 0xF0	; 240
+     392:	77 27       	eor	r23, r23
+     394:	60 39       	cpi	r22, 0x90	; 144
+     396:	71 05       	cpc	r23, r1
+     398:	09 f4       	brne	.+2      	; 0x39c <MIDI_RawOutByte+0xac>
+     39a:	3e c1       	rjmp	.+636    	; 0x618 <MIDI_RawOutByte+0x328>
+                                        }
+
+                                        PlayMsg(midi.cmd_buf,midi.cmd_len);
+                                }
+                                /* SOFTMPU: Test for "All Notes Off" */
+                                else if (((midi.status&0xf0)==0xb0) &&
+     39c:	60 3b       	cpi	r22, 0xB0	; 176
+     39e:	71 05       	cpc	r23, r1
+     3a0:	09 f4       	brne	.+2      	; 0x3a4 <MIDI_RawOutByte+0xb4>
+     3a2:	f5 c0       	rjmp	.+490    	; 0x58e <MIDI_RawOutByte+0x29e>
+     3a4:	e8 e2       	ldi	r30, 0x28	; 40
+     3a6:	f2 e0       	ldi	r31, 0x02	; 2
+     3a8:	28 5d       	subi	r18, 0xD8	; 216
+     3aa:	3d 4f       	sbci	r19, 0xFD	; 253
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     3ac:	50 91 c0 00 	lds	r21, 0x00C0
+     3b0:	55 ff       	sbrs	r21, 5
+     3b2:	fc cf       	rjmp	.-8      	; 0x3ac <MIDI_RawOutByte+0xbc>
+			UDR0 = msg[i];							// output the next byte
+     3b4:	71 91       	ld	r23, Z+
+     3b6:	70 93 c6 00 	sts	0x00C6, r23
+/* SOFTMPU: Initialised in mpu401.c */
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+     3ba:	e2 17       	cp	r30, r18
+     3bc:	f3 07       	cpc	r31, r19
+     3be:	b1 f7       	brne	.-20     	; 0x3ac <MIDI_RawOutByte+0xbc>
+                        }
+                        else
+                        {
+                                PlayMsg(midi.cmd_buf,midi.cmd_len);
+                        }
+                        midi.cmd_pos=1;         //Use Running status
+     3c0:	21 e0       	ldi	r18, 0x01	; 1
+     3c2:	30 e0       	ldi	r19, 0x00	; 0
+     3c4:	30 93 27 02 	sts	0x0227, r19
+     3c8:	20 93 26 02 	sts	0x0226, r18
+		}
+	}
+}
+     3cc:	df 91       	pop	r29
+     3ce:	cf 91       	pop	r28
+     3d0:	08 95       	ret
+                                mov     MIDI_sysex_delay,0      ; Set original delay to zero
+                } */
+                /*Bit32u passed_ticks = GetTicks() - midi.sysex.start;
+                if (passed_ticks < midi.sysex.delay) SDL_Delay(midi.sysex.delay - passed_ticks);*/ /* SOFTMPU */
+				
+				while (MIDI_sysex_delay--) {
+     3d2:	21 50       	subi	r18, 0x01	; 1
+     3d4:	31 09       	sbc	r19, r1
+     3d6:	30 93 1b 07 	sts	0x071B, r19
+     3da:	20 93 1a 07 	sts	0x071A, r18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     3de:	c1 ee       	ldi	r28, 0xE1	; 225
+     3e0:	d4 e0       	ldi	r29, 0x04	; 4
+     3e2:	21 97       	sbiw	r28, 0x01	; 1
+     3e4:	f1 f7       	brne	.-4      	; 0x3e2 <MIDI_RawOutByte+0xf2>
+     3e6:	00 c0       	rjmp	.+0      	; 0x3e8 <MIDI_RawOutByte+0xf8>
+     3e8:	00 00       	nop
+     3ea:	60 91 1a 07 	lds	r22, 0x071A
+     3ee:	70 91 1b 07 	lds	r23, 0x071B
+     3f2:	db 01       	movw	r26, r22
+     3f4:	11 97       	sbiw	r26, 0x01	; 1
+     3f6:	b0 93 1b 07 	sts	0x071B, r27
+     3fa:	a0 93 1a 07 	sts	0x071A, r26
+     3fe:	61 15       	cp	r22, r1
+     400:	71 05       	cpc	r23, r1
+     402:	69 f7       	brne	.-38     	; 0x3de <MIDI_RawOutByte+0xee>
+     404:	8b cf       	rjmp	.-234    	; 0x31c <MIDI_RawOutByte+0x2c>
+		PlayMsg(midi.rt_buf,1);
+		return;
+	}        
+	/* Test for a active sysex tranfer */
+	if (midi.status==0xf0) {
+		if (!(data&0x80)) {
+     406:	87 fd       	sbrc	r24, 7
+     408:	2e c0       	rjmp	.+92     	; 0x466 <MIDI_RawOutByte+0x176>
+                        /* SOFTMPU: Large sysex support */
+                        /*if (midi.sysex.used<(SYSEX_SIZE-1))*/ midi.sysex.buf[midi.sysex.used++] = data;
+     40a:	c0 91 38 06 	lds	r28, 0x0638
+     40e:	d0 91 39 06 	lds	r29, 0x0639
+     412:	de 01       	movw	r26, r28
+     414:	11 96       	adiw	r26, 0x01	; 1
+     416:	b0 93 39 06 	sts	0x0639, r27
+     41a:	a0 93 38 06 	sts	0x0638, r26
+     41e:	fe 01       	movw	r30, r28
+     420:	ee 5d       	subi	r30, 0xDE	; 222
+     422:	fd 4f       	sbci	r31, 0xFD	; 253
+     424:	86 8b       	std	Z+22, r24	; 0x16
+
+                        if (midi.sysex.used==SYSEX_SIZE)
+     426:	a1 15       	cp	r26, r1
+     428:	d4 e0       	ldi	r29, 0x04	; 4
+     42a:	bd 07       	cpc	r27, r29
+     42c:	09 f0       	breq	.+2      	; 0x430 <MIDI_RawOutByte+0x140>
+     42e:	80 cf       	rjmp	.-256    	; 0x330 <MIDI_RawOutByte+0x40>
+     430:	c8 e3       	ldi	r28, 0x38	; 56
+     432:	d2 e0       	ldi	r29, 0x02	; 2
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     434:	30 91 c0 00 	lds	r19, 0x00C0
+     438:	35 ff       	sbrs	r19, 5
+     43a:	fc cf       	rjmp	.-8      	; 0x434 <MIDI_RawOutByte+0x144>
+			UDR0 = msg[i];							// output the next byte
+     43c:	59 91       	ld	r21, Y+
+     43e:	50 93 c6 00 	sts	0x00C6, r21
+/* SOFTMPU: Initialised in mpu401.c */
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+     442:	86 e0       	ldi	r24, 0x06	; 6
+     444:	c8 33       	cpi	r28, 0x38	; 56
+     446:	d8 07       	cpc	r29, r24
+     448:	a9 f7       	brne	.-22     	; 0x434 <MIDI_RawOutByte+0x144>
+                        /*if (midi.sysex.used<(SYSEX_SIZE-1))*/ midi.sysex.buf[midi.sysex.used++] = data;
+
+                        if (midi.sysex.used==SYSEX_SIZE)
+                        {
+                                PlayMsg(midi.sysex.buf, SYSEX_SIZE);
+                                midi.sysex.used = 0;
+     44a:	10 92 39 06 	sts	0x0639, r1
+     44e:	10 92 38 06 	sts	0x0638, r1
+                                midi.sysex.usedbufs++;
+     452:	80 91 3a 06 	lds	r24, 0x063A
+     456:	90 91 3b 06 	lds	r25, 0x063B
+     45a:	01 96       	adiw	r24, 0x01	; 1
+     45c:	90 93 3b 06 	sts	0x063B, r25
+     460:	80 93 3a 06 	sts	0x063A, r24
+     464:	65 cf       	rjmp	.-310    	; 0x330 <MIDI_RawOutByte+0x40>
+                        }
+			return;
+		} else {
+			midi.sysex.buf[midi.sysex.used++] = 0xf7;
+     466:	e0 91 38 06 	lds	r30, 0x0638
+     46a:	f0 91 39 06 	lds	r31, 0x0639
+     46e:	df 01       	movw	r26, r30
+     470:	11 96       	adiw	r26, 0x01	; 1
+     472:	b0 93 39 06 	sts	0x0639, r27
+     476:	a0 93 38 06 	sts	0x0638, r26
+     47a:	9f 01       	movw	r18, r30
+     47c:	2e 5d       	subi	r18, 0xDE	; 222
+     47e:	3d 4f       	sbci	r19, 0xFD	; 253
+     480:	97 ef       	ldi	r25, 0xF7	; 247
+     482:	e9 01       	movw	r28, r18
+     484:	9e 8b       	std	Y+22, r25	; 0x16
+
+                        if ((midi.sysex.start) && (midi.sysex.usedbufs == 0) && (midi.sysex.used >= 4) && (midi.sysex.used <= 9) && (midi.sysex.buf[1] == 0x41) && (midi.sysex.buf[3] == 0x16)) {
+     486:	40 91 3e 06 	lds	r20, 0x063E
+     48a:	50 91 3f 06 	lds	r21, 0x063F
+     48e:	60 91 40 06 	lds	r22, 0x0640
+     492:	70 91 41 06 	lds	r23, 0x0641
+     496:	41 15       	cp	r20, r1
+     498:	51 05       	cpc	r21, r1
+     49a:	61 05       	cpc	r22, r1
+     49c:	71 05       	cpc	r23, r1
+     49e:	71 f0       	breq	.+28     	; 0x4bc <MIDI_RawOutByte+0x1cc>
+     4a0:	c0 91 3a 06 	lds	r28, 0x063A
+     4a4:	d0 91 3b 06 	lds	r29, 0x063B
+     4a8:	cd 2b       	or	r28, r29
+     4aa:	41 f4       	brne	.+16     	; 0x4bc <MIDI_RawOutByte+0x1cc>
+     4ac:	33 97       	sbiw	r30, 0x03	; 3
+     4ae:	36 97       	sbiw	r30, 0x06	; 6
+     4b0:	28 f4       	brcc	.+10     	; 0x4bc <MIDI_RawOutByte+0x1cc>
+     4b2:	d0 91 39 02 	lds	r29, 0x0239
+     4b6:	d1 34       	cpi	r29, 0x41	; 65
+     4b8:	09 f4       	brne	.+2      	; 0x4bc <MIDI_RawOutByte+0x1cc>
+     4ba:	ff c0       	rjmp	.+510    	; 0x6ba <MIDI_RawOutByte+0x3ca>
+/* SOFTMPU: Initialised in mpu401.c */
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+     4bc:	10 97       	sbiw	r26, 0x00	; 0
+     4be:	71 f0       	breq	.+28     	; 0x4dc <MIDI_RawOutByte+0x1ec>
+     4c0:	e8 e3       	ldi	r30, 0x38	; 56
+     4c2:	f2 e0       	ldi	r31, 0x02	; 2
+     4c4:	29 5e       	subi	r18, 0xE9	; 233
+     4c6:	3f 4f       	sbci	r19, 0xFF	; 255
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     4c8:	90 91 c0 00 	lds	r25, 0x00C0
+     4cc:	95 ff       	sbrs	r25, 5
+     4ce:	fc cf       	rjmp	.-8      	; 0x4c8 <MIDI_RawOutByte+0x1d8>
+			UDR0 = msg[i];							// output the next byte
+     4d0:	c1 91       	ld	r28, Z+
+     4d2:	c0 93 c6 00 	sts	0x00C6, r28
+/* SOFTMPU: Initialised in mpu401.c */
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+     4d6:	e2 17       	cp	r30, r18
+     4d8:	f3 07       	cpc	r31, r19
+     4da:	b1 f7       	brne	.-20     	; 0x4c8 <MIDI_RawOutByte+0x1d8>
+                        if ((midi.sysex.start) && (midi.sysex.usedbufs == 0) && (midi.sysex.used >= 4) && (midi.sysex.used <= 9) && (midi.sysex.buf[1] == 0x41) && (midi.sysex.buf[3] == 0x16)) {
+				/*LOG(LOG_ALL,LOG_ERROR)("MIDI:Skipping invalid MT-32 SysEx midi message (too short to contain a checksum)");*/ /* SOFTMPU */
+			} else {
+				/*LOG(LOG_ALL,LOG_NORMAL)("Play sysex; address:%02X %02X %02X, length:%4d, delay:%3d", midi.sysex.buf[5], midi.sysex.buf[6], midi.sysex.buf[7], midi.sysex.used, midi.sysex.delay);*/
+				PlayMsg(midi.sysex.buf, midi.sysex.used); /* SOFTMPU */
+				if (midi.sysex.start) {
+     4dc:	45 2b       	or	r20, r21
+     4de:	46 2b       	or	r20, r22
+     4e0:	47 2b       	or	r20, r23
+     4e2:	09 f1       	breq	.+66     	; 0x526 <MIDI_RawOutByte+0x236>
+                                        if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x7F) {
+     4e4:	20 91 3a 06 	lds	r18, 0x063A
+     4e8:	30 91 3b 06 	lds	r19, 0x063B
+     4ec:	21 15       	cp	r18, r1
+     4ee:	31 05       	cpc	r19, r1
+     4f0:	41 f4       	brne	.+16     	; 0x502 <MIDI_RawOutByte+0x212>
+     4f2:	50 91 3d 02 	lds	r21, 0x023D
+     4f6:	5f 37       	cpi	r21, 0x7F	; 127
+     4f8:	09 f4       	brne	.+2      	; 0x4fc <MIDI_RawOutByte+0x20c>
+     4fa:	d8 c0       	rjmp	.+432    	; 0x6ac <MIDI_RawOutByte+0x3bc>
+                                            /*midi.sysex.delay = 290;*/ /* SOFTMPU */ // All Parameters reset
+                                            MIDI_sysex_delay = 290*(RTCFREQ/1000);
+                                        } else if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x10 && midi.sysex.buf[6] == 0x00 && midi.sysex.buf[7] == 0x04) {
+     4fc:	50 31       	cpi	r21, 0x10	; 16
+     4fe:	09 f4       	brne	.+2      	; 0x502 <MIDI_RawOutByte+0x212>
+     500:	c3 c0       	rjmp	.+390    	; 0x688 <MIDI_RawOutByte+0x398>
+                                            /*midi.sysex.delay = 145;*/ /* SOFTMPU */ // Viking Child
+                                            MIDI_sysex_delay = 145*(RTCFREQ/1000);
+                                        } else if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x10 && midi.sysex.buf[6] == 0x00 && midi.sysex.buf[7] == 0x01) {
+                                            /*midi.sysex.delay = 30;*/ /* SOFTMPU */ // Dark Sun 1
+                                            MIDI_sysex_delay = 30*(RTCFREQ/1000);
+                                        } else MIDI_sysex_delay = ((((midi.sysex.usedbufs*SYSEX_SIZE)+midi.sysex.used)/2)+2)*(RTCFREQ/1000); /*(Bitu)(((float)(midi.sysex.used) * 1.25f) * 1000.0f / 3125.0f) + 2;
+     502:	32 2f       	mov	r19, r18
+     504:	22 27       	eor	r18, r18
+     506:	33 0f       	add	r19, r19
+     508:	33 0f       	add	r19, r19
+     50a:	2a 0f       	add	r18, r26
+     50c:	3b 1f       	adc	r19, r27
+     50e:	36 95       	lsr	r19
+     510:	27 95       	ror	r18
+     512:	2e 5f       	subi	r18, 0xFE	; 254
+     514:	3f 4f       	sbci	r19, 0xFF	; 255
+     516:	22 0f       	add	r18, r18
+     518:	33 1f       	adc	r19, r19
+     51a:	22 0f       	add	r18, r18
+     51c:	33 1f       	adc	r19, r19
+     51e:	30 93 1b 07 	sts	0x071B, r19
+     522:	20 93 1a 07 	sts	0x071A, r18
+				CAPTURE_AddMidi( true, midi.sysex.used-1, &midi.sysex.buf[1]);
+			}*/ /* SOFTMPU */
+		}
+	}
+	if (data&0x80) {
+		midi.status=data;
+     526:	48 2f       	mov	r20, r24
+     528:	50 e0       	ldi	r21, 0x00	; 0
+     52a:	50 93 23 02 	sts	0x0223, r21
+     52e:	40 93 22 02 	sts	0x0222, r20
+		midi.cmd_pos=0;
+     532:	10 92 27 02 	sts	0x0227, r1
+     536:	10 92 26 02 	sts	0x0226, r1
+		midi.cmd_len=MIDI_evt_len[data];
+     53a:	ea 01       	movw	r28, r20
+     53c:	ce 5d       	subi	r28, 0xDE	; 222
+     53e:	de 4f       	sbci	r29, 0xFE	; 254
+     540:	28 81       	ld	r18, Y
+     542:	30 e0       	ldi	r19, 0x00	; 0
+     544:	30 93 25 02 	sts	0x0225, r19
+     548:	20 93 24 02 	sts	0x0224, r18
+		if (midi.status==0xf0) {
+     54c:	40 3f       	cpi	r20, 0xF0	; 240
+     54e:	51 05       	cpc	r21, r1
+     550:	09 f0       	breq	.+2      	; 0x554 <MIDI_RawOutByte+0x264>
+     552:	ff ce       	rjmp	.-514    	; 0x352 <MIDI_RawOutByte+0x62>
+			midi.sysex.buf[0]=0xf0;
+     554:	b0 ef       	ldi	r27, 0xF0	; 240
+     556:	b0 93 38 02 	sts	0x0238, r27
+			midi.sysex.used=1;
+     55a:	61 e0       	ldi	r22, 0x01	; 1
+     55c:	70 e0       	ldi	r23, 0x00	; 0
+     55e:	70 93 39 06 	sts	0x0639, r23
+     562:	60 93 38 06 	sts	0x0638, r22
+                        midi.sysex.usedbufs=0;
+     566:	10 92 3b 06 	sts	0x063B, r1
+     56a:	10 92 3a 06 	sts	0x063A, r1
+     56e:	f1 ce       	rjmp	.-542    	; 0x352 <MIDI_RawOutByte+0x62>
+     570:	c8 e2       	ldi	r28, 0x28	; 40
+     572:	d2 e0       	ldi	r29, 0x02	; 2
+     574:	28 5d       	subi	r18, 0xD8	; 216
+     576:	3d 4f       	sbci	r19, 0xFD	; 253
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     578:	f0 91 c0 00 	lds	r31, 0x00C0
+     57c:	f5 ff       	sbrs	r31, 5
+     57e:	fc cf       	rjmp	.-8      	; 0x578 <MIDI_RawOutByte+0x288>
+			UDR0 = msg[i];							// output the next byte
+     580:	99 91       	ld	r25, Y+
+     582:	90 93 c6 00 	sts	0x00C6, r25
+/* SOFTMPU: Initialised in mpu401.c */
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+     586:	c2 17       	cp	r28, r18
+     588:	d3 07       	cpc	r29, r19
+     58a:	b1 f7       	brne	.-20     	; 0x578 <MIDI_RawOutByte+0x288>
+     58c:	19 cf       	rjmp	.-462    	; 0x3c0 <MIDI_RawOutByte+0xd0>
+                                        }
+
+                                        PlayMsg(midi.cmd_buf,midi.cmd_len);
+                                }
+                                /* SOFTMPU: Test for "All Notes Off" */
+                                else if (((midi.status&0xf0)==0xb0) &&
+     58e:	d0 91 29 02 	lds	r29, 0x0229
+     592:	db 57       	subi	r29, 0x7B	; 123
+     594:	d5 30       	cpi	r29, 0x05	; 5
+     596:	08 f0       	brcs	.+2      	; 0x59a <MIDI_RawOutByte+0x2aa>
+     598:	05 cf       	rjmp	.-502    	; 0x3a4 <MIDI_RawOutByte+0xb4>
+                                         (midi.cmd_buf[1]>=0x7b) &&
+                                         (midi.cmd_buf[1]<=0x7f))
+                                {
+                                        FakeAllNotesOff(midi.status&0x0f);
+     59a:	8f 70       	andi	r24, 0x0F	; 15
+     59c:	99 27       	eor	r25, r25
+static void FakeAllNotesOff(Bitu chan)
+{
+        Bitu note;
+        channel* pChan;
+
+        MIDI_note_off[0] &= 0xf0;
+     59e:	20 91 00 01 	lds	r18, 0x0100
+     5a2:	20 7f       	andi	r18, 0xF0	; 240
+        MIDI_note_off[0] |= (Bit8u)chan;
+     5a4:	28 2b       	or	r18, r24
+     5a6:	20 93 00 01 	sts	0x0100, r18
+
+        pChan=&tracked_channels[chan];
+     5aa:	ec 01       	movw	r28, r24
+     5ac:	cc 0f       	add	r28, r28
+     5ae:	dd 1f       	adc	r29, r29
+     5b0:	88 0f       	add	r24, r24
+     5b2:	99 1f       	adc	r25, r25
+     5b4:	88 0f       	add	r24, r24
+     5b6:	99 1f       	adc	r25, r25
+     5b8:	88 0f       	add	r24, r24
+     5ba:	99 1f       	adc	r25, r25
+     5bc:	c8 0f       	add	r28, r24
+     5be:	d9 1f       	adc	r29, r25
+     5c0:	c4 5e       	subi	r28, 0xE4	; 228
+     5c2:	d8 4f       	sbci	r29, 0xF8	; 248
+
+        for (note=0;note<pChan->used;note++)
+     5c4:	38 81       	ld	r19, Y
+     5c6:	33 23       	and	r19, r19
+     5c8:	09 f4       	brne	.+2      	; 0x5cc <MIDI_RawOutByte+0x2dc>
+     5ca:	5b c0       	rjmp	.+182    	; 0x682 <MIDI_RawOutByte+0x392>
+     5cc:	de 01       	movw	r26, r28
+     5ce:	12 96       	adiw	r26, 0x02	; 2
+     5d0:	80 e0       	ldi	r24, 0x00	; 0
+     5d2:	90 e0       	ldi	r25, 0x00	; 0
+     5d4:	40 91 02 01 	lds	r20, 0x0102
+        {
+                MIDI_note_off[1]=pChan->notes[note];
+     5d8:	fd 91       	ld	r31, X+
+     5da:	f0 93 01 01 	sts	0x0101, r31
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     5de:	60 91 c0 00 	lds	r22, 0x00C0
+     5e2:	65 ff       	sbrs	r22, 5
+     5e4:	fc cf       	rjmp	.-8      	; 0x5de <MIDI_RawOutByte+0x2ee>
+			UDR0 = msg[i];							// output the next byte
+     5e6:	20 93 c6 00 	sts	0x00C6, r18
+     5ea:	e0 91 01 01 	lds	r30, 0x0101
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     5ee:	50 91 c0 00 	lds	r21, 0x00C0
+     5f2:	55 ff       	sbrs	r21, 5
+     5f4:	fc cf       	rjmp	.-8      	; 0x5ee <MIDI_RawOutByte+0x2fe>
+			UDR0 = msg[i];							// output the next byte
+     5f6:	e0 93 c6 00 	sts	0x00C6, r30
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     5fa:	70 91 c0 00 	lds	r23, 0x00C0
+     5fe:	75 ff       	sbrs	r23, 5
+     600:	fc cf       	rjmp	.-8      	; 0x5fa <MIDI_RawOutByte+0x30a>
+			UDR0 = msg[i];							// output the next byte
+     602:	40 93 c6 00 	sts	0x00C6, r20
+        MIDI_note_off[0] &= 0xf0;
+        MIDI_note_off[0] |= (Bit8u)chan;
+
+        pChan=&tracked_channels[chan];
+
+        for (note=0;note<pChan->used;note++)
+     606:	01 96       	adiw	r24, 0x01	; 1
+     608:	28 81       	ld	r18, Y
+     60a:	30 e0       	ldi	r19, 0x00	; 0
+     60c:	82 17       	cp	r24, r18
+     60e:	93 07       	cpc	r25, r19
+     610:	c0 f5       	brcc	.+112    	; 0x682 <MIDI_RawOutByte+0x392>
+     612:	20 91 00 01 	lds	r18, 0x0100
+     616:	e0 cf       	rjmp	.-64     	; 0x5d8 <MIDI_RawOutByte+0x2e8>
+                        if (midi.fakeallnotesoff)
+                        {
+                                /* SOFTMPU: Test for "Note On" */
+                                if ((midi.status&0xf0)==0x90)
+                                {
+                                        if (midi.cmd_buf[2]>0)
+     618:	b0 91 2a 02 	lds	r27, 0x022A
+     61c:	bb 23       	and	r27, r27
+     61e:	11 f1       	breq	.+68     	; 0x664 <MIDI_RawOutByte+0x374>
+                                        {
+                                                pChan=&tracked_channels[midi.status&0x0f];
+     620:	8f 70       	andi	r24, 0x0F	; 15
+     622:	99 27       	eor	r25, r25
+     624:	ec 01       	movw	r28, r24
+     626:	cc 0f       	add	r28, r28
+     628:	dd 1f       	adc	r29, r29
+     62a:	88 0f       	add	r24, r24
+     62c:	99 1f       	adc	r25, r25
+     62e:	88 0f       	add	r24, r24
+     630:	99 1f       	adc	r25, r25
+     632:	88 0f       	add	r24, r24
+     634:	99 1f       	adc	r25, r25
+     636:	c8 0f       	add	r28, r24
+     638:	d9 1f       	adc	r29, r25
+     63a:	c4 5e       	subi	r28, 0xE4	; 228
+     63c:	d8 4f       	sbci	r29, 0xF8	; 248
+                                                pChan->notes[pChan->next++]=midi.cmd_buf[1];
+     63e:	99 81       	ldd	r25, Y+1	; 0x01
+     640:	81 e0       	ldi	r24, 0x01	; 1
+     642:	89 0f       	add	r24, r25
+     644:	89 83       	std	Y+1, r24	; 0x01
+     646:	de 01       	movw	r26, r28
+     648:	a9 0f       	add	r26, r25
+     64a:	b1 1d       	adc	r27, r1
+     64c:	40 91 29 02 	lds	r20, 0x0229
+     650:	12 96       	adiw	r26, 0x02	; 2
+     652:	4c 93       	st	X, r20
+                                                if (pChan->next==MAX_TRACKED_NOTES) pChan->next=0;
+     654:	88 30       	cpi	r24, 0x08	; 8
+     656:	09 f4       	brne	.+2      	; 0x65a <MIDI_RawOutByte+0x36a>
+     658:	19 82       	std	Y+1, r1	; 0x01
+                                                if (pChan->used<MAX_TRACKED_NOTES) pChan->used++;
+     65a:	f8 81       	ld	r31, Y
+     65c:	f8 30       	cpi	r31, 0x08	; 8
+     65e:	10 f4       	brcc	.+4      	; 0x664 <MIDI_RawOutByte+0x374>
+     660:	ff 5f       	subi	r31, 0xFF	; 255
+     662:	f8 83       	st	Y, r31
+     664:	e8 e2       	ldi	r30, 0x28	; 40
+     666:	f2 e0       	ldi	r31, 0x02	; 2
+     668:	28 5d       	subi	r18, 0xD8	; 216
+     66a:	3d 4f       	sbci	r19, 0xFD	; 253
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+     66c:	d0 91 c0 00 	lds	r29, 0x00C0
+     670:	d5 ff       	sbrs	r29, 5
+     672:	fc cf       	rjmp	.-8      	; 0x66c <MIDI_RawOutByte+0x37c>
+			UDR0 = msg[i];							// output the next byte
+     674:	61 91       	ld	r22, Z+
+     676:	60 93 c6 00 	sts	0x00C6, r22
+/* SOFTMPU: Initialised in mpu401.c */
+// extern QEMMInfo qemm;
+
+static void PlayMsg(Bit8u* msg, Bitu len)
+{
+        for (Bitu i = 0; i < len; i++) {
+     67a:	e2 17       	cp	r30, r18
+     67c:	f3 07       	cpc	r31, r19
+     67e:	b1 f7       	brne	.-20     	; 0x66c <MIDI_RawOutByte+0x37c>
+     680:	9f ce       	rjmp	.-706    	; 0x3c0 <MIDI_RawOutByte+0xd0>
+        {
+                MIDI_note_off[1]=pChan->notes[note];
+                PlayMsg(MIDI_note_off,3);
+        }
+
+        pChan->used=0;
+     682:	18 82       	st	Y, r1
+        pChan->next=0;
+     684:	19 82       	std	Y+1, r1	; 0x01
+     686:	9c ce       	rjmp	.-712    	; 0x3c0 <MIDI_RawOutByte+0xd0>
+				PlayMsg(midi.sysex.buf, midi.sysex.used); /* SOFTMPU */
+				if (midi.sysex.start) {
+                                        if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x7F) {
+                                            /*midi.sysex.delay = 290;*/ /* SOFTMPU */ // All Parameters reset
+                                            MIDI_sysex_delay = 290*(RTCFREQ/1000);
+                                        } else if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x10 && midi.sysex.buf[6] == 0x00 && midi.sysex.buf[7] == 0x04) {
+     688:	70 91 3e 02 	lds	r23, 0x023E
+     68c:	71 11       	cpse	r23, r1
+     68e:	39 cf       	rjmp	.-398    	; 0x502 <MIDI_RawOutByte+0x212>
+     690:	60 91 3f 02 	lds	r22, 0x023F
+     694:	64 30       	cpi	r22, 0x04	; 4
+     696:	b9 f0       	breq	.+46     	; 0x6c6 <MIDI_RawOutByte+0x3d6>
+                                            /*midi.sysex.delay = 145;*/ /* SOFTMPU */ // Viking Child
+                                            MIDI_sysex_delay = 145*(RTCFREQ/1000);
+                                        } else if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x10 && midi.sysex.buf[6] == 0x00 && midi.sysex.buf[7] == 0x01) {
+     698:	61 30       	cpi	r22, 0x01	; 1
+     69a:	09 f0       	breq	.+2      	; 0x69e <MIDI_RawOutByte+0x3ae>
+     69c:	32 cf       	rjmp	.-412    	; 0x502 <MIDI_RawOutByte+0x212>
+                                            /*midi.sysex.delay = 30;*/ /* SOFTMPU */ // Dark Sun 1
+                                            MIDI_sysex_delay = 30*(RTCFREQ/1000);
+     69e:	a8 e7       	ldi	r26, 0x78	; 120
+     6a0:	b0 e0       	ldi	r27, 0x00	; 0
+     6a2:	b0 93 1b 07 	sts	0x071B, r27
+     6a6:	a0 93 1a 07 	sts	0x071A, r26
+     6aa:	3d cf       	rjmp	.-390    	; 0x526 <MIDI_RawOutByte+0x236>
+				/*LOG(LOG_ALL,LOG_NORMAL)("Play sysex; address:%02X %02X %02X, length:%4d, delay:%3d", midi.sysex.buf[5], midi.sysex.buf[6], midi.sysex.buf[7], midi.sysex.used, midi.sysex.delay);*/
+				PlayMsg(midi.sysex.buf, midi.sysex.used); /* SOFTMPU */
+				if (midi.sysex.start) {
+                                        if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x7F) {
+                                            /*midi.sysex.delay = 290;*/ /* SOFTMPU */ // All Parameters reset
+                                            MIDI_sysex_delay = 290*(RTCFREQ/1000);
+     6ac:	e8 e8       	ldi	r30, 0x88	; 136
+     6ae:	f4 e0       	ldi	r31, 0x04	; 4
+     6b0:	f0 93 1b 07 	sts	0x071B, r31
+     6b4:	e0 93 1a 07 	sts	0x071A, r30
+     6b8:	36 cf       	rjmp	.-404    	; 0x526 <MIDI_RawOutByte+0x236>
+                        }
+			return;
+		} else {
+			midi.sysex.buf[midi.sysex.used++] = 0xf7;
+
+                        if ((midi.sysex.start) && (midi.sysex.usedbufs == 0) && (midi.sysex.used >= 4) && (midi.sysex.used <= 9) && (midi.sysex.buf[1] == 0x41) && (midi.sysex.buf[3] == 0x16)) {
+     6ba:	f0 91 3b 02 	lds	r31, 0x023B
+     6be:	f6 31       	cpi	r31, 0x16	; 22
+     6c0:	09 f0       	breq	.+2      	; 0x6c4 <MIDI_RawOutByte+0x3d4>
+     6c2:	fc ce       	rjmp	.-520    	; 0x4bc <MIDI_RawOutByte+0x1cc>
+     6c4:	30 cf       	rjmp	.-416    	; 0x526 <MIDI_RawOutByte+0x236>
+                                        if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x7F) {
+                                            /*midi.sysex.delay = 290;*/ /* SOFTMPU */ // All Parameters reset
+                                            MIDI_sysex_delay = 290*(RTCFREQ/1000);
+                                        } else if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x10 && midi.sysex.buf[6] == 0x00 && midi.sysex.buf[7] == 0x04) {
+                                            /*midi.sysex.delay = 145;*/ /* SOFTMPU */ // Viking Child
+                                            MIDI_sysex_delay = 145*(RTCFREQ/1000);
+     6c6:	44 e4       	ldi	r20, 0x44	; 68
+     6c8:	52 e0       	ldi	r21, 0x02	; 2
+     6ca:	50 93 1b 07 	sts	0x071B, r21
+     6ce:	40 93 1a 07 	sts	0x071A, r20
+     6d2:	29 cf       	rjmp	.-430    	; 0x526 <MIDI_RawOutByte+0x236>
+
+000006d4 <MIDI_Available>:
+	}
+}
+
+bool MIDI_Available(void)  {
+	return midi.available;
+}
+     6d4:	80 91 43 06 	lds	r24, 0x0643
+     6d8:	08 95       	ret
+
+000006da <MIDI_Init>:
+
+/* SOFTMPU: Initialisation */
+void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
+     6da:	cf 93       	push	r28
+     6dc:	df 93       	push	r29
+        Bitu i; /* SOFTMPU */
+	midi.sysex.delay = 0;
+     6de:	10 92 3d 06 	sts	0x063D, r1
+     6e2:	10 92 3c 06 	sts	0x063C, r1
+	midi.sysex.start = 0;
+     6e6:	10 92 3e 06 	sts	0x063E, r1
+     6ea:	10 92 3f 06 	sts	0x063F, r1
+     6ee:	10 92 40 06 	sts	0x0640, r1
+     6f2:	10 92 41 06 	sts	0x0641, r1
+	MIDI_sysex_delay = 0; /* SOFTMPU */
+     6f6:	10 92 1b 07 	sts	0x071B, r1
+     6fa:	10 92 1a 07 	sts	0x071A, r1
+
+        if (delaysysex==true)
+     6fe:	81 30       	cpi	r24, 0x01	; 1
+     700:	39 f1       	breq	.+78     	; 0x750 <MIDI_Init+0x76>
+	{
+		midi.sysex.start = 1; /*GetTicks();*/ /* SOFTMPU */
+		/*LOG_MSG("MIDI:Using delayed SysEx processing");*/ /* SOFTMPU */
+	}
+	midi.status=0x00;
+     702:	10 92 23 02 	sts	0x0223, r1
+     706:	10 92 22 02 	sts	0x0222, r1
+	midi.cmd_pos=0;
+     70a:	10 92 27 02 	sts	0x0227, r1
+     70e:	10 92 26 02 	sts	0x0226, r1
+	midi.cmd_len=0;
+     712:	10 92 25 02 	sts	0x0225, r1
+     716:	10 92 24 02 	sts	0x0224, r1
+        midi.fakeallnotesoff=fakeallnotesoff;
+     71a:	60 93 42 06 	sts	0x0642, r22
+        midi.available=true;
+     71e:	21 e0       	ldi	r18, 0x01	; 1
+     720:	20 93 43 06 	sts	0x0643, r18
+     724:	c3 e0       	ldi	r28, 0x03	; 3
+     726:	d1 e0       	ldi	r29, 0x01	; 1
+
+        /* SOFTMPU: Display welcome message on MT-32 */
+        for (i=0;i<30;i++)
+        {
+                MIDI_RawOutByte(MIDI_welcome_msg[i]);
+     728:	89 91       	ld	r24, Y+
+     72a:	e2 dd       	rcall	.-1084   	; 0x2f0 <MIDI_RawOutByte>
+	midi.cmd_len=0;
+        midi.fakeallnotesoff=fakeallnotesoff;
+        midi.available=true;
+
+        /* SOFTMPU: Display welcome message on MT-32 */
+        for (i=0;i<30;i++)
+     72c:	81 e0       	ldi	r24, 0x01	; 1
+     72e:	c1 32       	cpi	r28, 0x21	; 33
+     730:	d8 07       	cpc	r29, r24
+     732:	d1 f7       	brne	.-12     	; 0x728 <MIDI_Init+0x4e>
+     734:	ed e1       	ldi	r30, 0x1D	; 29
+     736:	f7 e0       	ldi	r31, 0x07	; 7
+     738:	df 01       	movw	r26, r30
+     73a:	11 97       	sbiw	r26, 0x01	; 1
+        }
+
+        /* SOFTMPU: Init note tracking */
+        for (i=0;i<MAX_TRACKED_CHANNELS;i++)
+        {
+                tracked_channels[i].used=0;
+     73c:	1c 92       	st	X, r1
+                tracked_channels[i].next=0;
+     73e:	10 82       	st	Z, r1
+     740:	3a 96       	adiw	r30, 0x0a	; 10
+        {
+                MIDI_RawOutByte(MIDI_welcome_msg[i]);
+        }
+
+        /* SOFTMPU: Init note tracking */
+        for (i=0;i<MAX_TRACKED_CHANNELS;i++)
+     742:	87 e0       	ldi	r24, 0x07	; 7
+     744:	ed 3b       	cpi	r30, 0xBD	; 189
+     746:	f8 07       	cpc	r31, r24
+     748:	b9 f7       	brne	.-18     	; 0x738 <MIDI_Init+0x5e>
+        {
+                tracked_channels[i].used=0;
+                tracked_channels[i].next=0;
+        }
+     74a:	df 91       	pop	r29
+     74c:	cf 91       	pop	r28
+     74e:	08 95       	ret
+	midi.sysex.start = 0;
+	MIDI_sysex_delay = 0; /* SOFTMPU */
+
+        if (delaysysex==true)
+	{
+		midi.sysex.start = 1; /*GetTicks();*/ /* SOFTMPU */
+     750:	81 e0       	ldi	r24, 0x01	; 1
+     752:	90 e0       	ldi	r25, 0x00	; 0
+     754:	a0 e0       	ldi	r26, 0x00	; 0
+     756:	b0 e0       	ldi	r27, 0x00	; 0
+     758:	80 93 3e 06 	sts	0x063E, r24
+     75c:	90 93 3f 06 	sts	0x063F, r25
+     760:	a0 93 40 06 	sts	0x0640, r26
+     764:	b0 93 41 06 	sts	0x0641, r27
+     768:	cc cf       	rjmp	.-104    	; 0x702 <MIDI_Init+0x28>
+
+0000076a <MPU401_Reset>:
+}
+
+/* SOFTMPU: Enable/disable MPU version fix for Gateway */
+void MPU401_SetEnableMPUVerFix(bool enable)
+{
+        mpu.mpu_ver_fix=enable;
+     76a:	81 e0       	ldi	r24, 0x01	; 1
+     76c:	90 91 4a 06 	lds	r25, 0x064A
+     770:	91 11       	cpse	r25, r1
+     772:	01 c0       	rjmp	.+2      	; 0x776 <MPU401_Reset+0xc>
+     774:	80 e0       	ldi	r24, 0x00	; 0
+     776:	80 93 4c 06 	sts	0x064C, r24
+     77a:	82 e0       	ldi	r24, 0x02	; 2
+     77c:	e2 d6       	rcall	.+3524   	; 0x1542 <PIC_RemoveEvents>
+     77e:	10 92 f9 06 	sts	0x06F9, r1
+     782:	10 92 f3 06 	sts	0x06F3, r1
+     786:	10 92 f4 06 	sts	0x06F4, r1
+     78a:	10 92 ed 06 	sts	0x06ED, r1
+     78e:	10 92 ee 06 	sts	0x06EE, r1
+     792:	10 92 ef 06 	sts	0x06EF, r1
+     796:	10 92 f1 06 	sts	0x06F1, r1
+     79a:	10 92 f6 06 	sts	0x06F6, r1
+     79e:	10 92 f7 06 	sts	0x06F7, r1
+     7a2:	2f ef       	ldi	r18, 0xFF	; 255
+     7a4:	20 93 01 07 	sts	0x0701, r18
+     7a8:	10 92 00 07 	sts	0x0700, r1
+     7ac:	10 92 02 07 	sts	0x0702, r1
+     7b0:	4f ef       	ldi	r20, 0xFF	; 255
+     7b2:	5f ef       	ldi	r21, 0xFF	; 255
+     7b4:	50 93 04 07 	sts	0x0704, r21
+     7b8:	40 93 03 07 	sts	0x0703, r20
+     7bc:	10 92 fb 06 	sts	0x06FB, r1
+     7c0:	10 92 fa 06 	sts	0x06FA, r1
+     7c4:	10 92 fd 06 	sts	0x06FD, r1
+     7c8:	10 92 fc 06 	sts	0x06FC, r1
+     7cc:	10 92 f0 06 	sts	0x06F0, r1
+     7d0:	34 e6       	ldi	r19, 0x64	; 100
+     7d2:	30 93 0c 07 	sts	0x070C, r19
+     7d6:	30 93 0b 07 	sts	0x070B, r19
+     7da:	5e e1       	ldi	r21, 0x1E	; 30
+     7dc:	50 93 0a 07 	sts	0x070A, r21
+     7e0:	50 93 09 07 	sts	0x0709, r21
+     7e4:	68 e2       	ldi	r22, 0x28	; 40
+     7e6:	60 93 0e 07 	sts	0x070E, r22
+     7ea:	60 93 0d 07 	sts	0x070D, r22
+     7ee:	10 92 0f 07 	sts	0x070F, r1
+     7f2:	10 92 12 07 	sts	0x0712, r1
+     7f6:	7c e3       	ldi	r23, 0x3C	; 60
+     7f8:	70 93 10 07 	sts	0x0710, r23
+     7fc:	10 92 11 07 	sts	0x0711, r1
+     800:	10 92 6e 06 	sts	0x066E, r1
+     804:	10 92 6d 06 	sts	0x066D, r1
+     808:	10 92 06 07 	sts	0x0706, r1
+     80c:	10 92 05 07 	sts	0x0705, r1
+     810:	10 92 e0 06 	sts	0x06E0, r1
+     814:	10 92 df 06 	sts	0x06DF, r1
+     818:	10 92 ec 06 	sts	0x06EC, r1
+     81c:	ec e7       	ldi	r30, 0x7C	; 124
+     81e:	f6 e0       	ldi	r31, 0x06	; 6
+     820:	10 82       	st	Z, r1
+     822:	df 01       	movw	r26, r30
+     824:	1d 97       	sbiw	r26, 0x0d	; 13
+     826:	1d 92       	st	X+, r1
+     828:	1c 92       	st	X, r1
+     82a:	3e 96       	adiw	r30, 0x0e	; 14
+     82c:	86 e0       	ldi	r24, 0x06	; 6
+     82e:	ec 3e       	cpi	r30, 0xEC	; 236
+     830:	f8 07       	cpc	r31, r24
+     832:	b1 f7       	brne	.-20     	; 0x820 <MPU401_Reset+0xb6>
+     834:	08 95       	ret
+
+00000836 <QueueByte.part.0>:
+     836:	90 91 6e 06 	lds	r25, 0x066E
+     83a:	90 32       	cpi	r25, 0x20	; 32
+     83c:	98 f4       	brcc	.+38     	; 0x864 <QueueByte.part.0+0x2e>
+     83e:	20 91 6d 06 	lds	r18, 0x066D
+     842:	e2 2f       	mov	r30, r18
+     844:	e9 0f       	add	r30, r25
+     846:	20 32       	cpi	r18, 0x20	; 32
+     848:	18 f0       	brcs	.+6      	; 0x850 <QueueByte.part.0+0x1a>
+     84a:	20 52       	subi	r18, 0x20	; 32
+     84c:	20 93 6d 06 	sts	0x066D, r18
+     850:	e0 32       	cpi	r30, 0x20	; 32
+     852:	08 f0       	brcs	.+2      	; 0x856 <QueueByte.part.0+0x20>
+     854:	e0 52       	subi	r30, 0x20	; 32
+     856:	9f 5f       	subi	r25, 0xFF	; 255
+     858:	90 93 6e 06 	sts	0x066E, r25
+     85c:	f0 e0       	ldi	r31, 0x00	; 0
+     85e:	e6 5b       	subi	r30, 0xB6	; 182
+     860:	f9 4f       	sbci	r31, 0xF9	; 249
+     862:	83 83       	std	Z+3, r24	; 0x03
+     864:	08 95       	ret
+
+00000866 <UpdateConductor>:
+     866:	80 91 e1 06 	lds	r24, 0x06E1
+     86a:	8c 3f       	cpi	r24, 0xFC	; 252
+     86c:	91 f0       	breq	.+36     	; 0x892 <UpdateConductor+0x2c>
+     86e:	10 92 ea 06 	sts	0x06EA, r1
+     872:	20 ef       	ldi	r18, 0xF0	; 240
+     874:	30 e0       	ldi	r19, 0x00	; 0
+     876:	30 93 e0 06 	sts	0x06E0, r19
+     87a:	20 93 df 06 	sts	0x06DF, r18
+     87e:	40 91 05 07 	lds	r20, 0x0705
+     882:	50 91 06 07 	lds	r21, 0x0706
+     886:	52 60       	ori	r21, 0x02	; 2
+     888:	50 93 06 07 	sts	0x0706, r21
+     88c:	40 93 05 07 	sts	0x0705, r20
+     890:	08 95       	ret
+     892:	10 92 e1 06 	sts	0x06E1, r1
+     896:	10 92 ed 06 	sts	0x06ED, r1
+     89a:	60 91 05 07 	lds	r22, 0x0705
+     89e:	70 91 06 07 	lds	r23, 0x0706
+     8a2:	7d 7f       	andi	r23, 0xFD	; 253
+     8a4:	70 93 06 07 	sts	0x0706, r23
+     8a8:	60 93 05 07 	sts	0x0705, r22
+     8ac:	30 91 02 07 	lds	r19, 0x0702
+     8b0:	31 11       	cpse	r19, r1
+     8b2:	ee cf       	rjmp	.-36     	; 0x890 <UpdateConductor+0x2a>
+     8b4:	70 61       	ori	r23, 0x10	; 16
+     8b6:	70 93 06 07 	sts	0x0706, r23
+     8ba:	60 93 05 07 	sts	0x0705, r22
+     8be:	08 95       	ret
+
+000008c0 <UpdateTrack>:
+     8c0:	bf 92       	push	r11
+     8c2:	cf 92       	push	r12
+     8c4:	df 92       	push	r13
+     8c6:	ef 92       	push	r14
+     8c8:	ff 92       	push	r15
+     8ca:	0f 93       	push	r16
+     8cc:	1f 93       	push	r17
+     8ce:	cf 93       	push	r28
+     8d0:	df 93       	push	r29
+     8d2:	b8 2e       	mov	r11, r24
+     8d4:	08 2f       	mov	r16, r24
+     8d6:	10 e0       	ldi	r17, 0x00	; 0
+     8d8:	00 0f       	add	r16, r16
+     8da:	11 1f       	adc	r17, r17
+     8dc:	98 01       	movw	r18, r16
+     8de:	22 0f       	add	r18, r18
+     8e0:	33 1f       	adc	r19, r19
+     8e2:	22 0f       	add	r18, r18
+     8e4:	33 1f       	adc	r19, r19
+     8e6:	22 0f       	add	r18, r18
+     8e8:	33 1f       	adc	r19, r19
+     8ea:	20 1b       	sub	r18, r16
+     8ec:	31 0b       	sbc	r19, r17
+     8ee:	f9 01       	movw	r30, r18
+     8f0:	e6 5b       	subi	r30, 0xB6	; 182
+     8f2:	f9 4f       	sbci	r31, 0xF9	; 249
+     8f4:	82 a9       	ldd	r24, Z+50	; 0x32
+     8f6:	81 30       	cpi	r24, 0x01	; 1
+     8f8:	09 f4       	brne	.+2      	; 0x8fc <UpdateTrack+0x3c>
+     8fa:	62 c0       	rjmp	.+196    	; 0x9c0 <UpdateTrack+0x100>
+     8fc:	83 30       	cpi	r24, 0x03	; 3
+     8fe:	c1 f4       	brne	.+48     	; 0x930 <UpdateTrack+0x70>
+     900:	c0 a8       	ldd	r12, Z+48	; 0x30
+     902:	cc 20       	and	r12, r12
+     904:	a9 f0       	breq	.+42     	; 0x930 <UpdateTrack+0x70>
+     906:	a9 01       	movw	r20, r18
+     908:	4f 58       	subi	r20, 0x8F	; 143
+     90a:	59 4f       	sbci	r21, 0xF9	; 249
+     90c:	7a 01       	movw	r14, r20
+     90e:	c0 e0       	ldi	r28, 0x00	; 0
+     910:	d0 e0       	ldi	r29, 0x00	; 0
+     912:	6f 01       	movw	r12, r30
+     914:	90 e3       	ldi	r25, 0x30	; 48
+     916:	c9 0e       	add	r12, r25
+     918:	d1 1c       	adc	r13, r1
+     91a:	f7 01       	movw	r30, r14
+     91c:	81 91       	ld	r24, Z+
+     91e:	7f 01       	movw	r14, r30
+     920:	e7 dc       	rcall	.-1586   	; 0x2f0 <MIDI_RawOutByte>
+     922:	21 96       	adiw	r28, 0x01	; 1
+     924:	f6 01       	movw	r30, r12
+     926:	20 81       	ld	r18, Z
+     928:	30 e0       	ldi	r19, 0x00	; 0
+     92a:	c2 17       	cp	r28, r18
+     92c:	d3 07       	cpc	r29, r19
+     92e:	a8 f3       	brcs	.-22     	; 0x91a <UpdateTrack+0x5a>
+     930:	d0 90 02 07 	lds	r13, 0x0702
+     934:	2d 2d       	mov	r18, r13
+     936:	30 e0       	ldi	r19, 0x00	; 0
+     938:	0b 2c       	mov	r0, r11
+     93a:	02 c0       	rjmp	.+4      	; 0x940 <UpdateTrack+0x80>
+     93c:	35 95       	asr	r19
+     93e:	27 95       	ror	r18
+     940:	0a 94       	dec	r0
+     942:	e2 f7       	brpl	.-8      	; 0x93c <UpdateTrack+0x7c>
+     944:	20 fd       	sbrc	r18, 0
+     946:	19 c0       	rjmp	.+50     	; 0x97a <UpdateTrack+0xba>
+     948:	d1 10       	cpse	r13, r1
+     94a:	0d c0       	rjmp	.+26     	; 0x966 <UpdateTrack+0xa6>
+     94c:	00 91 ed 06 	lds	r16, 0x06ED
+     950:	01 11       	cpse	r16, r1
+     952:	09 c0       	rjmp	.+18     	; 0x966 <UpdateTrack+0xa6>
+     954:	a0 91 05 07 	lds	r26, 0x0705
+     958:	b0 91 06 07 	lds	r27, 0x0706
+     95c:	b0 61       	ori	r27, 0x10	; 16
+     95e:	b0 93 06 07 	sts	0x0706, r27
+     962:	a0 93 05 07 	sts	0x0705, r26
+     966:	df 91       	pop	r29
+     968:	cf 91       	pop	r28
+     96a:	1f 91       	pop	r17
+     96c:	0f 91       	pop	r16
+     96e:	ff 90       	pop	r15
+     970:	ef 90       	pop	r14
+     972:	df 90       	pop	r13
+     974:	cf 90       	pop	r12
+     976:	bf 90       	pop	r11
+     978:	08 95       	ret
+     97a:	e8 01       	movw	r28, r16
+     97c:	cc 0f       	add	r28, r28
+     97e:	dd 1f       	adc	r29, r29
+     980:	cc 0f       	add	r28, r28
+     982:	dd 1f       	adc	r29, r29
+     984:	cc 0f       	add	r28, r28
+     986:	dd 1f       	adc	r29, r29
+     988:	c0 1b       	sub	r28, r16
+     98a:	d1 0b       	sbc	r29, r17
+     98c:	c6 5b       	subi	r28, 0xB6	; 182
+     98e:	d9 4f       	sbci	r29, 0xF9	; 249
+     990:	18 aa       	std	Y+48, r1	; 0x30
+     992:	1a aa       	std	Y+50, r1	; 0x32
+     994:	20 ef       	ldi	r18, 0xF0	; 240
+     996:	30 e0       	ldi	r19, 0x00	; 0
+     998:	3e a3       	std	Y+38, r19	; 0x26
+     99a:	2d a3       	std	Y+37, r18	; 0x25
+     99c:	81 e0       	ldi	r24, 0x01	; 1
+     99e:	90 e0       	ldi	r25, 0x00	; 0
+     9a0:	02 c0       	rjmp	.+4      	; 0x9a6 <UpdateTrack+0xe6>
+     9a2:	88 0f       	add	r24, r24
+     9a4:	99 1f       	adc	r25, r25
+     9a6:	ba 94       	dec	r11
+     9a8:	e2 f7       	brpl	.-8      	; 0x9a2 <UpdateTrack+0xe2>
+     9aa:	40 91 05 07 	lds	r20, 0x0705
+     9ae:	50 91 06 07 	lds	r21, 0x0706
+     9b2:	84 2b       	or	r24, r20
+     9b4:	95 2b       	or	r25, r21
+     9b6:	90 93 06 07 	sts	0x0706, r25
+     9ba:	80 93 05 07 	sts	0x0705, r24
+     9be:	d3 cf       	rjmp	.-90     	; 0x966 <UpdateTrack+0xa6>
+     9c0:	87 a5       	ldd	r24, Z+47	; 0x2f
+     9c2:	8c 3f       	cpi	r24, 0xFC	; 252
+     9c4:	09 f0       	breq	.+2      	; 0x9c8 <UpdateTrack+0x108>
+     9c6:	b4 cf       	rjmp	.-152    	; 0x930 <UpdateTrack+0x70>
+     9c8:	93 dc       	rcall	.-1754   	; 0x2f0 <MIDI_RawOutByte>
+     9ca:	81 e0       	ldi	r24, 0x01	; 1
+     9cc:	90 e0       	ldi	r25, 0x00	; 0
+     9ce:	0b 2c       	mov	r0, r11
+     9d0:	02 c0       	rjmp	.+4      	; 0x9d6 <UpdateTrack+0x116>
+     9d2:	88 0f       	add	r24, r24
+     9d4:	99 1f       	adc	r25, r25
+     9d6:	0a 94       	dec	r0
+     9d8:	e2 f7       	brpl	.-8      	; 0x9d2 <UpdateTrack+0x112>
+     9da:	f8 2e       	mov	r15, r24
+     9dc:	f0 94       	com	r15
+     9de:	30 91 02 07 	lds	r19, 0x0702
+     9e2:	f3 22       	and	r15, r19
+     9e4:	f0 92 02 07 	sts	0x0702, r15
+     9e8:	80 95       	com	r24
+     9ea:	90 95       	com	r25
+     9ec:	60 91 05 07 	lds	r22, 0x0705
+     9f0:	70 91 06 07 	lds	r23, 0x0706
+     9f4:	86 23       	and	r24, r22
+     9f6:	97 23       	and	r25, r23
+     9f8:	90 93 06 07 	sts	0x0706, r25
+     9fc:	80 93 05 07 	sts	0x0705, r24
+     a00:	df 2c       	mov	r13, r15
+     a02:	98 cf       	rjmp	.-208    	; 0x934 <UpdateTrack+0x74>
+
+00000a04 <QueueUsed>:
+     a04:	80 91 6e 06 	lds	r24, 0x066E
+     a08:	08 95       	ret
+
+00000a0a <MPU401_WriteCommand>:
+     a0a:	cf 93       	push	r28
+     a0c:	c8 2f       	mov	r28, r24
+     a0e:	80 91 f2 06 	lds	r24, 0x06F2
+     a12:	88 23       	and	r24, r24
+     a14:	b9 f0       	breq	.+46     	; 0xa44 <MPU401_WriteCommand+0x3a>
+     a16:	20 91 fe 06 	lds	r18, 0x06FE
+     a1a:	30 91 ff 06 	lds	r19, 0x06FF
+     a1e:	23 2b       	or	r18, r19
+     a20:	21 f4       	brne	.+8      	; 0xa2a <MPU401_WriteCommand+0x20>
+     a22:	cf 33       	cpi	r28, 0x3F	; 63
+     a24:	59 f0       	breq	.+22     	; 0xa3c <MPU401_WriteCommand+0x32>
+     a26:	cf 3f       	cpi	r28, 0xFF	; 255
+     a28:	49 f0       	breq	.+18     	; 0xa3c <MPU401_WriteCommand+0x32>
+     a2a:	8c 2f       	mov	r24, r28
+     a2c:	90 e0       	ldi	r25, 0x00	; 0
+     a2e:	01 96       	adiw	r24, 0x01	; 1
+     a30:	90 93 ff 06 	sts	0x06FF, r25
+     a34:	80 93 fe 06 	sts	0x06FE, r24
+     a38:	cf 91       	pop	r28
+     a3a:	08 95       	ret
+     a3c:	81 e0       	ldi	r24, 0x01	; 1
+     a3e:	81 d5       	rcall	.+2818   	; 0x1542 <PIC_RemoveEvents>
+     a40:	10 92 f2 06 	sts	0x06F2, r1
+     a44:	c0 33       	cpi	r28, 0x30	; 48
+     a46:	48 f5       	brcc	.+82     	; 0xa9a <MPU401_WriteCommand+0x90>
+     a48:	fc 2f       	mov	r31, r28
+     a4a:	f3 70       	andi	r31, 0x03	; 3
+     a4c:	f2 30       	cpi	r31, 0x02	; 2
+     a4e:	09 f4       	brne	.+2      	; 0xa52 <MPU401_WriteCommand+0x48>
+     a50:	79 c0       	rjmp	.+242    	; 0xb44 <MPU401_WriteCommand+0x13a>
+     a52:	f3 30       	cpi	r31, 0x03	; 3
+     a54:	09 f4       	brne	.+2      	; 0xa58 <MPU401_WriteCommand+0x4e>
+     a56:	64 c0       	rjmp	.+200    	; 0xb20 <MPU401_WriteCommand+0x116>
+     a58:	f1 30       	cpi	r31, 0x01	; 1
+     a5a:	11 f4       	brne	.+4      	; 0xa60 <MPU401_WriteCommand+0x56>
+     a5c:	8c ef       	ldi	r24, 0xFC	; 252
+     a5e:	48 dc       	rcall	.-1904   	; 0x2f0 <MIDI_RawOutByte>
+     a60:	cc 70       	andi	r28, 0x0C	; 12
+     a62:	c4 30       	cpi	r28, 0x04	; 4
+     a64:	09 f4       	brne	.+2      	; 0xa68 <MPU401_WriteCommand+0x5e>
+     a66:	5f c0       	rjmp	.+190    	; 0xb26 <MPU401_WriteCommand+0x11c>
+     a68:	c8 30       	cpi	r28, 0x08	; 8
+     a6a:	09 f0       	breq	.+2      	; 0xa6e <MPU401_WriteCommand+0x64>
+     a6c:	51 c0       	rjmp	.+162    	; 0xb10 <MPU401_WriteCommand+0x106>
+     a6e:	81 e0       	ldi	r24, 0x01	; 1
+     a70:	80 93 f1 06 	sts	0x06F1, r24
+     a74:	80 e0       	ldi	r24, 0x00	; 0
+     a76:	65 d5       	rcall	.+2762   	; 0x1542 <PIC_RemoveEvents>
+     a78:	20 91 0b 07 	lds	r18, 0x070B
+     a7c:	c0 91 09 07 	lds	r28, 0x0709
+     a80:	2c 9f       	mul	r18, r28
+     a82:	b0 01       	movw	r22, r0
+     a84:	11 24       	eor	r1, r1
+     a86:	80 e9       	ldi	r24, 0x90	; 144
+     a88:	92 ee       	ldi	r25, 0xE2	; 226
+     a8a:	ce d5       	rcall	.+2972   	; 0x1628 <__udivmodhi4>
+     a8c:	80 e0       	ldi	r24, 0x00	; 0
+     a8e:	2b d5       	rcall	.+2646   	; 0x14e6 <PIC_AddEvent>
+     a90:	10 92 6e 06 	sts	0x066E, r1
+     a94:	10 92 6d 06 	sts	0x066D, r1
+     a98:	3b c0       	rjmp	.+118    	; 0xb10 <MPU401_WriteCommand+0x106>
+     a9a:	30 e6       	ldi	r19, 0x60	; 96
+     a9c:	3c 0f       	add	r19, r28
+     a9e:	38 30       	cpi	r19, 0x08	; 8
+     aa0:	28 f5       	brcc	.+74     	; 0xaec <MPU401_WriteCommand+0xe2>
+     aa2:	c7 70       	andi	r28, 0x07	; 7
+     aa4:	4c 2f       	mov	r20, r28
+     aa6:	50 e0       	ldi	r21, 0x00	; 0
+     aa8:	20 91 01 07 	lds	r18, 0x0701
+     aac:	30 e0       	ldi	r19, 0x00	; 0
+     aae:	02 c0       	rjmp	.+4      	; 0xab4 <MPU401_WriteCommand+0xaa>
+     ab0:	35 95       	asr	r19
+     ab2:	27 95       	ror	r18
+     ab4:	ca 95       	dec	r28
+     ab6:	e2 f7       	brpl	.-8      	; 0xab0 <MPU401_WriteCommand+0xa6>
+     ab8:	20 ff       	sbrs	r18, 0
+     aba:	2a c0       	rjmp	.+84     	; 0xb10 <MPU401_WriteCommand+0x106>
+     abc:	44 0f       	add	r20, r20
+     abe:	55 1f       	adc	r21, r21
+     ac0:	fa 01       	movw	r30, r20
+     ac2:	ee 0f       	add	r30, r30
+     ac4:	ff 1f       	adc	r31, r31
+     ac6:	ee 0f       	add	r30, r30
+     ac8:	ff 1f       	adc	r31, r31
+     aca:	ee 0f       	add	r30, r30
+     acc:	ff 1f       	adc	r31, r31
+     ace:	e4 1b       	sub	r30, r20
+     ad0:	f5 0b       	sbc	r31, r21
+     ad2:	e6 5b       	subi	r30, 0xB6	; 182
+     ad4:	f9 4f       	sbci	r31, 0xF9	; 249
+     ad6:	85 a1       	ldd	r24, Z+37	; 0x25
+     ad8:	b0 91 f0 06 	lds	r27, 0x06F0
+     adc:	bb 23       	and	r27, r27
+     ade:	09 f4       	brne	.+2      	; 0xae2 <MPU401_WriteCommand+0xd8>
+     ae0:	e8 c0       	rjmp	.+464    	; 0xcb2 <MPU401_WriteCommand+0x2a8>
+     ae2:	10 92 f0 06 	sts	0x06F0, r1
+     ae6:	8e ef       	ldi	r24, 0xFE	; 254
+     ae8:	cf 91       	pop	r28
+     aea:	a5 ce       	rjmp	.-694    	; 0x836 <QueueByte.part.0>
+     aec:	40 e3       	ldi	r20, 0x30	; 48
+     aee:	4c 0f       	add	r20, r28
+     af0:	48 30       	cpi	r20, 0x08	; 8
+     af2:	58 f5       	brcc	.+86     	; 0xb4a <MPU401_WriteCommand+0x140>
+     af4:	70 91 07 07 	lds	r23, 0x0707
+     af8:	70 93 08 07 	sts	0x0708, r23
+     afc:	c7 70       	andi	r28, 0x07	; 7
+     afe:	c0 93 07 07 	sts	0x0707, r28
+     b02:	91 e0       	ldi	r25, 0x01	; 1
+     b04:	90 93 f3 06 	sts	0x06F3, r25
+     b08:	10 92 f4 06 	sts	0x06F4, r1
+     b0c:	90 93 f5 06 	sts	0x06F5, r25
+     b10:	a0 91 f0 06 	lds	r26, 0x06F0
+     b14:	aa 23       	and	r26, r26
+     b16:	39 f3       	breq	.-50     	; 0xae6 <MPU401_WriteCommand+0xdc>
+     b18:	10 92 f0 06 	sts	0x06F0, r1
+     b1c:	cf 91       	pop	r28
+     b1e:	08 95       	ret
+     b20:	8b ef       	ldi	r24, 0xFB	; 251
+     b22:	e6 db       	rcall	.-2100   	; 0x2f0 <MIDI_RawOutByte>
+     b24:	9d cf       	rjmp	.-198    	; 0xa60 <MPU401_WriteCommand+0x56>
+     b26:	80 e0       	ldi	r24, 0x00	; 0
+     b28:	0c d5       	rcall	.+2584   	; 0x1542 <PIC_RemoveEvents>
+     b2a:	10 92 f1 06 	sts	0x06F1, r1
+     b2e:	c0 eb       	ldi	r28, 0xB0	; 176
+     b30:	8c 2f       	mov	r24, r28
+     b32:	de db       	rcall	.-2116   	; 0x2f0 <MIDI_RawOutByte>
+     b34:	8b e7       	ldi	r24, 0x7B	; 123
+     b36:	dc db       	rcall	.-2120   	; 0x2f0 <MIDI_RawOutByte>
+     b38:	80 e0       	ldi	r24, 0x00	; 0
+     b3a:	da db       	rcall	.-2124   	; 0x2f0 <MIDI_RawOutByte>
+     b3c:	cf 5f       	subi	r28, 0xFF	; 255
+     b3e:	cf 3b       	cpi	r28, 0xBF	; 191
+     b40:	b9 f7       	brne	.-18     	; 0xb30 <MPU401_WriteCommand+0x126>
+     b42:	e6 cf       	rjmp	.-52     	; 0xb10 <MPU401_WriteCommand+0x106>
+     b44:	8a ef       	ldi	r24, 0xFA	; 250
+     b46:	d4 db       	rcall	.-2136   	; 0x2f0 <MIDI_RawOutByte>
+     b48:	8b cf       	rjmp	.-234    	; 0xa60 <MPU401_WriteCommand+0x56>
+     b4a:	4c 2f       	mov	r20, r28
+     b4c:	50 e0       	ldi	r21, 0x00	; 0
+     b4e:	fa 01       	movw	r30, r20
+     b50:	ff 97       	sbiw	r30, 0x3f	; 63
+     b52:	e1 3c       	cpi	r30, 0xC1	; 193
+     b54:	f1 05       	cpc	r31, r1
+     b56:	e0 f6       	brcc	.-72     	; 0xb10 <MPU401_WriteCommand+0x106>
+     b58:	ea 5b       	subi	r30, 0xBA	; 186
+     b5a:	ff 4f       	sbci	r31, 0xFF	; 255
+     b5c:	79 c5       	rjmp	.+2802   	; 0x1650 <__tablejump2__>
+     b5e:	6c e6       	ldi	r22, 0x6C	; 108
+     b60:	70 e0       	ldi	r23, 0x00	; 0
+     b62:	81 e0       	ldi	r24, 0x01	; 1
+     b64:	c0 d4       	rcall	.+2432   	; 0x14e6 <PIC_AddEvent>
+     b66:	51 e0       	ldi	r21, 0x01	; 1
+     b68:	50 93 f2 06 	sts	0x06F2, r21
+     b6c:	fe dd       	rcall	.-1028   	; 0x76a <MPU401_Reset>
+     b6e:	60 91 4c 06 	lds	r22, 0x064C
+     b72:	61 11       	cpse	r22, r1
+     b74:	cd cf       	rjmp	.-102    	; 0xb10 <MPU401_WriteCommand+0x106>
+     b76:	60 cf       	rjmp	.-320    	; 0xa38 <MPU401_WriteCommand+0x2e>
+     b78:	8c 2f       	mov	r24, r28
+     b7a:	90 e0       	ldi	r25, 0x00	; 0
+     b7c:	90 93 fd 06 	sts	0x06FD, r25
+     b80:	80 93 fc 06 	sts	0x06FC, r24
+     b84:	c5 cf       	rjmp	.-118    	; 0xb10 <MPU401_WriteCommand+0x106>
+     b86:	10 92 f3 06 	sts	0x06F3, r1
+     b8a:	71 e0       	ldi	r23, 0x01	; 1
+     b8c:	70 93 f4 06 	sts	0x06F4, r23
+     b90:	70 93 f5 06 	sts	0x06F5, r23
+     b94:	bd cf       	rjmp	.-134    	; 0xb10 <MPU401_WriteCommand+0x106>
+     b96:	90 e3       	ldi	r25, 0x30	; 48
+     b98:	90 93 09 07 	sts	0x0709, r25
+     b9c:	b9 cf       	rjmp	.-142    	; 0xb10 <MPU401_WriteCommand+0x106>
+     b9e:	aa e2       	ldi	r26, 0x2A	; 42
+     ba0:	a0 93 09 07 	sts	0x0709, r26
+     ba4:	b5 cf       	rjmp	.-150    	; 0xb10 <MPU401_WriteCommand+0x106>
+     ba6:	b4 e2       	ldi	r27, 0x24	; 36
+     ba8:	b0 93 09 07 	sts	0x0709, r27
+     bac:	b1 cf       	rjmp	.-158    	; 0xb10 <MPU401_WriteCommand+0x106>
+     bae:	fe e1       	ldi	r31, 0x1E	; 30
+     bb0:	f0 93 09 07 	sts	0x0709, r31
+     bb4:	ad cf       	rjmp	.-166    	; 0xb10 <MPU401_WriteCommand+0x106>
+     bb6:	c8 e1       	ldi	r28, 0x18	; 24
+     bb8:	c0 93 09 07 	sts	0x0709, r28
+     bbc:	a9 cf       	rjmp	.-174    	; 0xb10 <MPU401_WriteCommand+0x106>
+     bbe:	82 e1       	ldi	r24, 0x12	; 18
+     bc0:	80 93 09 07 	sts	0x0709, r24
+     bc4:	a5 cf       	rjmp	.-182    	; 0xb10 <MPU401_WriteCommand+0x106>
+     bc6:	2c e0       	ldi	r18, 0x0C	; 12
+     bc8:	20 93 09 07 	sts	0x0709, r18
+     bcc:	a1 cf       	rjmp	.-190    	; 0xb10 <MPU401_WriteCommand+0x106>
+     bce:	c0 eb       	ldi	r28, 0xB0	; 176
+     bd0:	8c 2f       	mov	r24, r28
+     bd2:	8e db       	rcall	.-2276   	; 0x2f0 <MIDI_RawOutByte>
+     bd4:	8b e7       	ldi	r24, 0x7B	; 123
+     bd6:	8c db       	rcall	.-2280   	; 0x2f0 <MIDI_RawOutByte>
+     bd8:	80 e0       	ldi	r24, 0x00	; 0
+     bda:	8a db       	rcall	.-2284   	; 0x2f0 <MIDI_RawOutByte>
+     bdc:	cf 5f       	subi	r28, 0xFF	; 255
+     bde:	cf 3b       	cpi	r28, 0xBF	; 191
+     be0:	b9 f7       	brne	.-18     	; 0xbd0 <MPU401_WriteCommand+0x1c6>
+     be2:	ec e7       	ldi	r30, 0x7C	; 124
+     be4:	f6 e0       	ldi	r31, 0x06	; 6
+     be6:	df 01       	movw	r26, r30
+     be8:	1d 97       	sbiw	r26, 0x0d	; 13
+     bea:	1d 92       	st	X+, r1
+     bec:	1c 92       	st	X, r1
+     bee:	10 82       	st	Z, r1
+     bf0:	3e 96       	adiw	r30, 0x0e	; 14
+     bf2:	86 e0       	ldi	r24, 0x06	; 6
+     bf4:	ec 3e       	cpi	r30, 0xEC	; 236
+     bf6:	f8 07       	cpc	r31, r24
+     bf8:	b1 f7       	brne	.-20     	; 0xbe6 <MPU401_WriteCommand+0x1dc>
+     bfa:	10 92 e0 06 	sts	0x06E0, r1
+     bfe:	10 92 df 06 	sts	0x06DF, r1
+     c02:	10 92 ec 06 	sts	0x06EC, r1
+     c06:	30 91 ef 06 	lds	r19, 0x06EF
+     c0a:	30 93 ed 06 	sts	0x06ED, r19
+     c0e:	31 11       	cpse	r19, r1
+     c10:	02 c0       	rjmp	.+4      	; 0xc16 <MPU401_WriteCommand+0x20c>
+     c12:	10 92 ee 06 	sts	0x06EE, r1
+     c16:	40 91 00 07 	lds	r20, 0x0700
+     c1a:	40 93 02 07 	sts	0x0702, r20
+     c1e:	10 92 06 07 	sts	0x0706, r1
+     c22:	10 92 05 07 	sts	0x0705, r1
+     c26:	51 e0       	ldi	r21, 0x01	; 1
+     c28:	50 93 f7 06 	sts	0x06F7, r21
+     c2c:	71 cf       	rjmp	.-286    	; 0xb10 <MPU401_WriteCommand+0x106>
+     c2e:	68 e2       	ldi	r22, 0x28	; 40
+     c30:	60 93 0d 07 	sts	0x070D, r22
+     c34:	6d cf       	rjmp	.-294    	; 0xb10 <MPU401_WriteCommand+0x106>
+     c36:	70 91 f0 06 	lds	r23, 0x06F0
+     c3a:	77 23       	and	r23, r23
+     c3c:	09 f4       	brne	.+2      	; 0xc40 <MPU401_WriteCommand+0x236>
+     c3e:	4b c0       	rjmp	.+150    	; 0xcd6 <MPU401_WriteCommand+0x2cc>
+     c40:	10 92 f0 06 	sts	0x06F0, r1
+     c44:	80 91 0b 07 	lds	r24, 0x070B
+     c48:	cf 91       	pop	r28
+     c4a:	f5 cd       	rjmp	.-1046   	; 0x836 <QueueByte.part.0>
+     c4c:	b0 91 f0 06 	lds	r27, 0x06F0
+     c50:	bb 23       	and	r27, r27
+     c52:	09 f4       	brne	.+2      	; 0xc56 <MPU401_WriteCommand+0x24c>
+     c54:	49 c0       	rjmp	.+146    	; 0xce8 <MPU401_WriteCommand+0x2de>
+     c56:	10 92 f0 06 	sts	0x06F0, r1
+     c5a:	81 e0       	ldi	r24, 0x01	; 1
+     c5c:	cf 91       	pop	r28
+     c5e:	eb cd       	rjmp	.-1066   	; 0x836 <QueueByte.part.0>
+     c60:	80 91 4b 06 	lds	r24, 0x064B
+     c64:	88 23       	and	r24, r24
+     c66:	39 f1       	breq	.+78     	; 0xcb6 <MPU401_WriteCommand+0x2ac>
+     c68:	e0 91 f0 06 	lds	r30, 0x06F0
+     c6c:	e1 11       	cpse	r30, r1
+     c6e:	39 cf       	rjmp	.-398    	; 0xae2 <MPU401_WriteCommand+0xd8>
+     c70:	85 e1       	ldi	r24, 0x15	; 21
+     c72:	e1 dd       	rcall	.-1086   	; 0x836 <QueueByte.part.0>
+     c74:	a0 91 f0 06 	lds	r26, 0x06F0
+     c78:	a1 11       	cpse	r26, r1
+     c7a:	4e cf       	rjmp	.-356    	; 0xb18 <MPU401_WriteCommand+0x10e>
+     c7c:	34 cf       	rjmp	.-408    	; 0xae6 <MPU401_WriteCommand+0xdc>
+     c7e:	61 e0       	ldi	r22, 0x01	; 1
+     c80:	60 93 ef 06 	sts	0x06EF, r22
+     c84:	45 cf       	rjmp	.-374    	; 0xb10 <MPU401_WriteCommand+0x106>
+     c86:	51 e0       	ldi	r21, 0x01	; 1
+     c88:	50 93 12 07 	sts	0x0712, r21
+     c8c:	41 cf       	rjmp	.-382    	; 0xb10 <MPU401_WriteCommand+0x106>
+     c8e:	10 92 12 07 	sts	0x0712, r1
+     c92:	3e cf       	rjmp	.-388    	; 0xb10 <MPU401_WriteCommand+0x106>
+     c94:	30 91 f0 06 	lds	r19, 0x06F0
+     c98:	33 23       	and	r19, r19
+     c9a:	b1 f0       	breq	.+44     	; 0xcc8 <MPU401_WriteCommand+0x2be>
+     c9c:	10 92 f0 06 	sts	0x06F0, r1
+     ca0:	80 e0       	ldi	r24, 0x00	; 0
+     ca2:	cf 91       	pop	r28
+     ca4:	c8 cd       	rjmp	.-1136   	; 0x836 <QueueByte.part.0>
+     ca6:	10 92 4c 06 	sts	0x064C, r1
+     caa:	c6 ce       	rjmp	.-628    	; 0xa38 <MPU401_WriteCommand+0x2e>
+     cac:	10 92 ef 06 	sts	0x06EF, r1
+     cb0:	2f cf       	rjmp	.-418    	; 0xb10 <MPU401_WriteCommand+0x106>
+     cb2:	c1 dd       	rcall	.-1150   	; 0x836 <QueueByte.part.0>
+     cb4:	2d cf       	rjmp	.-422    	; 0xb10 <MPU401_WriteCommand+0x106>
+     cb6:	20 91 f0 06 	lds	r18, 0x06F0
+     cba:	22 23       	and	r18, r18
+     cbc:	e1 f0       	breq	.+56     	; 0xcf6 <MPU401_WriteCommand+0x2ec>
+     cbe:	10 92 f0 06 	sts	0x06F0, r1
+     cc2:	85 e1       	ldi	r24, 0x15	; 21
+     cc4:	cf 91       	pop	r28
+     cc6:	b7 cd       	rjmp	.-1170   	; 0x836 <QueueByte.part.0>
+     cc8:	8e ef       	ldi	r24, 0xFE	; 254
+     cca:	b5 dd       	rcall	.-1174   	; 0x836 <QueueByte.part.0>
+     ccc:	40 91 f0 06 	lds	r20, 0x06F0
+     cd0:	41 11       	cpse	r20, r1
+     cd2:	22 cf       	rjmp	.-444    	; 0xb18 <MPU401_WriteCommand+0x10e>
+     cd4:	e5 cf       	rjmp	.-54     	; 0xca0 <MPU401_WriteCommand+0x296>
+     cd6:	8e ef       	ldi	r24, 0xFE	; 254
+     cd8:	ae dd       	rcall	.-1188   	; 0x836 <QueueByte.part.0>
+     cda:	80 91 0b 07 	lds	r24, 0x070B
+     cde:	90 91 f0 06 	lds	r25, 0x06F0
+     ce2:	91 11       	cpse	r25, r1
+     ce4:	19 cf       	rjmp	.-462    	; 0xb18 <MPU401_WriteCommand+0x10e>
+     ce6:	b0 cf       	rjmp	.-160    	; 0xc48 <MPU401_WriteCommand+0x23e>
+     ce8:	8e ef       	ldi	r24, 0xFE	; 254
+     cea:	a5 dd       	rcall	.-1206   	; 0x836 <QueueByte.part.0>
+     cec:	f0 91 f0 06 	lds	r31, 0x06F0
+     cf0:	f1 11       	cpse	r31, r1
+     cf2:	12 cf       	rjmp	.-476    	; 0xb18 <MPU401_WriteCommand+0x10e>
+     cf4:	b2 cf       	rjmp	.-156    	; 0xc5a <MPU401_WriteCommand+0x250>
+     cf6:	8e ef       	ldi	r24, 0xFE	; 254
+     cf8:	9e dd       	rcall	.-1220   	; 0x836 <QueueByte.part.0>
+     cfa:	c0 91 f0 06 	lds	r28, 0x06F0
+     cfe:	c1 11       	cpse	r28, r1
+     d00:	0b cf       	rjmp	.-490    	; 0xb18 <MPU401_WriteCommand+0x10e>
+     d02:	df cf       	rjmp	.-66     	; 0xcc2 <MPU401_WriteCommand+0x2b8>
+
+00000d04 <MPU401_EOIHandler>:
+     d04:	cf 93       	push	r28
+     d06:	df 93       	push	r29
+     d08:	10 92 f9 06 	sts	0x06F9, r1
+     d0c:	80 91 f8 06 	lds	r24, 0x06F8
+     d10:	88 23       	and	r24, r24
+     d12:	39 f0       	breq	.+14     	; 0xd22 <MPU401_EOIHandler+0x1e>
+     d14:	10 92 f8 06 	sts	0x06F8, r1
+     d18:	20 91 ee 06 	lds	r18, 0x06EE
+     d1c:	22 23       	and	r18, r18
+     d1e:	39 f1       	breq	.+78     	; 0xd6e <MPU401_EOIHandler+0x6a>
+     d20:	a2 dd       	rcall	.-1212   	; 0x866 <UpdateConductor>
+     d22:	10 92 f7 06 	sts	0x06F7, r1
+     d26:	30 91 f1 06 	lds	r19, 0x06F1
+     d2a:	33 23       	and	r19, r19
+     d2c:	e9 f0       	breq	.+58     	; 0xd68 <MPU401_EOIHandler+0x64>
+     d2e:	60 91 05 07 	lds	r22, 0x0705
+     d32:	70 91 06 07 	lds	r23, 0x0706
+     d36:	61 15       	cp	r22, r1
+     d38:	71 05       	cpc	r23, r1
+     d3a:	b1 f0       	breq	.+44     	; 0xd68 <MPU401_EOIHandler+0x64>
+     d3c:	20 e0       	ldi	r18, 0x00	; 0
+     d3e:	30 e0       	ldi	r19, 0x00	; 0
+     d40:	e1 e0       	ldi	r30, 0x01	; 1
+     d42:	f0 e0       	ldi	r31, 0x00	; 0
+     d44:	82 2f       	mov	r24, r18
+     d46:	ef 01       	movw	r28, r30
+     d48:	02 2e       	mov	r0, r18
+     d4a:	02 c0       	rjmp	.+4      	; 0xd50 <MPU401_EOIHandler+0x4c>
+     d4c:	cc 0f       	add	r28, r28
+     d4e:	dd 1f       	adc	r29, r29
+     d50:	0a 94       	dec	r0
+     d52:	e2 f7       	brpl	.-8      	; 0xd4c <MPU401_EOIHandler+0x48>
+     d54:	ae 01       	movw	r20, r28
+     d56:	46 23       	and	r20, r22
+     d58:	57 23       	and	r21, r23
+     d5a:	45 2b       	or	r20, r21
+     d5c:	61 f4       	brne	.+24     	; 0xd76 <MPU401_EOIHandler+0x72>
+     d5e:	2f 5f       	subi	r18, 0xFF	; 255
+     d60:	3f 4f       	sbci	r19, 0xFF	; 255
+     d62:	21 31       	cpi	r18, 0x11	; 17
+     d64:	31 05       	cpc	r19, r1
+     d66:	71 f7       	brne	.-36     	; 0xd44 <MPU401_EOIHandler+0x40>
+     d68:	df 91       	pop	r29
+     d6a:	cf 91       	pop	r28
+     d6c:	08 95       	ret
+     d6e:	80 91 07 07 	lds	r24, 0x0707
+     d72:	a6 dd       	rcall	.-1204   	; 0x8c0 <UpdateTrack>
+     d74:	d6 cf       	rjmp	.-84     	; 0xd22 <MPU401_EOIHandler+0x1e>
+     d76:	90 91 f0 06 	lds	r25, 0x06F0
+     d7a:	99 23       	and	r25, r25
+     d7c:	69 f0       	breq	.+26     	; 0xd98 <MPU401_EOIHandler+0x94>
+     d7e:	10 92 f0 06 	sts	0x06F0, r1
+     d82:	c0 95       	com	r28
+     d84:	d0 95       	com	r29
+     d86:	c6 23       	and	r28, r22
+     d88:	d7 23       	and	r29, r23
+     d8a:	d0 93 06 07 	sts	0x0706, r29
+     d8e:	c0 93 05 07 	sts	0x0705, r28
+     d92:	df 91       	pop	r29
+     d94:	cf 91       	pop	r28
+     d96:	08 95       	ret
+     d98:	80 51       	subi	r24, 0x10	; 16
+     d9a:	4d dd       	rcall	.-1382   	; 0x836 <QueueByte.part.0>
+     d9c:	60 91 05 07 	lds	r22, 0x0705
+     da0:	70 91 06 07 	lds	r23, 0x0706
+     da4:	ee cf       	rjmp	.-36     	; 0xd82 <MPU401_EOIHandler+0x7e>
+
+00000da6 <MPU401_EOIHandlerDispatch>:
+     da6:	80 91 f8 06 	lds	r24, 0x06F8
+     daa:	81 11       	cpse	r24, r1
+     dac:	05 c0       	rjmp	.+10     	; 0xdb8 <MPU401_EOIHandlerDispatch+0x12>
+     dae:	20 91 f9 06 	lds	r18, 0x06F9
+     db2:	21 11       	cpse	r18, r1
+     db4:	08 95       	ret
+     db6:	a6 cf       	rjmp	.-180    	; 0xd04 <MPU401_EOIHandler>
+     db8:	31 e0       	ldi	r19, 0x01	; 1
+     dba:	30 93 f9 06 	sts	0x06F9, r19
+     dbe:	61 e0       	ldi	r22, 0x01	; 1
+     dc0:	70 e0       	ldi	r23, 0x00	; 0
+     dc2:	82 e0       	ldi	r24, 0x02	; 2
+     dc4:	90 c3       	rjmp	.+1824   	; 0x14e6 <PIC_AddEvent>
+
+00000dc6 <MPU401_WriteData>:
+     dc6:	cf 93       	push	r28
+     dc8:	c8 2f       	mov	r28, r24
+     dca:	80 91 4c 06 	lds	r24, 0x064C
+     dce:	88 23       	and	r24, r24
+     dd0:	a1 f1       	breq	.+104    	; 0xe3a <MPU401_WriteData+0x74>
+     dd2:	20 91 fc 06 	lds	r18, 0x06FC
+     dd6:	30 91 fd 06 	lds	r19, 0x06FD
+     dda:	27 3e       	cpi	r18, 0xE7	; 231
+     ddc:	31 05       	cpc	r19, r1
+     dde:	09 f4       	brne	.+2      	; 0xde2 <MPU401_WriteData+0x1c>
+     de0:	95 c0       	rjmp	.+298    	; 0xf0c <MPU401_WriteData+0x146>
+     de2:	e8 f0       	brcs	.+58     	; 0xe1e <MPU401_WriteData+0x58>
+     de4:	2d 3e       	cpi	r18, 0xED	; 237
+     de6:	31 05       	cpc	r19, r1
+     de8:	09 f4       	brne	.+2      	; 0xdec <MPU401_WriteData+0x26>
+     dea:	89 c0       	rjmp	.+274    	; 0xefe <MPU401_WriteData+0x138>
+     dec:	48 f1       	brcs	.+82     	; 0xe40 <MPU401_WriteData+0x7a>
+     dee:	2e 3e       	cpi	r18, 0xEE	; 238
+     df0:	31 05       	cpc	r19, r1
+     df2:	09 f4       	brne	.+2      	; 0xdf6 <MPU401_WriteData+0x30>
+     df4:	75 c0       	rjmp	.+234    	; 0xee0 <MPU401_WriteData+0x11a>
+     df6:	2f 3e       	cpi	r18, 0xEF	; 239
+     df8:	31 05       	cpc	r19, r1
+     dfa:	c9 f4       	brne	.+50     	; 0xe2e <MPU401_WriteData+0x68>
+     dfc:	10 92 fd 06 	sts	0x06FD, r1
+     e00:	10 92 fc 06 	sts	0x06FC, r1
+     e04:	8c 2f       	mov	r24, r28
+     e06:	90 e0       	ldi	r25, 0x00	; 0
+     e08:	98 2f       	mov	r25, r24
+     e0a:	88 27       	eor	r24, r24
+     e0c:	f0 91 03 07 	lds	r31, 0x0703
+     e10:	8f 2b       	or	r24, r31
+     e12:	90 93 04 07 	sts	0x0704, r25
+     e16:	80 93 03 07 	sts	0x0703, r24
+     e1a:	cf 91       	pop	r28
+     e1c:	08 95       	ret
+     e1e:	20 3e       	cpi	r18, 0xE0	; 224
+     e20:	31 05       	cpc	r19, r1
+     e22:	c1 f0       	breq	.+48     	; 0xe54 <MPU401_WriteData+0x8e>
+     e24:	21 3e       	cpi	r18, 0xE1	; 225
+     e26:	31 05       	cpc	r19, r1
+     e28:	11 f0       	breq	.+4      	; 0xe2e <MPU401_WriteData+0x68>
+     e2a:	23 2b       	or	r18, r19
+     e2c:	d1 f0       	breq	.+52     	; 0xe62 <MPU401_WriteData+0x9c>
+     e2e:	10 92 fd 06 	sts	0x06FD, r1
+     e32:	10 92 fc 06 	sts	0x06FC, r1
+     e36:	cf 91       	pop	r28
+     e38:	08 95       	ret
+     e3a:	8c 2f       	mov	r24, r28
+     e3c:	cf 91       	pop	r28
+     e3e:	58 ca       	rjmp	.-2896   	; 0x2f0 <MIDI_RawOutByte>
+     e40:	2c 3e       	cpi	r18, 0xEC	; 236
+     e42:	31 05       	cpc	r19, r1
+     e44:	a1 f7       	brne	.-24     	; 0xe2e <MPU401_WriteData+0x68>
+     e46:	10 92 fd 06 	sts	0x06FD, r1
+     e4a:	10 92 fc 06 	sts	0x06FC, r1
+     e4e:	c0 93 00 07 	sts	0x0700, r28
+     e52:	e3 cf       	rjmp	.-58     	; 0xe1a <MPU401_WriteData+0x54>
+     e54:	10 92 fd 06 	sts	0x06FD, r1
+     e58:	10 92 fc 06 	sts	0x06FC, r1
+     e5c:	c0 93 0b 07 	sts	0x070B, r28
+     e60:	dc cf       	rjmp	.-72     	; 0xe1a <MPU401_WriteData+0x54>
+     e62:	30 91 f3 06 	lds	r19, 0x06F3
+     e66:	31 11       	cpse	r19, r1
+     e68:	5a c0       	rjmp	.+180    	; 0xf1e <MPU401_WriteData+0x158>
+     e6a:	40 91 f4 06 	lds	r20, 0x06F4
+     e6e:	44 23       	and	r20, r20
+     e70:	09 f4       	brne	.+2      	; 0xe74 <MPU401_WriteData+0xae>
+     e72:	a0 c0       	rjmp	.+320    	; 0xfb4 <MPU401_WriteData+0x1ee>
+     e74:	c7 3f       	cpi	r28, 0xF7	; 247
+     e76:	09 f4       	brne	.+2      	; 0xe7a <MPU401_WriteData+0xb4>
+     e78:	9a c1       	rjmp	.+820    	; 0x11ae <MPU401_WriteData+0x3e8>
+     e7a:	90 91 f5 06 	lds	r25, 0x06F5
+     e7e:	99 23       	and	r25, r25
+     e80:	09 f4       	brne	.+2      	; 0xe84 <MPU401_WriteData+0xbe>
+     e82:	24 c1       	rjmp	.+584    	; 0x10cc <MPU401_WriteData+0x306>
+     e84:	10 92 f5 06 	sts	0x06F5, r1
+     e88:	10 92 49 06 	sts	0x0649, r1
+     e8c:	10 92 48 06 	sts	0x0648, r1
+     e90:	c2 3f       	cpi	r28, 0xF2	; 242
+     e92:	09 f4       	brne	.+2      	; 0xe96 <MPU401_WriteData+0xd0>
+     e94:	91 c1       	rjmp	.+802    	; 0x11b8 <MPU401_WriteData+0x3f2>
+     e96:	08 f4       	brcc	.+2      	; 0xe9a <MPU401_WriteData+0xd4>
+     e98:	3a c1       	rjmp	.+628    	; 0x110e <MPU401_WriteData+0x348>
+     e9a:	c3 3f       	cpi	r28, 0xF3	; 243
+     e9c:	09 f4       	brne	.+2      	; 0xea0 <MPU401_WriteData+0xda>
+     e9e:	80 c1       	rjmp	.+768    	; 0x11a0 <MPU401_WriteData+0x3da>
+     ea0:	c6 3f       	cpi	r28, 0xF6	; 246
+     ea2:	09 f0       	breq	.+2      	; 0xea6 <MPU401_WriteData+0xe0>
+     ea4:	34 c1       	rjmp	.+616    	; 0x110e <MPU401_WriteData+0x348>
+     ea6:	e1 e0       	ldi	r30, 0x01	; 1
+     ea8:	f0 e0       	ldi	r31, 0x00	; 0
+     eaa:	f0 93 47 06 	sts	0x0647, r31
+     eae:	e0 93 46 06 	sts	0x0646, r30
+     eb2:	8c 2f       	mov	r24, r28
+     eb4:	1d da       	rcall	.-3014   	; 0x2f0 <MIDI_RawOutByte>
+     eb6:	80 91 48 06 	lds	r24, 0x0648
+     eba:	90 91 49 06 	lds	r25, 0x0649
+     ebe:	01 96       	adiw	r24, 0x01	; 1
+     ec0:	90 93 49 06 	sts	0x0649, r25
+     ec4:	80 93 48 06 	sts	0x0648, r24
+     ec8:	dc 01       	movw	r26, r24
+     eca:	20 91 46 06 	lds	r18, 0x0646
+     ece:	30 91 47 06 	lds	r19, 0x0647
+     ed2:	2a 17       	cp	r18, r26
+     ed4:	3b 07       	cpc	r19, r27
+     ed6:	09 f0       	breq	.+2      	; 0xeda <MPU401_WriteData+0x114>
+     ed8:	a0 cf       	rjmp	.-192    	; 0xe1a <MPU401_WriteData+0x54>
+     eda:	10 92 f4 06 	sts	0x06F4, r1
+     ede:	9d cf       	rjmp	.-198    	; 0xe1a <MPU401_WriteData+0x54>
+     ee0:	10 92 fd 06 	sts	0x06FD, r1
+     ee4:	10 92 fc 06 	sts	0x06FC, r1
+     ee8:	20 91 03 07 	lds	r18, 0x0703
+     eec:	30 91 04 07 	lds	r19, 0x0704
+     ef0:	22 27       	eor	r18, r18
+     ef2:	2c 2b       	or	r18, r28
+     ef4:	30 93 04 07 	sts	0x0704, r19
+     ef8:	20 93 03 07 	sts	0x0703, r18
+     efc:	8e cf       	rjmp	.-228    	; 0xe1a <MPU401_WriteData+0x54>
+     efe:	10 92 fd 06 	sts	0x06FD, r1
+     f02:	10 92 fc 06 	sts	0x06FC, r1
+     f06:	c0 93 01 07 	sts	0x0701, r28
+     f0a:	87 cf       	rjmp	.-242    	; 0xe1a <MPU401_WriteData+0x54>
+     f0c:	10 92 fd 06 	sts	0x06FD, r1
+     f10:	10 92 fc 06 	sts	0x06FC, r1
+     f14:	c6 95       	lsr	r28
+     f16:	c6 95       	lsr	r28
+     f18:	c0 93 10 07 	sts	0x0710, r28
+     f1c:	7e cf       	rjmp	.-260    	; 0xe1a <MPU401_WriteData+0x54>
+     f1e:	f0 91 f5 06 	lds	r31, 0x06F5
+     f22:	ff 23       	and	r31, r31
+     f24:	b1 f1       	breq	.+108    	; 0xf92 <MPU401_WriteData+0x1cc>
+     f26:	10 92 f5 06 	sts	0x06F5, r1
+     f2a:	10 92 49 06 	sts	0x0649, r1
+     f2e:	10 92 48 06 	sts	0x0648, r1
+     f32:	7c 2f       	mov	r23, r28
+     f34:	70 7f       	andi	r23, 0xF0	; 240
+     f36:	70 3b       	cpi	r23, 0xB0	; 176
+     f38:	09 f4       	brne	.+2      	; 0xf3c <MPU401_WriteData+0x176>
+     f3a:	d9 c0       	rjmp	.+434    	; 0x10ee <MPU401_WriteData+0x328>
+     f3c:	88 f0       	brcs	.+34     	; 0xf60 <MPU401_WriteData+0x19a>
+     f3e:	70 3d       	cpi	r23, 0xD0	; 208
+     f40:	09 f4       	brne	.+2      	; 0xf44 <MPU401_WriteData+0x17e>
+     f42:	66 c0       	rjmp	.+204    	; 0x1010 <MPU401_WriteData+0x24a>
+     f44:	08 f4       	brcc	.+2      	; 0xf48 <MPU401_WriteData+0x182>
+     f46:	61 c0       	rjmp	.+194    	; 0x100a <MPU401_WriteData+0x244>
+     f48:	70 3e       	cpi	r23, 0xE0	; 224
+     f4a:	09 f4       	brne	.+2      	; 0xf4e <MPU401_WriteData+0x188>
+     f4c:	d0 c0       	rjmp	.+416    	; 0x10ee <MPU401_WriteData+0x328>
+     f4e:	70 3f       	cpi	r23, 0xF0	; 240
+     f50:	81 f4       	brne	.+32     	; 0xf72 <MPU401_WriteData+0x1ac>
+     f52:	10 92 f3 06 	sts	0x06F3, r1
+     f56:	c0 91 08 07 	lds	r28, 0x0708
+     f5a:	c0 93 07 07 	sts	0x0707, r28
+     f5e:	5d cf       	rjmp	.-326    	; 0xe1a <MPU401_WriteData+0x54>
+     f60:	70 39       	cpi	r23, 0x90	; 144
+     f62:	09 f4       	brne	.+2      	; 0xf66 <MPU401_WriteData+0x1a0>
+     f64:	c4 c0       	rjmp	.+392    	; 0x10ee <MPU401_WriteData+0x328>
+     f66:	70 3a       	cpi	r23, 0xA0	; 160
+     f68:	09 f4       	brne	.+2      	; 0xf6c <MPU401_WriteData+0x1a6>
+     f6a:	c1 c0       	rjmp	.+386    	; 0x10ee <MPU401_WriteData+0x328>
+     f6c:	70 38       	cpi	r23, 0x80	; 128
+     f6e:	09 f4       	brne	.+2      	; 0xf72 <MPU401_WriteData+0x1ac>
+     f70:	be c0       	rjmp	.+380    	; 0x10ee <MPU401_WriteData+0x328>
+     f72:	e1 e0       	ldi	r30, 0x01	; 1
+     f74:	f0 e0       	ldi	r31, 0x00	; 0
+     f76:	f0 93 49 06 	sts	0x0649, r31
+     f7a:	e0 93 48 06 	sts	0x0648, r30
+     f7e:	50 91 07 07 	lds	r21, 0x0707
+     f82:	be e0       	ldi	r27, 0x0E	; 14
+     f84:	5b 9f       	mul	r21, r27
+     f86:	f0 01       	movw	r30, r0
+     f88:	11 24       	eor	r1, r1
+     f8a:	e6 5b       	subi	r30, 0xB6	; 182
+     f8c:	f9 4f       	sbci	r31, 0xF9	; 249
+     f8e:	87 a1       	ldd	r24, Z+39	; 0x27
+     f90:	af d9       	rcall	.-3234   	; 0x2f0 <MIDI_RawOutByte>
+     f92:	40 91 48 06 	lds	r20, 0x0648
+     f96:	50 91 49 06 	lds	r21, 0x0649
+     f9a:	20 91 46 06 	lds	r18, 0x0646
+     f9e:	30 91 47 06 	lds	r19, 0x0647
+     fa2:	42 17       	cp	r20, r18
+     fa4:	53 07       	cpc	r21, r19
+     fa6:	08 f4       	brcc	.+2      	; 0xfaa <MPU401_WriteData+0x1e4>
+     fa8:	42 c0       	rjmp	.+132    	; 0x102e <MPU401_WriteData+0x268>
+     faa:	42 17       	cp	r20, r18
+     fac:	53 07       	cpc	r21, r19
+     fae:	09 f0       	breq	.+2      	; 0xfb2 <MPU401_WriteData+0x1ec>
+     fb0:	34 cf       	rjmp	.-408    	; 0xe1a <MPU401_WriteData+0x54>
+     fb2:	cf cf       	rjmp	.-98     	; 0xf52 <MPU401_WriteData+0x18c>
+     fb4:	50 91 ee 06 	lds	r21, 0x06EE
+     fb8:	20 91 fa 06 	lds	r18, 0x06FA
+     fbc:	30 91 fb 06 	lds	r19, 0x06FB
+     fc0:	55 23       	and	r21, r21
+     fc2:	09 f4       	brne	.+2      	; 0xfc6 <MPU401_WriteData+0x200>
+     fc4:	45 c0       	rjmp	.+138    	; 0x1050 <MPU401_WriteData+0x28a>
+     fc6:	21 30       	cpi	r18, 0x01	; 1
+     fc8:	31 05       	cpc	r19, r1
+     fca:	09 f4       	brne	.+2      	; 0xfce <MPU401_WriteData+0x208>
+     fcc:	c0 c0       	rjmp	.+384    	; 0x114e <MPU401_WriteData+0x388>
+     fce:	22 30       	cpi	r18, 0x02	; 2
+     fd0:	31 05       	cpc	r19, r1
+     fd2:	09 f4       	brne	.+2      	; 0xfd6 <MPU401_WriteData+0x210>
+     fd4:	d9 c0       	rjmp	.+434    	; 0x1188 <MPU401_WriteData+0x3c2>
+     fd6:	23 2b       	or	r18, r19
+     fd8:	09 f0       	breq	.+2      	; 0xfdc <MPU401_WriteData+0x216>
+     fda:	1f cf       	rjmp	.-450    	; 0xe1a <MPU401_WriteData+0x54>
+     fdc:	10 92 ea 06 	sts	0x06EA, r1
+     fe0:	c0 3f       	cpi	r28, 0xF0	; 240
+     fe2:	08 f0       	brcs	.+2      	; 0xfe6 <MPU401_WriteData+0x220>
+     fe4:	f3 c0       	rjmp	.+486    	; 0x11cc <MPU401_WriteData+0x406>
+     fe6:	61 e0       	ldi	r22, 0x01	; 1
+     fe8:	70 e0       	ldi	r23, 0x00	; 0
+     fea:	70 93 fb 06 	sts	0x06FB, r23
+     fee:	60 93 fa 06 	sts	0x06FA, r22
+     ff2:	c1 11       	cpse	r28, r1
+     ff4:	f2 c0       	rjmp	.+484    	; 0x11da <MPU401_WriteData+0x414>
+     ff6:	51 e0       	ldi	r21, 0x01	; 1
+     ff8:	50 93 f8 06 	sts	0x06F8, r21
+     ffc:	8c 2f       	mov	r24, r28
+     ffe:	90 e0       	ldi	r25, 0x00	; 0
+    1000:	90 93 e0 06 	sts	0x06E0, r25
+    1004:	80 93 df 06 	sts	0x06DF, r24
+    1008:	08 cf       	rjmp	.-496    	; 0xe1a <MPU401_WriteData+0x54>
+    100a:	70 3c       	cpi	r23, 0xC0	; 192
+    100c:	09 f0       	breq	.+2      	; 0x1010 <MPU401_WriteData+0x24a>
+    100e:	b1 cf       	rjmp	.-158    	; 0xf72 <MPU401_WriteData+0x1ac>
+    1010:	30 91 07 07 	lds	r19, 0x0707
+    1014:	9e e0       	ldi	r25, 0x0E	; 14
+    1016:	39 9f       	mul	r19, r25
+    1018:	f0 01       	movw	r30, r0
+    101a:	11 24       	eor	r1, r1
+    101c:	e6 5b       	subi	r30, 0xB6	; 182
+    101e:	f9 4f       	sbci	r31, 0xF9	; 249
+    1020:	c7 a3       	std	Z+39, r28	; 0x27
+    1022:	42 e0       	ldi	r20, 0x02	; 2
+    1024:	50 e0       	ldi	r21, 0x00	; 0
+    1026:	50 93 47 06 	sts	0x0647, r21
+    102a:	40 93 46 06 	sts	0x0646, r20
+    102e:	8c 2f       	mov	r24, r28
+    1030:	5f d9       	rcall	.-3394   	; 0x2f0 <MIDI_RawOutByte>
+    1032:	40 91 48 06 	lds	r20, 0x0648
+    1036:	50 91 49 06 	lds	r21, 0x0649
+    103a:	4f 5f       	subi	r20, 0xFF	; 255
+    103c:	5f 4f       	sbci	r21, 0xFF	; 255
+    103e:	50 93 49 06 	sts	0x0649, r21
+    1042:	40 93 48 06 	sts	0x0648, r20
+    1046:	20 91 46 06 	lds	r18, 0x0646
+    104a:	30 91 47 06 	lds	r19, 0x0647
+    104e:	ad cf       	rjmp	.-166    	; 0xfaa <MPU401_WriteData+0x1e4>
+    1050:	21 15       	cp	r18, r1
+    1052:	31 05       	cpc	r19, r1
+    1054:	09 f4       	brne	.+2      	; 0x1058 <MPU401_WriteData+0x292>
+    1056:	60 c0       	rjmp	.+192    	; 0x1118 <MPU401_WriteData+0x352>
+    1058:	21 30       	cpi	r18, 0x01	; 1
+    105a:	31 05       	cpc	r19, r1
+    105c:	09 f0       	breq	.+2      	; 0x1060 <MPU401_WriteData+0x29a>
+    105e:	dd ce       	rjmp	.-582    	; 0xe1a <MPU401_WriteData+0x54>
+    1060:	60 91 07 07 	lds	r22, 0x0707
+    1064:	70 e0       	ldi	r23, 0x00	; 0
+    1066:	cb 01       	movw	r24, r22
+    1068:	88 0f       	add	r24, r24
+    106a:	99 1f       	adc	r25, r25
+    106c:	fc 01       	movw	r30, r24
+    106e:	ee 0f       	add	r30, r30
+    1070:	ff 1f       	adc	r31, r31
+    1072:	ee 0f       	add	r30, r30
+    1074:	ff 1f       	adc	r31, r31
+    1076:	ee 0f       	add	r30, r30
+    1078:	ff 1f       	adc	r31, r31
+    107a:	e8 1b       	sub	r30, r24
+    107c:	f9 0b       	sbc	r31, r25
+    107e:	e6 5b       	subi	r30, 0xB6	; 182
+    1080:	f9 4f       	sbci	r31, 0xF9	; 249
+    1082:	a0 a9       	ldd	r26, Z+48	; 0x30
+    1084:	41 e0       	ldi	r20, 0x01	; 1
+    1086:	4a 0f       	add	r20, r26
+    1088:	40 ab       	std	Z+48, r20	; 0x30
+    108a:	50 e0       	ldi	r21, 0x00	; 0
+    108c:	50 93 45 06 	sts	0x0645, r21
+    1090:	40 93 44 06 	sts	0x0644, r20
+    1094:	41 30       	cpi	r20, 0x01	; 1
+    1096:	51 05       	cpc	r21, r1
+    1098:	09 f4       	brne	.+2      	; 0x109c <MPU401_WriteData+0x2d6>
+    109a:	a2 c0       	rjmp	.+324    	; 0x11e0 <MPU401_WriteData+0x41a>
+    109c:	fc 01       	movw	r30, r24
+    109e:	ee 0f       	add	r30, r30
+    10a0:	ff 1f       	adc	r31, r31
+    10a2:	ee 0f       	add	r30, r30
+    10a4:	ff 1f       	adc	r31, r31
+    10a6:	ee 0f       	add	r30, r30
+    10a8:	ff 1f       	adc	r31, r31
+    10aa:	e8 1b       	sub	r30, r24
+    10ac:	f9 0b       	sbc	r31, r25
+    10ae:	e6 5b       	subi	r30, 0xB6	; 182
+    10b0:	f9 4f       	sbci	r31, 0xF9	; 249
+    10b2:	e4 0f       	add	r30, r20
+    10b4:	f5 1f       	adc	r31, r21
+    10b6:	c6 a3       	std	Z+38, r28	; 0x26
+    10b8:	80 91 46 06 	lds	r24, 0x0646
+    10bc:	90 91 47 06 	lds	r25, 0x0647
+    10c0:	48 17       	cp	r20, r24
+    10c2:	59 07       	cpc	r21, r25
+    10c4:	09 f0       	breq	.+2      	; 0x10c8 <MPU401_WriteData+0x302>
+    10c6:	a9 ce       	rjmp	.-686    	; 0xe1a <MPU401_WriteData+0x54>
+    10c8:	cf 91       	pop	r28
+    10ca:	6d ce       	rjmp	.-806    	; 0xda6 <MPU401_EOIHandlerDispatch>
+    10cc:	20 91 46 06 	lds	r18, 0x0646
+    10d0:	30 91 47 06 	lds	r19, 0x0647
+    10d4:	21 15       	cp	r18, r1
+    10d6:	31 05       	cpc	r19, r1
+    10d8:	09 f4       	brne	.+2      	; 0x10dc <MPU401_WriteData+0x316>
+    10da:	eb ce       	rjmp	.-554    	; 0xeb2 <MPU401_WriteData+0xec>
+    10dc:	a0 91 48 06 	lds	r26, 0x0648
+    10e0:	b0 91 49 06 	lds	r27, 0x0649
+    10e4:	a2 17       	cp	r26, r18
+    10e6:	b3 07       	cpc	r27, r19
+    10e8:	08 f0       	brcs	.+2      	; 0x10ec <MPU401_WriteData+0x326>
+    10ea:	f3 ce       	rjmp	.-538    	; 0xed2 <MPU401_WriteData+0x10c>
+    10ec:	e2 ce       	rjmp	.-572    	; 0xeb2 <MPU401_WriteData+0xec>
+    10ee:	60 91 07 07 	lds	r22, 0x0707
+    10f2:	8e e0       	ldi	r24, 0x0E	; 14
+    10f4:	68 9f       	mul	r22, r24
+    10f6:	f0 01       	movw	r30, r0
+    10f8:	11 24       	eor	r1, r1
+    10fa:	e6 5b       	subi	r30, 0xB6	; 182
+    10fc:	f9 4f       	sbci	r31, 0xF9	; 249
+    10fe:	c7 a3       	std	Z+39, r28	; 0x27
+    1100:	a3 e0       	ldi	r26, 0x03	; 3
+    1102:	b0 e0       	ldi	r27, 0x00	; 0
+    1104:	b0 93 47 06 	sts	0x0647, r27
+    1108:	a0 93 46 06 	sts	0x0646, r26
+    110c:	90 cf       	rjmp	.-224    	; 0x102e <MPU401_WriteData+0x268>
+    110e:	10 92 47 06 	sts	0x0647, r1
+    1112:	10 92 46 06 	sts	0x0646, r1
+    1116:	cd ce       	rjmp	.-614    	; 0xeb2 <MPU401_WriteData+0xec>
+    1118:	c0 3f       	cpi	r28, 0xF0	; 240
+    111a:	08 f0       	brcs	.+2      	; 0x111e <MPU401_WriteData+0x358>
+    111c:	57 c0       	rjmp	.+174    	; 0x11cc <MPU401_WriteData+0x406>
+    111e:	a1 e0       	ldi	r26, 0x01	; 1
+    1120:	b0 e0       	ldi	r27, 0x00	; 0
+    1122:	b0 93 fb 06 	sts	0x06FB, r27
+    1126:	a0 93 fa 06 	sts	0x06FA, r26
+    112a:	c1 11       	cpse	r28, r1
+    112c:	4c c0       	rjmp	.+152    	; 0x11c6 <MPU401_WriteData+0x400>
+    112e:	91 e0       	ldi	r25, 0x01	; 1
+    1130:	90 93 f8 06 	sts	0x06F8, r25
+    1134:	f0 91 07 07 	lds	r31, 0x0707
+    1138:	7e e0       	ldi	r23, 0x0E	; 14
+    113a:	f7 9f       	mul	r31, r23
+    113c:	f0 01       	movw	r30, r0
+    113e:	11 24       	eor	r1, r1
+    1140:	e6 5b       	subi	r30, 0xB6	; 182
+    1142:	f9 4f       	sbci	r31, 0xF9	; 249
+    1144:	8c 2f       	mov	r24, r28
+    1146:	90 e0       	ldi	r25, 0x00	; 0
+    1148:	96 a3       	std	Z+38, r25	; 0x26
+    114a:	85 a3       	std	Z+37, r24	; 0x25
+    114c:	66 ce       	rjmp	.-820    	; 0xe1a <MPU401_WriteData+0x54>
+    114e:	38 e0       	ldi	r19, 0x08	; 8
+    1150:	3c 0f       	add	r19, r28
+    1152:	32 30       	cpi	r19, 0x02	; 2
+    1154:	08 f4       	brcc	.+2      	; 0x1158 <MPU401_WriteData+0x392>
+    1156:	69 c0       	rjmp	.+210    	; 0x122a <MPU401_WriteData+0x464>
+    1158:	24 e0       	ldi	r18, 0x04	; 4
+    115a:	20 93 ec 06 	sts	0x06EC, r18
+    115e:	80 91 ea 06 	lds	r24, 0x06EA
+    1162:	e8 2f       	mov	r30, r24
+    1164:	f0 e0       	ldi	r31, 0x00	; 0
+    1166:	ef 51       	subi	r30, 0x1F	; 31
+    1168:	f9 4f       	sbci	r31, 0xF9	; 249
+    116a:	c0 83       	st	Z, r28
+    116c:	8f 5f       	subi	r24, 0xFF	; 255
+    116e:	80 93 ea 06 	sts	0x06EA, r24
+    1172:	c0 7f       	andi	r28, 0xF0	; 240
+    1174:	c0 3e       	cpi	r28, 0xE0	; 224
+    1176:	09 f0       	breq	.+2      	; 0x117a <MPU401_WriteData+0x3b4>
+    1178:	a7 cf       	rjmp	.-178    	; 0x10c8 <MPU401_WriteData+0x302>
+    117a:	a2 e0       	ldi	r26, 0x02	; 2
+    117c:	b0 e0       	ldi	r27, 0x00	; 0
+    117e:	b0 93 fb 06 	sts	0x06FB, r27
+    1182:	a0 93 fa 06 	sts	0x06FA, r26
+    1186:	49 ce       	rjmp	.-878    	; 0xe1a <MPU401_WriteData+0x54>
+    1188:	b0 91 ea 06 	lds	r27, 0x06EA
+    118c:	eb 2f       	mov	r30, r27
+    118e:	f0 e0       	ldi	r31, 0x00	; 0
+    1190:	ef 51       	subi	r30, 0x1F	; 31
+    1192:	f9 4f       	sbci	r31, 0xF9	; 249
+    1194:	c0 83       	st	Z, r28
+    1196:	bf 5f       	subi	r27, 0xFF	; 255
+    1198:	b0 93 ea 06 	sts	0x06EA, r27
+    119c:	cf 91       	pop	r28
+    119e:	03 ce       	rjmp	.-1018   	; 0xda6 <MPU401_EOIHandlerDispatch>
+    11a0:	42 e0       	ldi	r20, 0x02	; 2
+    11a2:	50 e0       	ldi	r21, 0x00	; 0
+    11a4:	50 93 47 06 	sts	0x0647, r21
+    11a8:	40 93 46 06 	sts	0x0646, r20
+    11ac:	82 ce       	rjmp	.-764    	; 0xeb2 <MPU401_WriteData+0xec>
+    11ae:	87 ef       	ldi	r24, 0xF7	; 247
+    11b0:	9f d8       	rcall	.-3778   	; 0x2f0 <MIDI_RawOutByte>
+    11b2:	10 92 f4 06 	sts	0x06F4, r1
+    11b6:	31 ce       	rjmp	.-926    	; 0xe1a <MPU401_WriteData+0x54>
+    11b8:	63 e0       	ldi	r22, 0x03	; 3
+    11ba:	70 e0       	ldi	r23, 0x00	; 0
+    11bc:	70 93 47 06 	sts	0x0647, r23
+    11c0:	60 93 46 06 	sts	0x0646, r22
+    11c4:	76 ce       	rjmp	.-788    	; 0xeb2 <MPU401_WriteData+0xec>
+    11c6:	10 92 f8 06 	sts	0x06F8, r1
+    11ca:	b4 cf       	rjmp	.-152    	; 0x1134 <MPU401_WriteData+0x36e>
+    11cc:	4f ef       	ldi	r20, 0xFF	; 255
+    11ce:	5f ef       	ldi	r21, 0xFF	; 255
+    11d0:	50 93 fb 06 	sts	0x06FB, r21
+    11d4:	40 93 fa 06 	sts	0x06FA, r20
+    11d8:	77 cf       	rjmp	.-274    	; 0x10c8 <MPU401_WriteData+0x302>
+    11da:	10 92 f8 06 	sts	0x06F8, r1
+    11de:	0e cf       	rjmp	.-484    	; 0xffc <MPU401_WriteData+0x236>
+    11e0:	bc 2f       	mov	r27, r28
+    11e2:	b0 7f       	andi	r27, 0xF0	; 240
+    11e4:	b0 3b       	cpi	r27, 0xB0	; 176
+    11e6:	09 f4       	brne	.+2      	; 0x11ea <MPU401_WriteData+0x424>
+    11e8:	57 c0       	rjmp	.+174    	; 0x1298 <MPU401_WriteData+0x4d2>
+    11ea:	08 f4       	brcc	.+2      	; 0x11ee <MPU401_WriteData+0x428>
+    11ec:	4f c0       	rjmp	.+158    	; 0x128c <MPU401_WriteData+0x4c6>
+    11ee:	b0 3d       	cpi	r27, 0xD0	; 208
+    11f0:	d1 f1       	breq	.+116    	; 0x1266 <MPU401_WriteData+0x4a0>
+    11f2:	f0 f0       	brcs	.+60     	; 0x1230 <MPU401_WriteData+0x46a>
+    11f4:	b0 3e       	cpi	r27, 0xE0	; 224
+    11f6:	09 f4       	brne	.+2      	; 0x11fa <MPU401_WriteData+0x434>
+    11f8:	4f c0       	rjmp	.+158    	; 0x1298 <MPU401_WriteData+0x4d2>
+    11fa:	b0 3f       	cpi	r27, 0xF0	; 240
+    11fc:	d9 f4       	brne	.+54     	; 0x1234 <MPU401_WriteData+0x46e>
+    11fe:	c8 3f       	cpi	r28, 0xF8	; 248
+    1200:	08 f4       	brcc	.+2      	; 0x1204 <MPU401_WriteData+0x43e>
+    1202:	5c c0       	rjmp	.+184    	; 0x12bc <MPU401_WriteData+0x4f6>
+    1204:	51 e0       	ldi	r21, 0x01	; 1
+    1206:	52 ab       	std	Z+50, r21	; 0x32
+    1208:	c7 a7       	std	Z+47, r28	; 0x2f
+    120a:	30 93 47 06 	sts	0x0647, r19
+    120e:	20 93 46 06 	sts	0x0646, r18
+    1212:	40 91 44 06 	lds	r20, 0x0644
+    1216:	50 91 45 06 	lds	r21, 0x0645
+    121a:	41 30       	cpi	r20, 0x01	; 1
+    121c:	51 05       	cpc	r21, r1
+    121e:	09 f0       	breq	.+2      	; 0x1222 <MPU401_WriteData+0x45c>
+    1220:	3d cf       	rjmp	.-390    	; 0x109c <MPU401_WriteData+0x2d6>
+    1222:	c0 3f       	cpi	r28, 0xF0	; 240
+    1224:	08 f0       	brcs	.+2      	; 0x1228 <MPU401_WriteData+0x462>
+    1226:	48 cf       	rjmp	.-368    	; 0x10b8 <MPU401_WriteData+0x2f2>
+    1228:	39 cf       	rjmp	.-398    	; 0x109c <MPU401_WriteData+0x2d6>
+    122a:	10 92 ec 06 	sts	0x06EC, r1
+    122e:	97 cf       	rjmp	.-210    	; 0x115e <MPU401_WriteData+0x398>
+    1230:	b0 3c       	cpi	r27, 0xC0	; 192
+    1232:	c9 f0       	breq	.+50     	; 0x1266 <MPU401_WriteData+0x4a0>
+    1234:	42 e0       	ldi	r20, 0x02	; 2
+    1236:	50 e0       	ldi	r21, 0x00	; 0
+    1238:	50 93 45 06 	sts	0x0645, r21
+    123c:	40 93 44 06 	sts	0x0644, r20
+    1240:	3e e0       	ldi	r19, 0x0E	; 14
+    1242:	36 9f       	mul	r19, r22
+    1244:	f0 01       	movw	r30, r0
+    1246:	37 9f       	mul	r19, r23
+    1248:	f0 0d       	add	r31, r0
+    124a:	11 24       	eor	r1, r1
+    124c:	e6 5b       	subi	r30, 0xB6	; 182
+    124e:	f9 4f       	sbci	r31, 0xF9	; 249
+    1250:	ae 5f       	subi	r26, 0xFE	; 254
+    1252:	a0 ab       	std	Z+48, r26	; 0x30
+    1254:	63 e0       	ldi	r22, 0x03	; 3
+    1256:	62 ab       	std	Z+50, r22	; 0x32
+    1258:	21 a9       	ldd	r18, Z+49	; 0x31
+    125a:	30 e0       	ldi	r19, 0x00	; 0
+    125c:	30 93 47 06 	sts	0x0647, r19
+    1260:	20 93 46 06 	sts	0x0646, r18
+    1264:	d6 cf       	rjmp	.-84     	; 0x1212 <MPU401_WriteData+0x44c>
+    1266:	2e e0       	ldi	r18, 0x0E	; 14
+    1268:	26 9f       	mul	r18, r22
+    126a:	f0 01       	movw	r30, r0
+    126c:	27 9f       	mul	r18, r23
+    126e:	f0 0d       	add	r31, r0
+    1270:	11 24       	eor	r1, r1
+    1272:	e6 5b       	subi	r30, 0xB6	; 182
+    1274:	f9 4f       	sbci	r31, 0xF9	; 249
+    1276:	a3 e0       	ldi	r26, 0x03	; 3
+    1278:	a2 ab       	std	Z+50, r26	; 0x32
+    127a:	b2 e0       	ldi	r27, 0x02	; 2
+    127c:	b1 ab       	std	Z+49, r27	; 0x31
+    127e:	42 e0       	ldi	r20, 0x02	; 2
+    1280:	50 e0       	ldi	r21, 0x00	; 0
+    1282:	50 93 47 06 	sts	0x0647, r21
+    1286:	40 93 46 06 	sts	0x0646, r20
+    128a:	c3 cf       	rjmp	.-122    	; 0x1212 <MPU401_WriteData+0x44c>
+    128c:	b0 39       	cpi	r27, 0x90	; 144
+    128e:	21 f0       	breq	.+8      	; 0x1298 <MPU401_WriteData+0x4d2>
+    1290:	b0 3a       	cpi	r27, 0xA0	; 160
+    1292:	11 f0       	breq	.+4      	; 0x1298 <MPU401_WriteData+0x4d2>
+    1294:	b0 38       	cpi	r27, 0x80	; 128
+    1296:	71 f6       	brne	.-100    	; 0x1234 <MPU401_WriteData+0x46e>
+    1298:	3e e0       	ldi	r19, 0x0E	; 14
+    129a:	36 9f       	mul	r19, r22
+    129c:	f0 01       	movw	r30, r0
+    129e:	37 9f       	mul	r19, r23
+    12a0:	f0 0d       	add	r31, r0
+    12a2:	11 24       	eor	r1, r1
+    12a4:	e6 5b       	subi	r30, 0xB6	; 182
+    12a6:	f9 4f       	sbci	r31, 0xF9	; 249
+    12a8:	63 e0       	ldi	r22, 0x03	; 3
+    12aa:	62 ab       	std	Z+50, r22	; 0x32
+    12ac:	61 ab       	std	Z+49, r22	; 0x31
+    12ae:	23 e0       	ldi	r18, 0x03	; 3
+    12b0:	30 e0       	ldi	r19, 0x00	; 0
+    12b2:	30 93 47 06 	sts	0x0647, r19
+    12b6:	20 93 46 06 	sts	0x0646, r18
+    12ba:	ab cf       	rjmp	.-170    	; 0x1212 <MPU401_WriteData+0x44c>
+    12bc:	72 e0       	ldi	r23, 0x02	; 2
+    12be:	72 ab       	std	Z+50, r23	; 0x32
+    12c0:	c7 a7       	std	Z+47, r28	; 0x2f
+    12c2:	30 93 47 06 	sts	0x0647, r19
+    12c6:	20 93 46 06 	sts	0x0646, r18
+    12ca:	a3 cf       	rjmp	.-186    	; 0x1212 <MPU401_WriteData+0x44c>
+
+000012cc <MPU401_ReadData>:
+    12cc:	cf 93       	push	r28
+    12ce:	80 91 6e 06 	lds	r24, 0x066E
+    12d2:	81 11       	cpse	r24, r1
+    12d4:	33 c0       	rjmp	.+102    	; 0x133c <MPU401_ReadData+0x70>
+    12d6:	ce ef       	ldi	r28, 0xFE	; 254
+    12d8:	20 91 4a 06 	lds	r18, 0x064A
+    12dc:	22 23       	and	r18, r18
+    12de:	c9 f0       	breq	.+50     	; 0x1312 <MPU401_ReadData+0x46>
+    12e0:	30 e1       	ldi	r19, 0x10	; 16
+    12e2:	3c 0f       	add	r19, r28
+    12e4:	38 30       	cpi	r19, 0x08	; 8
+    12e6:	c0 f4       	brcc	.+48     	; 0x1318 <MPU401_ReadData+0x4c>
+    12e8:	7c 2f       	mov	r23, r28
+    12ea:	77 70       	andi	r23, 0x07	; 7
+    12ec:	70 93 07 07 	sts	0x0707, r23
+    12f0:	10 92 fb 06 	sts	0x06FB, r1
+    12f4:	10 92 fa 06 	sts	0x06FA, r1
+    12f8:	10 92 ee 06 	sts	0x06EE, r1
+    12fc:	a4 e0       	ldi	r26, 0x04	; 4
+    12fe:	ac 0f       	add	r26, r28
+    1300:	a3 30       	cpi	r26, 0x03	; 3
+    1302:	38 f4       	brcc	.+14     	; 0x1312 <MPU401_ReadData+0x46>
+    1304:	ef ef       	ldi	r30, 0xFF	; 255
+    1306:	ff ef       	ldi	r31, 0xFF	; 255
+    1308:	f0 93 fb 06 	sts	0x06FB, r31
+    130c:	e0 93 fa 06 	sts	0x06FA, r30
+    1310:	4a dd       	rcall	.-1388   	; 0xda6 <MPU401_EOIHandlerDispatch>
+    1312:	8c 2f       	mov	r24, r28
+    1314:	cf 91       	pop	r28
+    1316:	08 95       	ret
+    1318:	c9 3f       	cpi	r28, 0xF9	; 249
+    131a:	81 f7       	brne	.-32     	; 0x12fc <MPU401_ReadData+0x30>
+    131c:	10 92 fb 06 	sts	0x06FB, r1
+    1320:	10 92 fa 06 	sts	0x06FA, r1
+    1324:	41 e0       	ldi	r20, 0x01	; 1
+    1326:	40 93 ee 06 	sts	0x06EE, r20
+    132a:	50 91 ec 06 	lds	r21, 0x06EC
+    132e:	51 11       	cpse	r21, r1
+    1330:	16 c0       	rjmp	.+44     	; 0x135e <MPU401_ReadData+0x92>
+    1332:	10 92 ec 06 	sts	0x06EC, r1
+    1336:	8c 2f       	mov	r24, r28
+    1338:	cf 91       	pop	r28
+    133a:	08 95       	ret
+    133c:	90 91 6d 06 	lds	r25, 0x066D
+    1340:	90 32       	cpi	r25, 0x20	; 32
+    1342:	08 f0       	brcs	.+2      	; 0x1346 <MPU401_ReadData+0x7a>
+    1344:	90 52       	subi	r25, 0x20	; 32
+    1346:	e9 2f       	mov	r30, r25
+    1348:	f0 e0       	ldi	r31, 0x00	; 0
+    134a:	e6 5b       	subi	r30, 0xB6	; 182
+    134c:	f9 4f       	sbci	r31, 0xF9	; 249
+    134e:	c3 81       	ldd	r28, Z+3	; 0x03
+    1350:	9f 5f       	subi	r25, 0xFF	; 255
+    1352:	90 93 6d 06 	sts	0x066D, r25
+    1356:	81 50       	subi	r24, 0x01	; 1
+    1358:	80 93 6e 06 	sts	0x066E, r24
+    135c:	bd cf       	rjmp	.-134    	; 0x12d8 <MPU401_ReadData+0xc>
+    135e:	40 93 f0 06 	sts	0x06F0, r20
+    1362:	80 91 e1 06 	lds	r24, 0x06E1
+    1366:	51 db       	rcall	.-2398   	; 0xa0a <MPU401_WriteCommand>
+    1368:	60 91 fc 06 	lds	r22, 0x06FC
+    136c:	70 91 fd 06 	lds	r23, 0x06FD
+    1370:	61 15       	cp	r22, r1
+    1372:	71 05       	cpc	r23, r1
+    1374:	f1 f2       	breq	.-68     	; 0x1332 <MPU401_ReadData+0x66>
+    1376:	80 91 e2 06 	lds	r24, 0x06E2
+    137a:	25 dd       	rcall	.-1462   	; 0xdc6 <MPU401_WriteData>
+    137c:	da cf       	rjmp	.-76     	; 0x1332 <MPU401_ReadData+0x66>
+
+0000137e <MPU401_Event>:
+    137e:	0f 93       	push	r16
+    1380:	1f 93       	push	r17
+    1382:	cf 93       	push	r28
+    1384:	df 93       	push	r29
+    1386:	80 91 4c 06 	lds	r24, 0x064C
+    138a:	88 23       	and	r24, r24
+    138c:	09 f4       	brne	.+2      	; 0x1390 <MPU401_Event+0x12>
+    138e:	63 c0       	rjmp	.+198    	; 0x1456 <MPU401_Event+0xd8>
+    1390:	00 91 f7 06 	lds	r16, 0x06F7
+    1394:	01 11       	cpse	r16, r1
+    1396:	53 c0       	rjmp	.+166    	; 0x143e <MPU401_Event+0xc0>
+    1398:	0f e6       	ldi	r16, 0x6F	; 111
+    139a:	16 e0       	ldi	r17, 0x06	; 6
+    139c:	c0 e0       	ldi	r28, 0x00	; 0
+    139e:	d0 e0       	ldi	r29, 0x00	; 0
+    13a0:	20 91 02 07 	lds	r18, 0x0702
+    13a4:	82 2f       	mov	r24, r18
+    13a6:	90 e0       	ldi	r25, 0x00	; 0
+    13a8:	0c 2e       	mov	r0, r28
+    13aa:	02 c0       	rjmp	.+4      	; 0x13b0 <MPU401_Event+0x32>
+    13ac:	95 95       	asr	r25
+    13ae:	87 95       	ror	r24
+    13b0:	0a 94       	dec	r0
+    13b2:	e2 f7       	brpl	.-8      	; 0x13ac <MPU401_Event+0x2e>
+    13b4:	80 ff       	sbrs	r24, 0
+    13b6:	0a c0       	rjmp	.+20     	; 0x13cc <MPU401_Event+0x4e>
+    13b8:	f8 01       	movw	r30, r16
+    13ba:	a0 81       	ld	r26, Z
+    13bc:	b1 81       	ldd	r27, Z+1	; 0x01
+    13be:	11 97       	sbiw	r26, 0x01	; 1
+    13c0:	b1 83       	std	Z+1, r27	; 0x01
+    13c2:	a0 83       	st	Z, r26
+    13c4:	1a 16       	cp	r1, r26
+    13c6:	1b 06       	cpc	r1, r27
+    13c8:	0c f0       	brlt	.+2      	; 0x13cc <MPU401_Event+0x4e>
+    13ca:	53 c0       	rjmp	.+166    	; 0x1472 <MPU401_Event+0xf4>
+    13cc:	21 96       	adiw	r28, 0x01	; 1
+    13ce:	02 5f       	subi	r16, 0xF2	; 242
+    13d0:	1f 4f       	sbci	r17, 0xFF	; 255
+    13d2:	c8 30       	cpi	r28, 0x08	; 8
+    13d4:	d1 05       	cpc	r29, r1
+    13d6:	21 f7       	brne	.-56     	; 0x13a0 <MPU401_Event+0x22>
+    13d8:	10 91 ed 06 	lds	r17, 0x06ED
+    13dc:	11 23       	and	r17, r17
+    13de:	69 f0       	breq	.+26     	; 0x13fa <MPU401_Event+0x7c>
+    13e0:	c0 91 df 06 	lds	r28, 0x06DF
+    13e4:	d0 91 e0 06 	lds	r29, 0x06E0
+    13e8:	21 97       	sbiw	r28, 0x01	; 1
+    13ea:	d0 93 e0 06 	sts	0x06E0, r29
+    13ee:	c0 93 df 06 	sts	0x06DF, r28
+    13f2:	1c 16       	cp	r1, r28
+    13f4:	1d 06       	cpc	r1, r29
+    13f6:	0c f0       	brlt	.+2      	; 0x13fa <MPU401_Event+0x7c>
+    13f8:	41 c0       	rjmp	.+130    	; 0x147c <MPU401_Event+0xfe>
+    13fa:	40 91 12 07 	lds	r20, 0x0712
+    13fe:	44 23       	and	r20, r20
+    1400:	a1 f0       	breq	.+40     	; 0x142a <MPU401_Event+0xac>
+    1402:	50 91 11 07 	lds	r21, 0x0711
+    1406:	5f 5f       	subi	r21, 0xFF	; 255
+    1408:	50 93 11 07 	sts	0x0711, r21
+    140c:	90 91 10 07 	lds	r25, 0x0710
+    1410:	59 17       	cp	r21, r25
+    1412:	58 f0       	brcs	.+22     	; 0x142a <MPU401_Event+0xac>
+    1414:	10 92 11 07 	sts	0x0711, r1
+    1418:	60 91 05 07 	lds	r22, 0x0705
+    141c:	70 91 06 07 	lds	r23, 0x0706
+    1420:	70 62       	ori	r23, 0x20	; 32
+    1422:	70 93 06 07 	sts	0x0706, r23
+    1426:	60 93 05 07 	sts	0x0705, r22
+    142a:	70 91 f7 06 	lds	r23, 0x06F7
+    142e:	71 11       	cpse	r23, r1
+    1430:	06 c0       	rjmp	.+12     	; 0x143e <MPU401_Event+0xc0>
+    1432:	80 91 05 07 	lds	r24, 0x0705
+    1436:	90 91 06 07 	lds	r25, 0x0706
+    143a:	89 2b       	or	r24, r25
+    143c:	e9 f4       	brne	.+58     	; 0x1478 <MPU401_Event+0xfa>
+    143e:	80 e0       	ldi	r24, 0x00	; 0
+    1440:	80 d0       	rcall	.+256    	; 0x1542 <PIC_RemoveEvents>
+    1442:	b0 91 0b 07 	lds	r27, 0x070B
+    1446:	d0 91 09 07 	lds	r29, 0x0709
+    144a:	bd 9f       	mul	r27, r29
+    144c:	b0 01       	movw	r22, r0
+    144e:	11 24       	eor	r1, r1
+    1450:	61 15       	cp	r22, r1
+    1452:	71 05       	cpc	r23, r1
+    1454:	29 f4       	brne	.+10     	; 0x1460 <MPU401_Event+0xe2>
+    1456:	df 91       	pop	r29
+    1458:	cf 91       	pop	r28
+    145a:	1f 91       	pop	r17
+    145c:	0f 91       	pop	r16
+    145e:	08 95       	ret
+    1460:	80 e9       	ldi	r24, 0x90	; 144
+    1462:	92 ee       	ldi	r25, 0xE2	; 226
+    1464:	e1 d0       	rcall	.+450    	; 0x1628 <__udivmodhi4>
+    1466:	80 e0       	ldi	r24, 0x00	; 0
+    1468:	df 91       	pop	r29
+    146a:	cf 91       	pop	r28
+    146c:	1f 91       	pop	r17
+    146e:	0f 91       	pop	r16
+    1470:	3a c0       	rjmp	.+116    	; 0x14e6 <PIC_AddEvent>
+    1472:	8c 2f       	mov	r24, r28
+    1474:	25 da       	rcall	.-2998   	; 0x8c0 <UpdateTrack>
+    1476:	aa cf       	rjmp	.-172    	; 0x13cc <MPU401_Event+0x4e>
+    1478:	45 dc       	rcall	.-1910   	; 0xd04 <MPU401_EOIHandler>
+    147a:	e1 cf       	rjmp	.-62     	; 0x143e <MPU401_Event+0xc0>
+    147c:	f4 d9       	rcall	.-3096   	; 0x866 <UpdateConductor>
+    147e:	bd cf       	rjmp	.-134    	; 0x13fa <MPU401_Event+0x7c>
+
+00001480 <MPU401_ResetDone>:
+    1480:	10 92 f2 06 	sts	0x06F2, r1
+    1484:	80 91 fe 06 	lds	r24, 0x06FE
+    1488:	90 91 ff 06 	lds	r25, 0x06FF
+    148c:	00 97       	sbiw	r24, 0x00	; 0
+    148e:	09 f4       	brne	.+2      	; 0x1492 <MPU401_ResetDone+0x12>
+    1490:	08 95       	ret
+    1492:	81 50       	subi	r24, 0x01	; 1
+    1494:	ba da       	rcall	.-2700   	; 0xa0a <MPU401_WriteCommand>
+    1496:	10 92 ff 06 	sts	0x06FF, r1
+    149a:	10 92 fe 06 	sts	0x06FE, r1
+    149e:	08 95       	ret
+
+000014a0 <MPU401_Init>:
+}
+
+/* HardMPU: Initialisation */
+void MPU401_Init(bool delaysysex,bool fakeallnotesoff)
+{
+    14a0:	cf 93       	push	r28
+    14a2:	df 93       	push	r29
+    14a4:	00 d0       	rcall	.+0      	; 0x14a6 <MPU401_Init+0x6>
+    14a6:	cd b7       	in	r28, 0x3d	; 61
+    14a8:	de b7       	in	r29, 0x3e	; 62
+	/* Initalise PIC code */
+	PIC_Init();
+    14aa:	6a 83       	std	Y+2, r22	; 0x02
+    14ac:	89 83       	std	Y+1, r24	; 0x01
+    14ae:	52 d0       	rcall	.+164    	; 0x1554 <PIC_Init>
+
+	/* Initialise MIDI handler */
+        MIDI_Init(delaysysex,fakeallnotesoff);
+    14b0:	6a 81       	ldd	r22, Y+2	; 0x02
+    14b2:	89 81       	ldd	r24, Y+1	; 0x01
+    14b4:	12 d9       	rcall	.-3548   	; 0x6da <MIDI_Init>
+	if (!MIDI_Available()) return;
+    14b6:	0e d9       	rcall	.-3556   	; 0x6d4 <MIDI_Available>
+    14b8:	81 11       	cpse	r24, r1
+    14ba:	05 c0       	rjmp	.+10     	; 0x14c6 <MPU401_Init+0x26>
+        mpu.intelligent=true; /* Default is on */
+	if (!mpu.intelligent) return;
+
+        /* SOFTMPU: Moved IRQ 9 handler init to asm */
+	MPU401_Reset();
+    14bc:	0f 90       	pop	r0
+    14be:	0f 90       	pop	r0
+    14c0:	df 91       	pop	r29
+    14c2:	cf 91       	pop	r28
+    14c4:	08 95       	ret
+
+	/* Initialise MIDI handler */
+        MIDI_Init(delaysysex,fakeallnotesoff);
+	if (!MIDI_Available()) return;
+
+	mpu.queue_used=0;
+    14c6:	10 92 6e 06 	sts	0x066E, r1
+	mpu.queue_pos=0;
+    14ca:	10 92 6d 06 	sts	0x066D, r1
+	mpu.mode=M_UART;
+    14ce:	10 92 4c 06 	sts	0x064C, r1
+        mpu.mpu_ver_fix=false; /* SOFTMPU */
+    14d2:	10 92 4b 06 	sts	0x064B, r1
+
+        mpu.intelligent=true; /* Default is on */
+    14d6:	81 e0       	ldi	r24, 0x01	; 1
+    14d8:	80 93 4a 06 	sts	0x064A, r24
+	if (!mpu.intelligent) return;
+
+        /* SOFTMPU: Moved IRQ 9 handler init to asm */
+	MPU401_Reset();
+    14dc:	0f 90       	pop	r0
+    14de:	0f 90       	pop	r0
+    14e0:	df 91       	pop	r29
+    14e2:	cf 91       	pop	r28
+
+        mpu.intelligent=true; /* Default is on */
+	if (!mpu.intelligent) return;
+
+        /* SOFTMPU: Moved IRQ 9 handler init to asm */
+	MPU401_Reset();
+    14e4:	42 c9       	rjmp	.-3452   	; 0x76a <MPU401_Reset>
+
+000014e6 <PIC_AddEvent>:
+/* SOFTMPU: Event countdown timers */
+static Bitu event_countdown[NUM_EVENTS];
+extern Bitu MIDI_sysex_delay; /* SOFTMPU: Initialised in midi.c */
+
+void PIC_AddEvent(EventID event, Bitu delay)
+{
+    14e6:	cf 93       	push	r28
+    14e8:	df 93       	push	r29
+    14ea:	00 d0       	rcall	.+0      	; 0x14ec <PIC_AddEvent+0x6>
+    14ec:	1f 92       	push	r1
+    14ee:	cd b7       	in	r28, 0x3d	; 61
+    14f0:	de b7       	in	r29, 0x3e	; 62
+        /* Dispatch event immediately on zero delay */
+        /* Watch out for blocking loops here... */
+        if (delay==0)
+    14f2:	61 15       	cp	r22, r1
+    14f4:	71 05       	cpc	r23, r1
+    14f6:	61 f4       	brne	.+24     	; 0x1510 <PIC_AddEvent+0x2a>
+        {
+                switch (event)
+    14f8:	81 30       	cpi	r24, 0x01	; 1
+    14fa:	c1 f0       	breq	.+48     	; 0x152c <PIC_AddEvent+0x46>
+    14fc:	f8 f0       	brcs	.+62     	; 0x153c <PIC_AddEvent+0x56>
+    14fe:	82 30       	cpi	r24, 0x02	; 2
+    1500:	39 f4       	brne	.+14     	; 0x1510 <PIC_AddEvent+0x2a>
+                        break;
+                case RESET_DONE:
+                        MPU401_ResetDone();
+                        break;
+                case EOI_HANDLER:
+                        MPU401_EOIHandler();
+    1502:	6a 83       	std	Y+2, r22	; 0x02
+    1504:	7b 83       	std	Y+3, r23	; 0x03
+    1506:	89 83       	std	Y+1, r24	; 0x01
+    1508:	fd db       	rcall	.-2054   	; 0xd04 <MPU401_EOIHandler>
+    150a:	89 81       	ldd	r24, Y+1	; 0x01
+    150c:	7b 81       	ldd	r23, Y+3	; 0x03
+    150e:	6a 81       	ldd	r22, Y+2	; 0x02
+                        break;
+                }
+        }
+
+        /* SOFTMPU: Set the countdown timer */
+        event_countdown[event]=delay;
+    1510:	e8 2f       	mov	r30, r24
+    1512:	f0 e0       	ldi	r31, 0x00	; 0
+    1514:	ee 0f       	add	r30, r30
+    1516:	ff 1f       	adc	r31, r31
+    1518:	ec 5e       	subi	r30, 0xEC	; 236
+    151a:	f8 4f       	sbci	r31, 0xF8	; 248
+    151c:	71 83       	std	Z+1, r23	; 0x01
+    151e:	60 83       	st	Z, r22
+}
+    1520:	0f 90       	pop	r0
+    1522:	0f 90       	pop	r0
+    1524:	0f 90       	pop	r0
+    1526:	df 91       	pop	r29
+    1528:	cf 91       	pop	r28
+    152a:	08 95       	ret
+                        /* Don't dispatch immediately as we'll enter an
+                        infinite loop if tempo is high enough */
+                        delay=1; /* Enforce minimum delay */
+                        break;
+                case RESET_DONE:
+                        MPU401_ResetDone();
+    152c:	6a 83       	std	Y+2, r22	; 0x02
+    152e:	7b 83       	std	Y+3, r23	; 0x03
+    1530:	89 83       	std	Y+1, r24	; 0x01
+    1532:	a6 df       	rcall	.-180    	; 0x1480 <MPU401_ResetDone>
+                        break;
+    1534:	6a 81       	ldd	r22, Y+2	; 0x02
+    1536:	7b 81       	ldd	r23, Y+3	; 0x03
+    1538:	89 81       	ldd	r24, Y+1	; 0x01
+    153a:	ea cf       	rjmp	.-44     	; 0x1510 <PIC_AddEvent+0x2a>
+                switch (event)
+                {
+                case MPU_EVENT:
+                        /* Don't dispatch immediately as we'll enter an
+                        infinite loop if tempo is high enough */
+                        delay=1; /* Enforce minimum delay */
+    153c:	61 e0       	ldi	r22, 0x01	; 1
+    153e:	70 e0       	ldi	r23, 0x00	; 0
+    1540:	e7 cf       	rjmp	.-50     	; 0x1510 <PIC_AddEvent+0x2a>
+
+00001542 <PIC_RemoveEvents>:
+}
+
+void PIC_RemoveEvents(EventID event)
+{
+        /* SOFTMPU: Zero the countdown timer (disable event) */
+        event_countdown[event]=0;
+    1542:	e8 2f       	mov	r30, r24
+    1544:	f0 e0       	ldi	r31, 0x00	; 0
+    1546:	ee 0f       	add	r30, r30
+    1548:	ff 1f       	adc	r31, r31
+    154a:	ec 5e       	subi	r30, 0xEC	; 236
+    154c:	f8 4f       	sbci	r31, 0xF8	; 248
+    154e:	11 82       	std	Z+1, r1	; 0x01
+    1550:	10 82       	st	Z, r1
+    1552:	08 95       	ret
+
+00001554 <PIC_Init>:
+    1554:	10 92 15 07 	sts	0x0715, r1
+    1558:	10 92 14 07 	sts	0x0714, r1
+    155c:	10 92 17 07 	sts	0x0717, r1
+    1560:	10 92 16 07 	sts	0x0716, r1
+    1564:	10 92 19 07 	sts	0x0719, r1
+    1568:	10 92 18 07 	sts	0x0718, r1
+    156c:	08 95       	ret
+
+0000156e <__vector_13>:
+        }
+}
+
+//void PIC_Update(bool blocking)
+ISR(TIMER1_COMPA_vect)
+{
+    156e:	1f 92       	push	r1
+    1570:	0f 92       	push	r0
+    1572:	0f b6       	in	r0, 0x3f	; 63
+    1574:	0f 92       	push	r0
+    1576:	11 24       	eor	r1, r1
+    1578:	0b b6       	in	r0, 0x3b	; 59
+    157a:	0f 92       	push	r0
+    157c:	2f 93       	push	r18
+    157e:	3f 93       	push	r19
+    1580:	4f 93       	push	r20
+    1582:	5f 93       	push	r21
+    1584:	6f 93       	push	r22
+    1586:	7f 93       	push	r23
+    1588:	8f 93       	push	r24
+    158a:	9f 93       	push	r25
+    158c:	af 93       	push	r26
+    158e:	bf 93       	push	r27
+    1590:	ef 93       	push	r30
+    1592:	ff 93       	push	r31
+        {
+                _delay_us(250);
+        } */
+
+        /* SOFTMPU: Decrement sysex delay used in midi.c */
+        if (MIDI_sysex_delay > 0)
+    1594:	80 91 1a 07 	lds	r24, 0x071A
+    1598:	90 91 1b 07 	lds	r25, 0x071B
+    159c:	00 97       	sbiw	r24, 0x00	; 0
+    159e:	29 f0       	breq	.+10     	; 0x15aa <__vector_13+0x3c>
+        {
+                MIDI_sysex_delay--;
+    15a0:	01 97       	sbiw	r24, 0x01	; 1
+    15a2:	90 93 1b 07 	sts	0x071B, r25
+    15a6:	80 93 1a 07 	sts	0x071A, r24
+        }
+
+        /* SOFTMPU: Decrement countdown timers and dispatch as needed */
+        for (i=0;i<NUM_EVENTS;i++)
+        {
+                if (event_countdown[i] > 0)
+    15aa:	a0 91 14 07 	lds	r26, 0x0714
+    15ae:	b0 91 15 07 	lds	r27, 0x0715
+    15b2:	10 97       	sbiw	r26, 0x00	; 0
+    15b4:	39 f0       	breq	.+14     	; 0x15c4 <__vector_13+0x56>
+                {
+                        event_countdown[i]--;
+    15b6:	11 97       	sbiw	r26, 0x01	; 1
+    15b8:	b0 93 15 07 	sts	0x0715, r27
+    15bc:	a0 93 14 07 	sts	0x0714, r26
+
+                        if (event_countdown[i]==0)
+    15c0:	10 97       	sbiw	r26, 0x00	; 0
+    15c2:	71 f1       	breq	.+92     	; 0x1620 <__vector_13+0xb2>
+        }
+
+        /* SOFTMPU: Decrement countdown timers and dispatch as needed */
+        for (i=0;i<NUM_EVENTS;i++)
+        {
+                if (event_countdown[i] > 0)
+    15c4:	e0 91 16 07 	lds	r30, 0x0716
+    15c8:	f0 91 17 07 	lds	r31, 0x0717
+    15cc:	30 97       	sbiw	r30, 0x00	; 0
+    15ce:	39 f0       	breq	.+14     	; 0x15de <__vector_13+0x70>
+                {
+                        event_countdown[i]--;
+    15d0:	31 97       	sbiw	r30, 0x01	; 1
+    15d2:	f0 93 17 07 	sts	0x0717, r31
+    15d6:	e0 93 16 07 	sts	0x0716, r30
+
+                        if (event_countdown[i]==0)
+    15da:	30 97       	sbiw	r30, 0x00	; 0
+    15dc:	19 f1       	breq	.+70     	; 0x1624 <__vector_13+0xb6>
+        }
+
+        /* SOFTMPU: Decrement countdown timers and dispatch as needed */
+        for (i=0;i<NUM_EVENTS;i++)
+        {
+                if (event_countdown[i] > 0)
+    15de:	80 91 18 07 	lds	r24, 0x0718
+    15e2:	90 91 19 07 	lds	r25, 0x0719
+    15e6:	00 97       	sbiw	r24, 0x00	; 0
+    15e8:	41 f0       	breq	.+16     	; 0x15fa <__vector_13+0x8c>
+                {
+                        event_countdown[i]--;
+    15ea:	01 97       	sbiw	r24, 0x01	; 1
+    15ec:	90 93 19 07 	sts	0x0719, r25
+    15f0:	80 93 18 07 	sts	0x0718, r24
+
+                        if (event_countdown[i]==0)
+    15f4:	89 2b       	or	r24, r25
+    15f6:	09 f4       	brne	.+2      	; 0x15fa <__vector_13+0x8c>
+                                                break;
+                                        case RESET_DONE:
+                                                MPU401_ResetDone();
+                                                break;
+                                        case EOI_HANDLER:
+                                                MPU401_EOIHandler();
+    15f8:	85 db       	rcall	.-2294   	; 0xd04 <MPU401_EOIHandler>
+                                                break;
+                                }
+                        }
+                }
+        }
+    15fa:	ff 91       	pop	r31
+    15fc:	ef 91       	pop	r30
+    15fe:	bf 91       	pop	r27
+    1600:	af 91       	pop	r26
+    1602:	9f 91       	pop	r25
+    1604:	8f 91       	pop	r24
+    1606:	7f 91       	pop	r23
+    1608:	6f 91       	pop	r22
+    160a:	5f 91       	pop	r21
+    160c:	4f 91       	pop	r20
+    160e:	3f 91       	pop	r19
+    1610:	2f 91       	pop	r18
+    1612:	0f 90       	pop	r0
+    1614:	0b be       	out	0x3b, r0	; 59
+    1616:	0f 90       	pop	r0
+    1618:	0f be       	out	0x3f, r0	; 63
+    161a:	0f 90       	pop	r0
+    161c:	1f 90       	pop	r1
+    161e:	18 95       	reti
+                        {
+                                /* Dispatch */
+                                switch (i)
+                                {
+                                        case MPU_EVENT:
+                                                MPU401_Event();
+    1620:	ae de       	rcall	.-676    	; 0x137e <MPU401_Event>
+    1622:	d0 cf       	rjmp	.-96     	; 0x15c4 <__vector_13+0x56>
+                                                break;
+                                        case RESET_DONE:
+                                                MPU401_ResetDone();
+    1624:	2d df       	rcall	.-422    	; 0x1480 <MPU401_ResetDone>
+    1626:	db cf       	rjmp	.-74     	; 0x15de <__vector_13+0x70>
+
+00001628 <__udivmodhi4>:
+    1628:	aa 1b       	sub	r26, r26
+    162a:	bb 1b       	sub	r27, r27
+    162c:	51 e1       	ldi	r21, 0x11	; 17
+    162e:	07 c0       	rjmp	.+14     	; 0x163e <__udivmodhi4_ep>
+
+00001630 <__udivmodhi4_loop>:
+    1630:	aa 1f       	adc	r26, r26
+    1632:	bb 1f       	adc	r27, r27
+    1634:	a6 17       	cp	r26, r22
+    1636:	b7 07       	cpc	r27, r23
+    1638:	10 f0       	brcs	.+4      	; 0x163e <__udivmodhi4_ep>
+    163a:	a6 1b       	sub	r26, r22
+    163c:	b7 0b       	sbc	r27, r23
+
+0000163e <__udivmodhi4_ep>:
+    163e:	88 1f       	adc	r24, r24
+    1640:	99 1f       	adc	r25, r25
+    1642:	5a 95       	dec	r21
+    1644:	a9 f7       	brne	.-22     	; 0x1630 <__udivmodhi4_loop>
+    1646:	80 95       	com	r24
+    1648:	90 95       	com	r25
+    164a:	bc 01       	movw	r22, r24
+    164c:	cd 01       	movw	r24, r26
+    164e:	08 95       	ret
+
+00001650 <__tablejump2__>:
+    1650:	ee 0f       	add	r30, r30
+    1652:	ff 1f       	adc	r31, r31
+
+00001654 <__tablejump__>:
+    1654:	05 90       	lpm	r0, Z+
+    1656:	f4 91       	lpm	r31, Z
+    1658:	e0 2d       	mov	r30, r0
+    165a:	09 94       	ijmp
+
+0000165c <_exit>:
+    165c:	f8 94       	cli
+
+0000165e <__stop_program>:
+    165e:	ff cf       	rjmp	.-2      	; 0x165e <__stop_program>
