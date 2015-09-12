@@ -186,6 +186,7 @@ void MIDI_RawOutByte(Bit8u data) {
 				while (MIDI_sysex_delay--) {
 					_delay_us(250);	// HardMPU
 				}
+				MIDI_sysex_delay = 0;
         }
 
 	/* Test for a realtime MIDI message */
