@@ -278,8 +278,8 @@ void MPU401_WriteCommand(Bit8u val) { /* SOFTMPU */
 			break;
 		case 0xff:      /* Reset MPU-401 */
 			/*LOG(LOG_MISC,LOG_NORMAL)("MPU-401:Reset %X",val);*/ /* SOFTMPU */
-                        PIC_AddEvent(RESET_DONE,MPU401_RESETBUSY);
-			mpu.state.reset=true;
+           //             PIC_AddEvent(RESET_DONE,MPU401_RESETBUSY);
+			//mpu.state.reset=true;
 			MPU401_Reset();
 			if (mpu.mode==M_UART) return;//do not send ack in UART mode
 			break;

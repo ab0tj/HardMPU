@@ -67,9 +67,7 @@ typedef struct ring_buffer {
 	unsigned int tail;
 } ring_buffer;
 
-ring_buffer midi_out_buff = { {0}, 0, 0 };
-
-static void queue_midi_byte(const unsigned char);
+static ring_buffer midi_out_buff = { {0}, 0, 0 };
 
 /* SOFTMPU: Note tracking for RA-50 */
 #define MAX_TRACKED_CHANNELS 16
@@ -122,7 +120,7 @@ static struct {
 		Bitu used;
                 Bitu usedbufs;
 		Bitu delay;
-		Bit32u start;
+		Bit8u start;
 	} sysex;
         bool fakeallnotesoff;
 	bool available;
@@ -143,7 +141,11 @@ static void PlayMsg(Bit8u* msg, Bitu len)
         for (Bitu i = 0; i < len; i++) {
 			//loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
 			//UDR0 = msg[i];							// output the next byte
-			queue_midi_byte(msg[i]);
+			unsigned int next = (unsigned int)(midi_out_buff.head + 1) % RAWBUF;
+			if (next != midi_out_buff.tail) {
+				midi_out_buff.buffer[midi_out_buff.head] = msg[i];
+				midi_out_buff.head = next;
+			}
 		}
 };
 
@@ -322,12 +324,4 @@ void send_midi_byte() {
 	loop_until_bit_is_set(UCSR0A, UDRE0);
 	UDR0 = midi_out_buff.buffer[midi_out_buff.tail];			// send the next byte
 	midi_out_buff.tail = (unsigned int)(midi_out_buff.tail + 1) % RAWBUF;	// increment tail, wrap to 0 if we're at the end
-}
-
-static void queue_midi_byte(const unsigned char byte) {
-	unsigned int next = (unsigned int)(midi_out_buff.head + 1) % RAWBUF;
-	if (next != midi_out_buff.tail) {
-		midi_out_buff.buffer[midi_out_buff.head] = byte;
-		midi_out_buff.head = next;
-	}
 }
