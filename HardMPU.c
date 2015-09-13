@@ -77,8 +77,8 @@ unsigned char recv_isa_byte() {
 	__builtin_avr_delay_cycles(3);	// wait for i/o to settle
 	temp = PINA;					// capture what we find there
 	PORTB |= PIN_IDR;				// raise IDR
-	return temp;					// report back with the results
 	sei();							// re-enable interrupts
+	return temp;					// report back with the results
 }
 
 //void send_midi_byte() {
