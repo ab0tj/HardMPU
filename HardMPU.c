@@ -14,21 +14,20 @@
 // function prototypes
 void send_isa_byte(unsigned char byte);
 unsigned char recv_isa_byte();
+void recv_ctl_byte();
 //void send_midi_byte();
-
-char uart_mode = 0;
 
 int main(void)
 {
 	// init GPIO
-	PORTA = 0b11111111;	// pullups enabled
+	//PORTA = 0b11111111;	// pullups enabled
 	PORTB = 0b11111000;	// bits 0-2 are driven externally
 	DDRB  = 0b00011000;	// data read and data write latches
 	PORTC = 0b11111111;	// pullups enabled
 	PORTD = 0b11111111;	// pullups enabled
 	
 	// init UART
-	UCSR0B = (1<<TXEN0)|(1<<RXEN0);
+	UCSR0B = (1<<TXEN0);//|(1<<RXEN0);
 	UBRR0  = BAUD_MIDI;
 	
 	// init timer
@@ -44,16 +43,16 @@ int main(void)
     while(1)	// main loop
     {
 		// do isa i/o
-		if (PINB & PIN_DRR) {		// isa data input latch is full
-			MPU401_WriteData(recv_isa_byte());
-		}
 		if (PINB & PIN_CRR) {		// isa control input latch is full
 			MPU401_WriteCommand(recv_isa_byte());
 		}
-		if (QueueUsed() && (~PINB & PIN_DSR)) {	// isa data output latch is empty, and data is waiting to be sent
+		if (PINB & PIN_DRR) {		// isa data input latch is full
+			MPU401_WriteData(recv_isa_byte());
+		}
+		if (QueueUsed() && (~PINB & PIN_DSR)) {
 			send_isa_byte(MPU401_ReadData());		// send data if there's any in the buffer
 		}
-		
+		send_midi_byte();
 		/* if (UCSR0A & (1<<RXC0)) {	// midi uart rx buffer is full
 			process_midi_byte();
 		} */
@@ -72,10 +71,11 @@ void send_isa_byte(unsigned char byte) {
 }
 
 unsigned char recv_isa_byte() {
+	unsigned char temp;
 	cli();							// disable interrupts
 	PORTB &= ~PIN_IDR;				// lower IDR
 	__builtin_avr_delay_cycles(3);	// wait for i/o to settle
-	unsigned char temp = PINA;		// capture what we find there
+	temp = PINA;					// capture what we find there
 	PORTB |= PIN_IDR;				// raise IDR
 	return temp;					// report back with the results
 	sei();							// re-enable interrupts

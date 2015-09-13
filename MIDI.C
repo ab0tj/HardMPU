@@ -61,6 +61,16 @@ typedef int Bits;
 #define SYSEX_SIZE 1024
 #define RAWBUF  1024
 
+typedef struct ring_buffer {
+	unsigned char buffer[RAWBUF];
+	unsigned int head;
+	unsigned int tail;
+} ring_buffer;
+
+ring_buffer midi_out_buff = { {0}, 0, 0 };
+
+static void queue_midi_byte(const unsigned char);
+
 /* SOFTMPU: Note tracking for RA-50 */
 #define MAX_TRACKED_CHANNELS 16
 #define MAX_TRACKED_NOTES 8
@@ -131,8 +141,9 @@ Bitu MIDI_sysex_delay;
 static void PlayMsg(Bit8u* msg, Bitu len)
 {
         for (Bitu i = 0; i < len; i++) {
-			loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
-			UDR0 = msg[i];							// output the next byte
+			//loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
+			//UDR0 = msg[i];							// output the next byte
+			queue_midi_byte(msg[i]);
 		}
 };
 
@@ -161,32 +172,10 @@ void MIDI_RawOutByte(Bit8u data) {
         channel* pChan; /* SOFTMPU */
 
         if (midi.sysex.start && MIDI_sysex_delay) {
-               /* _asm
-                {
-                                ; Bit 4 of port 061h toggles every 15.085us
-                                ; Use this to time the remaining sysex delay
-                                mov     ax,MIDI_sysex_delay
-                                mov     bx,17                   ; Assume 4kHz RTC
-                                mul     bx                      ; Convert to ticks, result in ax
-                                mov     cx,ax
-                                in      al,061h
-                                and     al,010h                 ; Get initial value
-                                mov     bl,al
-                TestPort:       in      al,061h
-                                and     al,010h
-                                cmp     al,bl
-                                je      TestPort                ; Loop until toggled
-                                xor     bl,010h                 ; Invert
-                                loop    TestPort
-                                mov     MIDI_sysex_delay,0      ; Set original delay to zero
-                } */
-                /*Bit32u passed_ticks = GetTicks() - midi.sysex.start;
-                if (passed_ticks < midi.sysex.delay) SDL_Delay(midi.sysex.delay - passed_ticks);*/ /* SOFTMPU */
-				
-				while (MIDI_sysex_delay--) {
+                while (MIDI_sysex_delay) {
 					_delay_us(250);	// HardMPU
+					MIDI_sysex_delay--;
 				}
-				MIDI_sysex_delay = 0;
         }
 
 	/* Test for a realtime MIDI message */
@@ -195,7 +184,7 @@ void MIDI_RawOutByte(Bit8u data) {
 		PlayMsg(midi.rt_buf,1);
 		return;
 	}        
-	/* Test for a active sysex tranfer */
+	/* Test for an active sysex transfer */
 	if (midi.status==0xf0) {
 		if (!(data&0x80)) {
                         /* SOFTMPU: Large sysex support */
@@ -312,16 +301,33 @@ void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
         midi.fakeallnotesoff=fakeallnotesoff;
         midi.available=true;
 
+		midi_out_buff.head = midi_out_buff.tail = 0;
+		
         /* SOFTMPU: Display welcome message on MT-32 */
         for (i=0;i<30;i++)
         {
                 MIDI_RawOutByte(MIDI_welcome_msg[i]);
         }
-
+		
         /* SOFTMPU: Init note tracking */
         for (i=0;i<MAX_TRACKED_CHANNELS;i++)
         {
                 tracked_channels[i].used=0;
                 tracked_channels[i].next=0;
         }
+}
+
+void send_midi_byte() {
+	if (midi_out_buff.head == midi_out_buff.tail) return;		// nothing to send
+	loop_until_bit_is_set(UCSR0A, UDRE0);
+	UDR0 = midi_out_buff.buffer[midi_out_buff.tail];			// send the next byte
+	midi_out_buff.tail = (unsigned int)(midi_out_buff.tail + 1) % RAWBUF;	// increment tail, wrap to 0 if we're at the end
+}
+
+static void queue_midi_byte(const unsigned char byte) {
+	unsigned int next = (unsigned int)(midi_out_buff.head + 1) % RAWBUF;
+	if (next != midi_out_buff.tail) {
+		midi_out_buff.buffer[midi_out_buff.head] = byte;
+		midi_out_buff.head = next;
+	}
 }

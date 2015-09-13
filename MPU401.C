@@ -296,11 +296,11 @@ void MPU401_WriteCommand(Bit8u val) { /* SOFTMPU */
 
 Bit8u MPU401_ReadData(void) { /* SOFTMPU */
 	Bit8u ret=MSG_MPU_ACK;	// HardMPU: we shouldn't be running this function if the queue is empty.
-	if (mpu.queue_used) {
+	//if (mpu.queue_used) {
 		if (mpu.queue_pos>=MPU401_QUEUE) mpu.queue_pos-=MPU401_QUEUE;
 		ret=mpu.queue[mpu.queue_pos];
 		mpu.queue_pos++;mpu.queue_used--;
-	}
+	//}
 	if (!mpu.intelligent) return ret;
 
 	if (ret>=0xf0 && ret<=0xf7) { /* MIDI data request */
@@ -328,7 +328,7 @@ Bit8u MPU401_ReadData(void) { /* SOFTMPU */
 void MPU401_WriteData(Bit8u val) { /* SOFTMPU */
 	static Bitu length,cnt,posd; /* SOFTMPU */
 	if (mpu.mode==M_UART) {
-		MIDI_RawOutByte((Bit8u)val);return;
+		MIDI_RawOutByte(val);return;
 	}
 	switch (mpu.state.command_byte) {       /* 0xe# command data */
 		case 0x00:
