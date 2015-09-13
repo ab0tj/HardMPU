@@ -1,6 +1,7 @@
 /*
  *  Copyright (C) 2002-2012  The DOSBox Team
  *  Copyright (C) 2013-2014  bjt, elianda
+ *  Copyright (C) 2015		 ab0tj
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,13 +19,16 @@
  */
 
 /*
- * ------------------------------------------
- * SoftMPU by bjt - Software MPU-401 Emulator
- * ------------------------------------------
- *
- * Based on original mpu401.c from DOSBox
+ * --------------------------------------------
+ * HardMPU by ab0tj - Hardware MPU-401 Emulator
+ * --------------------------------------------
+ * 
+ * Based on mpu401.c from SoftMPU by bjt which was
+ * based on original mpu401.c from DOSBox
  *
  */
+
+
 
 /* SOFTMPU: Moved exported functions & types to header */
 #include "export.h"

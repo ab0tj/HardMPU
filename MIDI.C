@@ -1,6 +1,7 @@
 /*
  *  Copyright (C) 2002-2013  The DOSBox Team
  *  Copyright (C) 2013-2014  bjt, elianda
+ *  Copyright (C) 2015		 ab0tj
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,11 +19,12 @@
  */
 
 /*
- * ------------------------------------------
- * SoftMPU by bjt - Software MPU-401 Emulator
- * ------------------------------------------
- *
- * Based on original midi.c from DOSBox
+ * --------------------------------------------
+ * HardMPU by ab0tj - Hardware MPU-401 Emulator
+ * --------------------------------------------
+ * 
+ * Based on midi.c from SoftMPU by bjt which was
+ * based on original midi.c from DOSBox
  *
  */
 
