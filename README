@@ -1,0 +1,14 @@
+HardMPU: An intelligent MPU-401 compatible MIDI interface based on an Atmega microcontroller and SoftMPU software.
+
+Features:
+- IRQ driven intelligent mode compatible
+- UART mode compatible
+- SysEx delay for Roland MT-32 on faster computers
+- "Fake all notes off" for Roland RA-50
+- JTAG, ISP, and UART interfaces for user expansion
+
+Limitations:
+- Playback only, recording planned but not yet implemented
+- Requires an ISA slot in your computer
+- SysEx and fake all notes off features implemented, but currently have to be enabled or disabled
+  in the source code. Software on/off for these features is next on the list to be implemented.
