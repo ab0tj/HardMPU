@@ -37,25 +37,6 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-/* SOFTMPU: Don't need these includes */
-/*#include <assert.h>
-#include <assert.h>
-#include <string.h>
-#include <stdlib.h>
-#include <string>
-#include <algorithm>
-
-#include "SDL.h"
-
-#include "dosbox.h"
-#include "cross.h"
-#include "support.h"
-#include "setup.h"
-#include "mapper.h"
-#include "pic.h"
-#include "hardware.h"
-#include "timer.h"*/
-
 /* SOFTMPU: Additional defines, typedefs etc. for C */
 typedef unsigned long Bit32u;
 typedef int Bits;
@@ -75,7 +56,7 @@ static ring_buffer midi_out_buff = { {0}, 0, 0 };
 #define MAX_TRACKED_CHANNELS 16
 #define MAX_TRACKED_NOTES 8
 
-static char* MIDI_welcome_msg = "\xf0\x41\x10\x16\x12\x20\x00\x00    HardMPU v0.1    \x4a\xf7"; /* HARDMPU */
+static char* MIDI_welcome_msg = "\xf0\x41\x10\x16\x12\x20\x00\x00    HardMPU v0.1    \x4a\xf7";	// message to show on MT-32 display
 
 static Bit8u MIDI_note_off[3] = { 0x80,0x00,0x00 }; /* SOFTMPU */
 
@@ -132,23 +113,16 @@ static struct {
 /* SOFTMPU: Sysex delay is decremented from PIC_Update */
 Bitu MIDI_sysex_delay;
 
-/* SOFTMPU: Also used by MPU401_ReadStatus */
-// OutputMode MIDI_output_mode;
-
-/* SOFTMPU: Initialised in mpu401.c */
-// extern QEMMInfo qemm;
-
 static void PlayMsg(Bit8u* msg, Bitu len)
 {
-        for (Bitu i = 0; i < len; i++) {
-			//loop_until_bit_is_set(UCSR0A, UDRE0);	// wait for tx buffer to be empty
-			//UDR0 = msg[i];							// output the next byte
-			unsigned int next = (unsigned int)(midi_out_buff.head + 1) % RAWBUF;
-			if (next != midi_out_buff.tail) {
-				midi_out_buff.buffer[midi_out_buff.head] = msg[i];
-				midi_out_buff.head = next;
-			}
+	// despite the name of this function, we're just going to buffer this message to send later.
+	for (Bitu i = 0; i < len; i++) {
+		unsigned int next = (unsigned int)(midi_out_buff.head + 1) % RAWBUF;
+		if (next != midi_out_buff.tail) {
+			midi_out_buff.buffer[midi_out_buff.head] = msg[i];
+			midi_out_buff.head = next;
 		}
+	}
 };
 
 /* SOFTMPU: Fake "All Notes Off" for Roland RA-50 */
@@ -220,7 +194,6 @@ void MIDI_RawOutByte(Bit8u data) {
                                             /*midi.sysex.delay = 30;*/ /* SOFTMPU */ // Dark Sun 1
                                             MIDI_sysex_delay = 30*(RTCFREQ/1000);
                                         } else MIDI_sysex_delay = ((((midi.sysex.usedbufs*SYSEX_SIZE)+midi.sysex.used)/2)+2)*(RTCFREQ/1000); /*(Bitu)(((float)(midi.sysex.used) * 1.25f) * 1000.0f / 3125.0f) + 2;
-                                        midi.sysex.start = GetTicks();*/ /* SOFTMPU */
 				}
 			}
 
@@ -322,6 +295,10 @@ void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
 }
 
 void send_midi_byte() {
+	/* NOTE: this function intentionally blocks until we can send a midi byte (if there
+	   are any in the buffer to be sent). this forces the host to not get ahead of the midi
+	   data stream. run only once per polling cycle so we can still do other things between
+	   midi bytes. */	
 	if (midi_out_buff.head == midi_out_buff.tail) return;		// nothing to send
 	loop_until_bit_is_set(UCSR0A, UDRE0);
 	UDR0 = midi_out_buff.buffer[midi_out_buff.tail];			// send the next byte

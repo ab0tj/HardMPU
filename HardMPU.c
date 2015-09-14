@@ -35,12 +35,10 @@
 void send_isa_byte(unsigned char byte);
 unsigned char recv_isa_byte();
 void recv_ctl_byte();
-//void send_midi_byte();
 
 int main(void)
 {
 	// init GPIO
-	//PORTA = 0b11111111;	// pullups enabled
 	PORTB = 0b11111000;	// bits 0-2 are driven externally
 	DDRB  = 0b00011000;	// data read and data write latches
 	PORTC = 0b11111111;	// pullups enabled
@@ -72,14 +70,16 @@ int main(void)
 		if (QueueUsed() && (~PINB & PIN_DSR)) {
 			send_isa_byte(MPU401_ReadData());		// send data if there's any in the buffer
 		}
-		send_midi_byte();
+		
+		// do midi i/o
+		send_midi_byte();				// see if we need to send a byte		
 		/* if (UCSR0A & (1<<RXC0)) {	// midi uart rx buffer is full
 			process_midi_byte();
 		} */
     }
 }
 
-void send_isa_byte(unsigned char byte) {
+void send_isa_byte(Bit8u byte) {
 	cli();							// disable interrupts
 	DDRA = 0xff;					// set porta to output
 	PORTA = byte;					// output byte on porta
@@ -100,9 +100,3 @@ unsigned char recv_isa_byte() {
 	sei();							// re-enable interrupts
 	return temp;					// report back with the results
 }
-
-//void send_midi_byte() {
-	//if (midi_out_buff.head == midi_out_buff.tail) return;		// nothing to send
-	//UDR0 = midi_out_buff.buffer[midi_out_buff.tail];			// send the next byte
-	//midi_out_buff.tail = (unsigned int)(midi_out_buff.tail + 1) % BUFFER_SIZE;	// increment tail, wrap to 0 if we're at the end
-//}
