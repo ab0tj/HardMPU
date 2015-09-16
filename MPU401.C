@@ -33,15 +33,6 @@
 /* SOFTMPU: Moved exported functions & types to header */
 #include "export.h"
 
-/* SOFTMPU: Don't need these includes */
-/*#include <string.h>
-#include "dosbox.h"
-#include "inout.h"
-#include "pic.h"
-#include "setup.h"
-#include "cpu.h"
-#include "support.h"*/
-
 /* SOFTMPU: Additional defines, typedefs etc. for C */
 typedef unsigned short Bit16u;
 typedef int Bits;
@@ -75,20 +66,25 @@ enum MpuDataType {T_OVERFLOW,T_MARK,T_MIDI_SYS,T_MIDI_NORM,T_COMMAND};
 typedef enum MpuDataType MpuDataType; /* SOFTMPU */
 
 /* Messages sent to MPU-401 from host */
-#define MSG_EOX                         0xf7
-#define MSG_OVERFLOW                    0xf8
-#define MSG_MARK                        0xfc
+#define MSG_EOX					0xf7
+#define MSG_OVERFLOW			0xf8
+#define MSG_MARK				0xfc
 
 /* Messages sent to host from MPU-401 */
-#define MSG_MPU_OVERFLOW                0xf8
-#define MSG_MPU_COMMAND_REQ             0xf9
-#define MSG_MPU_END                     0xfc
-#define MSG_MPU_CLOCK                   0xfd
-#define MSG_MPU_ACK                     0xfe
+#define MSG_MPU_OVERFLOW		0xf8
+#define MSG_MPU_COMMAND_REQ		0xf9
+#define MSG_MPU_END				0xfc
+#define MSG_MPU_CLOCK			0xfd
+#define MSG_MPU_ACK				0xfe
+
+/* HardMPU: MPU config bits */
+#define CONFIG_SYSEXDELAY		(mpu.config & 0x80)
+#define CONFIG_FAKEALLNOTESOFF	(mpu.config & 0x40)
+#define CONFIG_VERSIONFIX		(mpu.config & 0x20)
 
 static struct {
 	bool intelligent;
-        bool mpu_ver_fix; /* SOFTMPU */
+        Bit8u config;
         MpuMode mode;
 	Bit8u queue[MPU401_QUEUE];
 	Bit8u queue_pos,queue_used;
@@ -239,7 +235,7 @@ void MPU401_WriteCommand(Bit8u val) { /* SOFTMPU */
 			QueueByte(0);
 			return;
 		case 0xac:      /* Request version */
-                        if (mpu.mpu_ver_fix)
+                        if (CONFIG_VERSIONFIX)
                         {
                                 /* SOFTMPU: Fix missing music in Gateway by reversing version and ACK */
                                 QueueByte(MPU401_VERSION);
@@ -254,6 +250,10 @@ void MPU401_WriteCommand(Bit8u val) { /* SOFTMPU */
 		case 0xad:      /* Request revision */
 			QueueByte(MSG_MPU_ACK);
 			QueueByte(MPU401_REVISION);
+			return;
+		case 0xae:		/* HardMPU: Request config */
+			QueueByte(MSG_MPU_ACK);
+			QueueByte(mpu.config);
 			return;
 		case 0xaf:      /* Request tempo */
 			QueueByte(MSG_MPU_ACK);
@@ -279,6 +279,9 @@ void MPU401_WriteCommand(Bit8u val) { /* SOFTMPU */
 			mpu.state.amask=mpu.state.tmask;
 			mpu.state.req_mask=0;
 			mpu.state.irq_pending=true;
+			break;
+		case 0xfe:		/* HardMPU: Reset with config byte */
+			mpu.state.command_byte=val;
 			break;
 		case 0xff:      /* Reset MPU-401 */
 			/*LOG(LOG_MISC,LOG_NORMAL)("MPU-401:Reset %X",val);*/ /* SOFTMPU */
@@ -371,6 +374,11 @@ void MPU401_WriteData(Bit8u val) { /* SOFTMPU */
 		//case 0xe2:    /* Set graduation for relative tempo */
 		//case 0xe4:    /* Set metronome */
 		//case 0xe6:    /* Set metronome measure length */
+		case 0xfe: /* Config byte */
+			mpu.state.command_byte=0;
+			mpu.config=val;
+			MPU401_Init();
+			return;
 		default:
 			mpu.state.command_byte=0;
 			return;
@@ -654,26 +662,19 @@ static void MPU401_Reset(void) {
 	for (i=0;i<8;i++) {mpu.playbuf[i].type=T_OVERFLOW;mpu.playbuf[i].counter=0;}
 }
 
-/* SOFTMPU: Enable/disable MPU version fix for Gateway */
-void MPU401_SetEnableMPUVerFix(bool enable)
-{
-        mpu.mpu_ver_fix=enable;
-}
-
 /* HardMPU: Initialisation */
-void MPU401_Init(bool delaysysex,bool fakeallnotesoff)
+void MPU401_Init()
 {
 	/* Initalise PIC code */
 	PIC_Init();
 
 	/* Initialise MIDI handler */
-        MIDI_Init(delaysysex,fakeallnotesoff);
+        MIDI_Init(CONFIG_SYSEXDELAY,CONFIG_FAKEALLNOTESOFF);
 	if (!MIDI_Available()) return;
 
 	mpu.queue_used=0;
 	mpu.queue_pos=0;
 	mpu.mode=M_UART;
-        mpu.mpu_ver_fix=false; /* SOFTMPU */
 
         mpu.intelligent=true; /* Default is on */
 	if (!mpu.intelligent) return;

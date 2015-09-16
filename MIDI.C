@@ -151,7 +151,7 @@ void MIDI_RawOutByte(Bit8u data) {
 
         if (midi.sysex.start && MIDI_sysex_delay) {
                 while (MIDI_sysex_delay) {
-					_delay_us(250);	// HardMPU
+					_delay_us(250);
 					MIDI_sysex_delay--;
 				}
         }
@@ -193,7 +193,7 @@ void MIDI_RawOutByte(Bit8u data) {
                                         } else if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x10 && midi.sysex.buf[6] == 0x00 && midi.sysex.buf[7] == 0x01) {
                                             /*midi.sysex.delay = 30;*/ /* SOFTMPU */ // Dark Sun 1
                                             MIDI_sysex_delay = 30*(RTCFREQ/1000);
-                                        } else MIDI_sysex_delay = ((((midi.sysex.usedbufs*SYSEX_SIZE)+midi.sysex.used)/2)+2)*(RTCFREQ/1000); /*(Bitu)(((float)(midi.sysex.used) * 1.25f) * 1000.0f / 3125.0f) + 2;
+                                        } else MIDI_sysex_delay = ((((midi.sysex.usedbufs*SYSEX_SIZE)+midi.sysex.used)/2)+2)*(RTCFREQ/1000); /*(Bitu)(((float)(midi.sysex.used) * 1.25f) * 1000.0f / 3125.0f) + 2; */
 				}
 			}
 
@@ -256,6 +256,22 @@ void MIDI_RawOutByte(Bit8u data) {
 	}
 }
 
+void send_midi_byte() {
+	/* NOTE: this function intentionally blocks until we can send a midi byte (if there
+	   are any in the buffer to be sent). this forces the host to not get ahead of the midi
+	   data stream. run only once per polling cycle so we can still do other things between
+	   midi bytes. */	
+	if (midi_out_buff.head == midi_out_buff.tail) return;		// nothing to send
+	loop_until_bit_is_set(UCSR0A, UDRE0);
+	UDR0 = midi_out_buff.buffer[midi_out_buff.tail];			// send the next byte
+	midi_out_buff.tail = (unsigned int)(midi_out_buff.tail + 1) % RAWBUF;	// increment tail, wrap to 0 if we're at the end
+}
+
+static void send_midi_byte_now(Bit8u byte) {
+	loop_until_bit_is_set(UCSR0A, UDRE0);
+	UDR0 = byte;
+}
+
 bool MIDI_Available(void)  {
 	return midi.available;
 }
@@ -267,7 +283,7 @@ void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
 	midi.sysex.start = 0;
 	MIDI_sysex_delay = 0; /* SOFTMPU */
 
-        if (delaysysex==true)
+    if (delaysysex>0)
 	{
 		midi.sysex.start = 1; /*GetTicks();*/ /* SOFTMPU */
 		/*LOG_MSG("MIDI:Using delayed SysEx processing");*/ /* SOFTMPU */
@@ -275,7 +291,7 @@ void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
 	midi.status=0x00;
 	midi.cmd_pos=0;
 	midi.cmd_len=0;
-        midi.fakeallnotesoff=fakeallnotesoff;
+        midi.fakeallnotesoff=fakeallnotesoff>0;
         midi.available=true;
 
 		midi_out_buff.head = midi_out_buff.tail = 0;
@@ -283,8 +299,20 @@ void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
         /* SOFTMPU: Display welcome message on MT-32 */
         for (i=0;i<30;i++)
         {
-                MIDI_RawOutByte(MIDI_welcome_msg[i]);
+                send_midi_byte_now(MIDI_welcome_msg[i]);
         }
+		
+		/* HardMPU: Turn off any stuck notes */
+		for (Bit8u chan=0;chan<16;chan++)
+		{
+			for (Bit8u note=0;note<128;note++)
+			{
+				send_midi_byte_now(0x80|chan);
+				send_midi_byte_now(note);
+				send_midi_byte_now(0);
+				
+			}
+		}
 		
         /* SOFTMPU: Init note tracking */
         for (i=0;i<MAX_TRACKED_CHANNELS;i++)
@@ -292,15 +320,4 @@ void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
                 tracked_channels[i].used=0;
                 tracked_channels[i].next=0;
         }
-}
-
-void send_midi_byte() {
-	/* NOTE: this function intentionally blocks until we can send a midi byte (if there
-	   are any in the buffer to be sent). this forces the host to not get ahead of the midi
-	   data stream. run only once per polling cycle so we can still do other things between
-	   midi bytes. */	
-	if (midi_out_buff.head == midi_out_buff.tail) return;		// nothing to send
-	loop_until_bit_is_set(UCSR0A, UDRE0);
-	UDR0 = midi_out_buff.buffer[midi_out_buff.tail];			// send the next byte
-	midi_out_buff.tail = (unsigned int)(midi_out_buff.tail + 1) % RAWBUF;	// increment tail, wrap to 0 if we're at the end
 }

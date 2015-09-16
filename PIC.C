@@ -80,7 +80,7 @@ void PIC_RemoveEvents(EventID event)
 
 void PIC_Init(void)
 {
-        Bitu i;
+        Bit8u i;
 
         /* SOFTMPU: Zero countdown timers */
         for (i=0;i<NUM_EVENTS;i++)
@@ -92,7 +92,7 @@ void PIC_Init(void)
 //void PIC_Update(bool blocking)
 ISR(TIMER1_COMPA_vect)
 {
-        Bitu i;
+        Bit8u i;
 
         /* if (blocking)
         {

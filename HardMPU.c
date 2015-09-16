@@ -56,7 +56,7 @@ int main(void)
 	TCCR1B |= (1<<CS10);		// start timer with no prescaler
 	
 	// init emulator
-	MPU401_Init(false, false);
+	MPU401_Init();
 	
     while(1)	// main loop
     {
