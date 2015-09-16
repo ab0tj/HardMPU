@@ -10,7 +10,5 @@ Features:
 Limitations:
 - Playback only, recording planned but not yet implemented
 - Requires an ISA slot in your computer
-- SysEx and fake all notes off features implemented, but currently have to be enabled or disabled
-  in the source code. Software on/off for these features is next on the list to be implemented.
 
 This software is covered by the GPL. The circuit design is free for non-commercial use.
