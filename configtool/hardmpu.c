@@ -21,14 +21,14 @@ int main(int argc, char *argv[]) {
     unsigned char config = 0;
     int setconfig = 1;
 
-    cprintf("\n-- AB0TJ HardMPU Configuration Utility --\n\n");
+    cprintf("\r\n-- AB0TJ HardMPU Configuration Utility --\r\n\r\n");
 
-    while((c = getopt(argc,argv,":p:sfghc")) != -1) {
+    while((c = getopt(argc,argv,":p:dfghs")) != -1) {
         switch(c) {
             case 'p':
                 port = strtol(optarg,NULL,16);
                 break;
-            case 's':
+            case 'd':
                 config |= CFG_DELAY;
                 break;
             case 'f':
@@ -37,33 +37,30 @@ int main(int argc, char *argv[]) {
             case 'g':
                 config |= CFG_VERFIX;
                 break;
-            case 'c':
+            case 's':
                 setconfig = 0;
                 break;
             case 'h':
                 show_help(basename(argv[0]));
                 return 0;
             case '?':
-                cprintf("Unknown command line option: -%c\n\n", optopt);
+                cprintf("Unknown command line option: -%c\r\n\r\n", optopt);
                 show_help(basename(argv[0]));
                 return 1;
             case ':':
-                cprintf("Command line option missing argument: -%c\n\n", optopt);
+                cprintf("Command line option missing argument: -%c\r\n\r\n", optopt);
                 show_help(basename(argv[0]));
                 return 1;
             default:
-                cprintf("Internal error when processing command line options: %c\n", optopt);
+                cprintf("Internal error when processing command line options: %c\r\n", optopt);
                 return 1;
         }
     }
 
-    cprintf("Using port 0h%x.\n", port);
+    cprintf("Using port 0h%x.\r\n", port);
 
     send_byte(port+1, port+1, 0xff);  // reset the mpu
-
-    while (~(inp(port+1)) & MPU_DSR) { // clear any data in the mpu's buffer
-        inp(port);
-    }
+    wait_for_ack(port);
 
     if (setconfig) {
         send_byte(port+1, port+1, 0xfe);
@@ -75,9 +72,9 @@ int main(int argc, char *argv[]) {
         config = get_byte(port);
     }
 
-    cprintf("SysEx delay is %s.\n", (config & CFG_DELAY) ? "enabled" : "disabled");
-    cprintf("Fake 'all notes off' is %s.\n", (config & CFG_FAKEOFF) ? "enabled" : "disabled");
-    cprintf("Gateway version fix is %s.\n", (config & CFG_VERFIX) ? "enabled" : "disabled");
+    cprintf("SysEx delay is %s.\r\n", (config & CFG_DELAY) ? "enabled" : "disabled");
+    cprintf("Fake 'all notes off' is %s.\r\n", (config & CFG_FAKEOFF) ? "enabled" : "disabled");
+    cprintf("Gateway version fix is %s.\r\n", (config & CFG_VERFIX) ? "enabled" : "disabled");
     
     return 0;
 }
@@ -87,11 +84,10 @@ void send_byte(int port, int stsport, unsigned char byte) {
     
     while (inp(stsport) & MPU_DRR) {
         if (time(NULL) > timeout) {
-            cprintf("ERROR: Timed out waiting for DRR.\n");
+            cprintf("ERROR: Timed out waiting for DRR.\r\n");
             exit(1);
         }
     }
-
     outp(port, byte);
 }
 
@@ -100,17 +96,15 @@ unsigned char get_byte(int port) {
 
     while (inp(port+1) & MPU_DSR) {
         if (time(NULL) > timeout) {
-            cprintf("ERROR: Timed out waiting for DSR.\n");
+            cprintf("ERROR: Timed out waiting for DSR.\r\n");
             exit(1);
         }
     }
-    
     return inp(port);
 }
 
 void wait_for_ack(int port) {
     time_t timeout = time(NULL) + 1;
-
     for (;;) {
         while (inp(port+1) & MPU_DSR) {
             if (time(NULL) > timeout) {
@@ -129,12 +123,12 @@ void wait_for_ack(int port) {
 }
 
 void show_help(char *name) {
-    cprintf("Initializes the HardMPU card with the given options.\n\n");
-    cprintf("Usage: %s [-p (port)] [-sfgch]\n\n");
-    cprintf("\t-p: Specify port number (default 330)\n");
-    cprintf("\t-s: Enable SysEx delay for MT-32\n");
-    cprintf("\t-f: Fake 'all notes off' for RA-50\n");
-    cprintf("\t-g: Version fix for Gateway\n");
-    cprintf("\t-c: Don't set any options, only get current config\n");
-    cprintf("\t-h: Show this help\n"); 
+    cprintf("Initializes the HardMPU card with the given options.\r\n\r\n");
+    cprintf("Usage: %s [-p (port)] [-dfgsh]\r\n\r\n");
+    cprintf("\t-p: Specify port number (default 330)\r\n");
+    cprintf("\t-d: Enable SysEx delay for MT-32\r\n");
+    cprintf("\t-f: Fake 'all notes off' for RA-50\r\n");
+    cprintf("\t-g: Version fix for Gateway\r\n");
+    cprintf("\t-s: Show current config, do not set any options\r\n");
+    cprintf("\t-h: Show this help\r\n"); 
 }
