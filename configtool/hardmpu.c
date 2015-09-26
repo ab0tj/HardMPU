@@ -66,6 +66,7 @@ int main(int argc, char *argv[]) {
         send_byte(port+1, port+1, 0xfe);
         wait_for_ack(port);
         send_byte(port, port+1, config);
+        wait_for_ack(port);
     } else {
         send_byte(port+1, port+1, 0xae);
         wait_for_ack(port);
@@ -80,7 +81,7 @@ int main(int argc, char *argv[]) {
 }
 
 void send_byte(int port, int stsport, unsigned char byte) {
-    time_t timeout = time(NULL) + 1;
+    time_t timeout = time(NULL) + 2;
     
     while (inp(stsport) & MPU_DRR) {
         if (time(NULL) > timeout) {
@@ -104,7 +105,7 @@ unsigned char get_byte(int port) {
 }
 
 void wait_for_ack(int port) {
-    time_t timeout = time(NULL) + 1;
+    time_t timeout = time(NULL) + 4;
     for (;;) {
         while (inp(port+1) & MPU_DSR) {
             if (time(NULL) > timeout) {
