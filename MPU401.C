@@ -378,6 +378,7 @@ void MPU401_WriteData(Bit8u val) { /* SOFTMPU */
 			mpu.state.command_byte=0;
 			mpu.config=val;
 			MPU401_Init();
+			QueueByte(MSG_MPU_ACK);
 			return;
 		default:
 			mpu.state.command_byte=0;
