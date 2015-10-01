@@ -42,7 +42,7 @@ typedef unsigned long Bit32u;
 typedef int Bits;
 
 #define SYSEX_SIZE 1024
-#define RAWBUF  1024
+#define RAWBUF  10240
 
 typedef struct ring_buffer {
 	unsigned char buffer[RAWBUF];
@@ -101,7 +101,7 @@ static struct {
 	struct {
 		Bit8u buf[SYSEX_SIZE];
 		Bitu used;
-                Bitu usedbufs;
+        Bitu usedbufs;
 		Bitu delay;
 		Bit8u start;
 	} sysex;
@@ -111,7 +111,7 @@ static struct {
 } midi;
 
 /* SOFTMPU: Sysex delay is decremented from PIC_Update */
-Bitu MIDI_sysex_delay;
+volatile Bitu MIDI_sysex_delay;
 
 static void PlayMsg(Bit8u* msg, Bitu len)
 {
@@ -121,6 +121,8 @@ static void PlayMsg(Bit8u* msg, Bitu len)
 		if (next != midi_out_buff.tail) {
 			midi_out_buff.buffer[midi_out_buff.head] = msg[i];
 			midi_out_buff.head = next;
+		} else {
+			asm volatile ("nop");
 		}
 	}
 };
@@ -149,12 +151,14 @@ static void FakeAllNotesOff(Bitu chan)
 void MIDI_RawOutByte(Bit8u data) {
         channel* pChan; /* SOFTMPU */
 
-        if (midi.sysex.start && MIDI_sysex_delay) {
-                while (MIDI_sysex_delay) {
-					_delay_us(250);
-					MIDI_sysex_delay--;
-				}
-        }
+        /*if (midi.sysex.start && MIDI_sysex_delay) {
+			cli();
+            while (MIDI_sysex_delay) {
+				_delay_us(250);
+				MIDI_sysex_delay--;
+			}
+			sei();
+        }*/
 
 	/* Test for a realtime MIDI message */
 	if (data>=0xf8) {
@@ -186,14 +190,14 @@ void MIDI_RawOutByte(Bit8u data) {
 				if (midi.sysex.start) {
                                         if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x7F) {
                                             /*midi.sysex.delay = 290;*/ /* SOFTMPU */ // All Parameters reset
-                                            MIDI_sysex_delay = 290*(RTCFREQ/1000);
+                                            midi.sysex.delay = 290*(RTCFREQ/1000);
                                         } else if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x10 && midi.sysex.buf[6] == 0x00 && midi.sysex.buf[7] == 0x04) {
                                             /*midi.sysex.delay = 145;*/ /* SOFTMPU */ // Viking Child
-                                            MIDI_sysex_delay = 145*(RTCFREQ/1000);
+                                            midi.sysex.delay = 145*(RTCFREQ/1000);
                                         } else if (midi.sysex.usedbufs == 0 && midi.sysex.buf[5] == 0x10 && midi.sysex.buf[6] == 0x00 && midi.sysex.buf[7] == 0x01) {
                                             /*midi.sysex.delay = 30;*/ /* SOFTMPU */ // Dark Sun 1
-                                            MIDI_sysex_delay = 30*(RTCFREQ/1000);
-                                        } else MIDI_sysex_delay = ((((midi.sysex.usedbufs*SYSEX_SIZE)+midi.sysex.used)/2)+2)*(RTCFREQ/1000); /*(Bitu)(((float)(midi.sysex.used) * 1.25f) * 1000.0f / 3125.0f) + 2; */
+                                            midi.sysex.delay = 30*(RTCFREQ/1000);
+                                        } else midi.sysex.delay = ((((midi.sysex.usedbufs*SYSEX_SIZE)+midi.sysex.used)/2)+2)*(RTCFREQ/1000); /*(Bitu)(((float)(midi.sysex.used) * 1.25f) * 1000.0f / 3125.0f) + 2; */
 				}
 			}
 
@@ -261,9 +265,14 @@ void send_midi_byte() {
 	   are any in the buffer to be sent). this forces the host to not get ahead of the midi
 	   data stream. run only once per polling cycle so we can still do other things between
 	   midi bytes. */	
-	if (midi_out_buff.head == midi_out_buff.tail) return;		// nothing to send
+	if (midi_out_buff.head == midi_out_buff.tail) return;	// nothing to send
 	loop_until_bit_is_set(UCSR0A, UDRE0);
+	if (midi.sysex.start && MIDI_sysex_delay) {	// still waiting for sysex delay
+		_delay_us(320);
+		return;
+	}
 	UDR0 = midi_out_buff.buffer[midi_out_buff.tail];			// send the next byte
+	if (midi.sysex.start && midi_out_buff.buffer[midi_out_buff.tail] == 0xf7) MIDI_sysex_delay = midi.sysex.delay + 40 * (RTCFREQ / 1000);
 	midi_out_buff.tail = (unsigned int)(midi_out_buff.tail + 1) % RAWBUF;	// increment tail, wrap to 0 if we're at the end
 }
 

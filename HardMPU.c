@@ -49,11 +49,10 @@ int main(void)
 	UBRR0  = BAUD_MIDI;
 	
 	// init timer
-	TCCR1B |= (1<<WGM12);		// timer1 ctc mode
-	TIMSK1 |= (1<<OCIE1A);		// enable ctc interrupt
-	sei();						// enable global interrupts
-	OCR1A   = F_CPU / RTCFREQ;	// ctc value
-	TCCR1B |= (1<<CS10);		// start timer with no prescaler
+	TCCR1B |= (1<<WGM12)|(1<<CS10);	// timer1 ctc mode, no prescaler
+	TIMSK1 |= (1<<OCIE1A);			// enable ctc interrupt
+	OCR1A   = F_CPU / RTCFREQ - 1;	// ctc value
+	sei();							// enable global interrupts
 	
 	// init emulator
 	MPU401_Init();
