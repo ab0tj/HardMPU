@@ -3,7 +3,7 @@ HardMPU: An intelligent MPU-401 compatible MIDI interface based on an Atmega mic
 Features:
 - IRQ driven intelligent mode compatible
 - UART mode compatible
-- SysEx delay for Roland MT-32 on faster computers (currently broken)
+- SysEx delay for Roland MT-32 on faster computers
 - "Fake all notes off" for Roland RA-50
 - JTAG, ISP, and UART interfaces for user expansion
 
