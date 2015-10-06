@@ -52,22 +52,24 @@ int main(void)
 	TCCR1B |= (1<<WGM12)|(1<<CS10);	// timer1 ctc mode, no prescaler
 	TIMSK1 |= (1<<OCIE1A);			// enable ctc interrupt
 	OCR1A   = F_CPU / RTCFREQ - 1;	// ctc value
-	sei();							// enable global interrupts
 	
 	// init emulator
 	MPU401_Init();
 	
+	// enable interrupts
+	sei();
+	
     while(1)	// main loop
     {
 		// do isa i/o
+		if (QueueUsed() && (~PINB & PIN_DSR)) {
+			send_isa_byte(MPU401_ReadData());		// send data if there's any in the buffer
+		}
 		if (PINB & PIN_CRR) {		// isa control input latch is full
 			MPU401_WriteCommand(recv_isa_byte());
 		}
 		if (PINB & PIN_DRR) {		// isa data input latch is full
 			MPU401_WriteData(recv_isa_byte());
-		}
-		if (QueueUsed() && (~PINB & PIN_DSR)) {
-			send_isa_byte(MPU401_ReadData());		// send data if there's any in the buffer
 		}
 		
 		// do midi i/o

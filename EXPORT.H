@@ -33,7 +33,6 @@ typedef enum EventID {MPU_EVENT,RESET_DONE,EOI_HANDLER,NUM_EVENTS} EventID;
 //void PIC_Update(bool blocking);
 
 void MPU401_Init();
-void MPU401_SetEnableMPUVerFix(bool enable);
 void MPU401_WriteCommand(Bit8u val);
 Bit8u MPU401_ReadData(void);
 void MPU401_WriteData(Bit8u val);
