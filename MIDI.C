@@ -322,13 +322,9 @@ void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
 		/* HardMPU: Turn off any stuck notes */
 		for (Bit8u chan=0;chan<16;chan++)
 		{
-			for (Bit8u note=0;note<128;note++)
-			{
-				send_midi_byte_now(0x80|chan);
-				send_midi_byte_now(note);
-				send_midi_byte_now(0);
-				
-			}
+			send_midi_byte_now(0xb0 | chan);
+			send_midi_byte_now(0x7b);
+			send_midi_byte_now(0);
 		}
 		
         /* SOFTMPU: Init note tracking */
