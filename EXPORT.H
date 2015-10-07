@@ -30,8 +30,6 @@ typedef enum bool {false = 0,true = 1} bool;
 typedef enum EventID {MPU_EVENT,RESET_DONE,EOI_HANDLER,NUM_EVENTS} EventID;
 
 /* Interface functions */
-//void PIC_Update(bool blocking);
-
 void MPU401_Init();
 void MPU401_WriteCommand(Bit8u val);
 Bit8u MPU401_ReadData(void);

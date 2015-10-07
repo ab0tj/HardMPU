@@ -34,6 +34,7 @@
 /* SOFTMPU: Additional defines, typedefs etc. for C */
 typedef unsigned short Bit16u;
 typedef int Bits;
+typedef signed char Bit8s;
 
 /*typedef void (*PIC_EventHandler)(Bitu val);*/ /* SOFTMPU */
 
@@ -99,7 +100,7 @@ static struct {
 		bool run_irq,irq_pending;
 		bool send_now;
 		bool eoi_scheduled;
-		signed char data_onoff;
+		Bit8s data_onoff;
 		Bitu command_byte,cmd_pending;
 		Bit8u tmask,cmask,amask;
 		Bit16u midi_mask;
