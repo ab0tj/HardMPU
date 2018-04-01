@@ -71,9 +71,8 @@ int main(void)
 		if (PINB & PIN_DRR) {		// isa data input latch is full
 			MPU401_WriteData(recv_isa_byte());
 		}
-		
 		// do midi i/o
-		send_midi_byte();				// see if we need to send a byte		
+		send_midi_byte();				// see if we need to send a byte	
 		/* if (UCSR0A & (1<<RXC0)) {	// midi uart rx buffer is full
 			process_midi_byte();
 		} */

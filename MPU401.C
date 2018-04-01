@@ -130,7 +130,7 @@ static void QueueByte(Bit8u data) {
 		if (pos>=MPU401_QUEUE) pos-=MPU401_QUEUE;
 		mpu.queue_used++;
 		mpu.queue[pos]=data;
-	} else asm volatile ("nop");/*else LOG(LOG_MISC,LOG_NORMAL)("MPU401:Data queue full");*/ /* SOFTMPU */
+	} /*else LOG(LOG_MISC,LOG_NORMAL)("MPU401:Data queue full");*/ /* SOFTMPU */
 }
 
 static void ClrQueue(void) {
@@ -334,7 +334,7 @@ Bit8u MPU401_ReadData(void) { /* SOFTMPU */
 
 void MPU401_WriteData(Bit8u val) { /* SOFTMPU */
 	static Bit8u length,cnt,posd; /* SOFTMPU */
-	if (mpu.mode==M_UART) {MIDI_RawOutByte(val);return;}
+	if (mpu.mode==M_UART) { MIDI_RawOutByte(val); return; }
 	switch (mpu.state.command_byte) {       /* 0xe# command data */
 		case 0x00:
 			break;
