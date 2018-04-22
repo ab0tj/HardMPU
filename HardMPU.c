@@ -25,11 +25,12 @@
  *
  */
 
+#include "config.h"
+#include "EXPORT.H"
 #include <avr/io.h>
 #include <avr/builtins.h>
 #include <avr/interrupt.h>
-#include "config.h"
-#include "EXPORT.H"
+#include <util/delay.h>
 
 // function prototypes
 void send_isa_byte(unsigned char byte);
@@ -43,6 +44,20 @@ int main(void)
 	DDRB  = 0b00011000;	// data read and data write latches
 	PORTC = 0b11111111;	// pullups enabled
 	PORTD = 0b11111111;	// pullups enabled
+	
+	// are we in the programming jig?
+	if (~PINC & PIN_TEST)
+	{
+		DDRC = 0b01000000;	// LED pin output
+		
+		for (;;)	// blink the LED
+		{
+			PORTC &= ~PIN_LED;
+			_delay_ms(125);
+			PORTC |= PIN_LED;
+			_delay_ms(125);
+		}
+	}
 	
 	// init UART
 	UCSR0B = (1<<TXEN0);//|(1<<RXEN0);
@@ -59,7 +74,7 @@ int main(void)
 	// enable interrupts
 	sei();
 	
-    while(1)	// main loop
+    for(;;)	// main loop
     {
 		// do isa i/o
 		if (QueueUsed() && (~PINB & PIN_DSR)) {

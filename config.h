@@ -26,6 +26,8 @@
 #define PIN_DSR		(1<<PORTB0)	// isa data out flip-flop
 #define PIN_DRR		(1<<PORTB1)	// isa data in flip-flop
 #define PIN_CRR		(1<<PORTB2)	// isa command in flip-flop;
+#define PIN_LED		(1<<PORTC6)	// test LED
+#define PIN_TEST	(1<<PORTC7)	// test mode indicator
 
 // parameters
 #define F_CPU		20000000UL
