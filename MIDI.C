@@ -33,8 +33,6 @@
 
 /* HardMPU includes */
 #include "config.h"
-#include <avr/sfr_defs.h>
-#include <avr/io.h>
 #include <util/delay.h>
 
 /* SOFTMPU: Additional defines, typedefs etc. for C */
@@ -131,8 +129,8 @@ static void PlayMsg(Bit8u* msg, Bitu len)
 }
 
 static void send_midi_byte_now(Bit8u byte) {
-	loop_until_bit_is_set(UCSR0A, UDRE0);
-	UDR0 = byte;
+	wait_for_uart();
+	output_to_uart(byte);
 }
 
 /* SOFTMPU: Fake "All Notes Off" for Roland RA-50 */
@@ -220,7 +218,7 @@ void MIDI_RawOutByte(Bit8u data) {
 
 void send_midi_byte() {	
 	if (midi_out_buff.head == midi_out_buff.tail) return;	// nothing to send
-	if (bit_is_clear(UCSR0A, UDRE0)) return;	// can't send yet
+	if (uart_tx_status()) return;	// can't send yet
 	//loop_until_bit_is_set(UCSR0A, UDRE0);
 	if (midi.sysex.delay && MIDI_sysex_delaytime) {	// still waiting for sysex delay
 		_delay_us(320);
@@ -236,11 +234,11 @@ void send_midi_byte() {
 				midi.sysex.usedbufs++;
             }
 			
-            UDR0 = data;
+            output_to_uart(data);
 			midi.sysex.buf[midi.sysex.used++] = data;
 			return;
 		} else {
-			UDR0 = 0xf7;
+			output_to_uart(0xf7);
 			midi.sysex.buf[midi.sysex.used++] = 0xf7;
 			midi.sysex.status = 0xf7;
 				/*LOG(LOG_ALL,LOG_NORMAL)("Play sysex; address:%02X %02X %02X, length:%4d, delay:%3d", midi.sysex.buf[5], midi.sysex.buf[6], midi.sysex.buf[7], midi.sysex.used, midi.sysex.delay);*/
@@ -267,7 +265,7 @@ void send_midi_byte() {
 	if (data&0x80) {
 		midi.sysex.status=data;
 		if (midi.sysex.status==0xf0) {
-			UDR0 = 0xf0;
+			output_to_uart(0xf0);
 			midi.sysex.used=1;
 			midi.sysex.buf[0]=0xf0;
             midi.sysex.usedbufs=0;
@@ -275,7 +273,7 @@ void send_midi_byte() {
 		}
 	}
 	
-	UDR0 = data;	// not sysex
+	output_to_uart(data);	// not sysex
 }
 
 bool MIDI_Available(void)  {

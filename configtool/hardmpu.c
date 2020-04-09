@@ -7,6 +7,7 @@
 #define CFG_DELAY   0x80
 #define CFG_FAKEOFF 0x40
 #define CFG_VERFIX  0x20
+#define CFG_MIDIPT  0x10
 #define MPU_DSR     0x80
 #define MPU_DRR     0x40
 
@@ -23,7 +24,7 @@ int main(int argc, char *argv[]) {
 
     cprintf("\r\n-- AB0TJ HardMPU Configuration Utility --\r\n\r\n");
 
-    while((c = getopt(argc,argv,":p:dfghs")) != -1) {
+    while((c = getopt(argc,argv,":p:dfghsi")) != -1) {
         switch(c) {
             case 'p':
                 port = strtol(optarg,NULL,16);
@@ -39,6 +40,9 @@ int main(int argc, char *argv[]) {
                 break;
             case 's':
                 setconfig = 0;
+                break;
+            case 'i':
+                config |= CFG_MIDIPT;
                 break;
             case 'h':
                 show_help(basename(argv[0]));
@@ -76,6 +80,7 @@ int main(int argc, char *argv[]) {
     cprintf("SysEx delay is %s.\r\n", (config & CFG_DELAY) ? "enabled" : "disabled");
     cprintf("Fake 'all notes off' is %s.\r\n", (config & CFG_FAKEOFF) ? "enabled" : "disabled");
     cprintf("Gateway version fix is %s.\r\n", (config & CFG_VERFIX) ? "enabled" : "disabled");
+    cprintf("Using %s MIDI port.\r\n", (config & CFG_MIDIPT) ? "internal" : "external");
     
     return 0;
 }
@@ -126,10 +131,11 @@ void wait_for_ack(int port) {
 void show_help(char *name) {
     cprintf("Initializes the HardMPU card with the given options.\r\n\r\n");
     cprintf("Usage: %s [-p (port)] [-dfgsh]\r\n\r\n");
-    cprintf("\t-p: Specify port number (default 330)\r\n");
-    cprintf("\t-d: Enable SysEx delay for MT-32\r\n");
-    cprintf("\t-f: Fake 'all notes off' for RA-50\r\n");
-    cprintf("\t-g: Version fix for Gateway\r\n");
-    cprintf("\t-s: Show current config, do not set any options\r\n");
-    cprintf("\t-h: Show this help\r\n"); 
+    cprintf("  -p: Specify port number (default 330)\r\n");
+    cprintf("  -d: Enable SysEx delay for MT-32\r\n");
+    cprintf("  -f: Fake 'all notes off' for RA-50\r\n");
+    cprintf("  -g: Version fix for Gateway\r\n");
+    cprintf("  -i: Use internal MIDI port\r\n");
+    cprintf("  -s: Show current config, do not set any options\r\n");
+    cprintf("  -h: Show this help\r\n"); 
 }

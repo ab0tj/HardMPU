@@ -61,7 +61,9 @@ int main(void)
 	
 	// init UART
 	UCSR0B = (1<<TXEN0);//|(1<<RXEN0);
+	UCSR1B = (1<<TXEN1);
 	UBRR0  = BAUD_MIDI;
+	UBRR1  = BAUD_UART;
 	
 	// init timer
 	TCCR1B |= (1<<WGM12)|(1<<CS10);	// timer1 ctc mode, no prescaler

@@ -36,6 +36,9 @@ Bit8u MPU401_ReadData(void);
 void MPU401_WriteData(Bit8u val);
 Bit8u QueueUsed();
 void send_midi_byte();
+void output_to_uart(Bit8u val);
+void wait_for_uart();
+Bit8u uart_tx_status();
 
 #define EXPORT_H
 #endif

@@ -31,7 +31,7 @@
 
 // parameters
 #define F_CPU		20000000UL
-#define BAUD_MIDI	39			// 31250
-#define BAUD_UART	10			// 115200-ish
+#define BAUD_MIDI	39			// 39 = 31250 (MIDI standard)
+#define BAUD_UART	39			// 10 = 115200-ish
 
 #endif

@@ -31,6 +31,10 @@
 /* SOFTMPU: Moved exported functions & types to header */
 #include "export.h"
 
+/* HardMPU includes */
+#include <avr/sfr_defs.h>
+#include <avr/io.h>
+
 /* SOFTMPU: Additional defines, typedefs etc. for C */
 typedef unsigned short Bit16u;
 typedef int Bits;
@@ -80,6 +84,7 @@ typedef enum MpuDataType MpuDataType; /* SOFTMPU */
 #define CONFIG_SYSEXDELAY		(mpu.config & 0x80)
 #define CONFIG_FAKEALLNOTESOFF	(mpu.config & 0x40)
 #define CONFIG_VERSIONFIX		(mpu.config & 0x20)
+#define CONFIG_MIDIPORT			(mpu.config & 0x10)
 
 static struct {
 	bool intelligent;
@@ -680,4 +685,43 @@ void MPU401_Init()
 
         /* SOFTMPU: Moved IRQ 9 handler init to asm */
 	MPU401_Reset();
+}
+
+/* HardMPU: Output a byte to the physical UART */
+void output_to_uart(Bit8u val)
+{
+	if (mpu.config & CONFIG_MIDIPORT)
+	{
+		UDR1 = val;
+	}
+	else
+	{
+		UDR0 = val;
+	}
+}
+
+/* HardMPU: Wait for UART TX buffer to be empty */
+void wait_for_uart()
+{
+	if (mpu.config & CONFIG_MIDIPORT)
+	{
+		loop_until_bit_is_set(UCSR1A, UDRE1);
+	}
+	else
+	{
+		loop_until_bit_is_set(UCSR0A, UDRE0);
+	}
+}
+
+/* HardMPU: Check UART TX status, returns 0 for ready */
+Bit8u uart_tx_status()
+{
+	if (mpu.config & CONFIG_MIDIPORT)
+	{
+		return bit_is_clear(UCSR1A, UDRE1);
+	}
+	else
+	{
+		return bit_is_clear(UCSR0A, UDRE0);
+	}
 }
