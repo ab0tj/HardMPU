@@ -1,0 +1,8 @@
+/build/
+/dist/
+/.generated_files/
+/.vscode/
+/_build/
+/debug/
+/out/
+.generated/

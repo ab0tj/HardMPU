@@ -1,4 +1,4 @@
-/*  Copyright (C) 2015		 ab0tj
+/*  Copyright (C) 2015-2025		 ab0tj
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -26,49 +26,36 @@
  */
 
 #include "config.h"
-#include "EXPORT.H"
+#include "export.h"
 #include <avr/io.h>
 #include <avr/builtins.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
+#if defined (HARDMPU_HW_NEW)
+FUSES = {
+	.WDTCFG = 0x00, // WDTCFG {PERIOD=OFF, WINDOW=OFF}
+	.BODCFG = 0xE5, // BODCFG {SLEEP=ENABLED, ACTIVE=ENABLED, SAMPFREQ=1KHZ, LVL=BODLEVEL7}
+	.OSCCFG = 0x02, // OSCCFG {FREQSEL=20MHZ, OSCLOCK=CLEAR}
+	.SYSCFG0 = 0xFE, // SYSCFG0 {EESAVE=CLEAR, RSTPINCFG=RST, CRCSRC=NOCRC}
+	.SYSCFG1 = 0x00, // SYSCFG1 {SUT=0MS}
+	.APPEND = 0x00, // APPEND {APPEND=User range:  0x0 - 0xFF}
+	.BOOTEND = 0x00, // BOOTEND {BOOTEND=User range:  0x0 - 0xFF}
+};
+
+LOCKBITS = 0xC5; // {LB=NOLOCK}
+#endif
+
 // function prototypes
 void send_isa_byte(unsigned char byte);
 unsigned char recv_isa_byte();
 void recv_ctl_byte();
+void AVR_Init();
 
 int main(void)
 {
-	// init GPIO
-	PORTB = 0b11111000;	// bits 0-2 are driven externally
-	DDRB  = 0b00011000;	// data read and data write latches
-	PORTC = 0b11111111;	// pullups enabled
-	PORTD = 0b11111111;	// pullups enabled
-	
-	// are we in the programming jig?
-	if (~PINC & PIN_TEST)
-	{
-		DDRC = 0b01000000;	// LED pin output
-		
-		for (;;)	// blink the LED
-		{
-			PORTC &= ~PIN_LED;
-			_delay_ms(125);
-			PORTC |= PIN_LED;
-			_delay_ms(125);
-		}
-	}
-	
-	// init UART
-	UCSR0B = (1<<TXEN0);//|(1<<RXEN0);
-	UCSR1B = (1<<TXEN1);
-	UBRR0  = BAUD_MIDI;
-	UBRR1  = BAUD_UART;
-	
-	// init timer
-	TCCR1B |= (1<<WGM12)|(1<<CS10);	// timer1 ctc mode, no prescaler
-	TIMSK1 |= (1<<OCIE1A);			// enable ctc interrupt
-	OCR1A   = F_CPU / RTCFREQ - 1;	// ctc value
+    // init hardware
+    AVR_Init();
 	
 	// init emulator
 	MPU401_Init();
@@ -96,7 +83,8 @@ int main(void)
     }
 }
 
-void send_isa_byte(Bit8u byte) {
+void send_isa_byte(Bit8u byte)
+{
 	cli();							// disable interrupts
 	DDRA = 0xff;					// set porta to output
 	PORTA = byte;					// output byte on porta
@@ -107,7 +95,8 @@ void send_isa_byte(Bit8u byte) {
 	sei();							// re-enable interrupts
 }
 
-unsigned char recv_isa_byte() {
+unsigned char recv_isa_byte()
+{
 	unsigned char temp;
 	cli();							// disable interrupts
 	PORTB &= ~PIN_IDR;				// lower IDR
@@ -116,4 +105,60 @@ unsigned char recv_isa_byte() {
 	PORTB |= PIN_IDR;				// raise IDR
 	sei();							// re-enable interrupts
 	return temp;					// report back with the results
+}
+
+void AVR_Init()
+{
+    // Init GPIO
+#if defined (DEFAULT_PORTA)
+    PORTA = DEFAULT_PORTA;
+    DDRA = DEFAULT_DDRA;
+#endif
+#if defined (DEFAULT_PORTB)
+    PORTB = DEFAULT_PORTB;
+    DDRB = DEFAULT_DDRB;
+#endif
+#if defined (DEFAULT_PORTC)
+    PORTC = DEFAULT_PORTC;
+    DDRC = DEFAULT_DDRC;
+#endif
+#if defined (DEFAULT_PORTD)
+    PORTD = DEFAULT_PORTD;
+    DDRD = DEFAULT_DDRD;
+#endif
+#if defined (DEFAULT_PORTE)
+    PORTE = DEFAULT_PORTE;
+    DDRE = DEFAULT_DDRE;
+#endif
+#if defined (DEFAULT_PORTF)
+    PORTF = DEFAULT_PORTF;
+    DDRF = DEFAULT_DDRF;
+#endif
+	
+#if defined (HARDMPU_HW_OLD)
+	// are we in the programming jig?
+	if (~PINS_TEST & PIN_TEST)
+	{
+		DDR_TEST |= PIN_LED;	// LED pin output
+		
+		for (;;)	// blink the LED
+		{
+			PORT_TEST &= ~PIN_LED;
+			_delay_ms(125);
+			PORT_TEST |= PIN_LED;
+			_delay_ms(125);
+		}
+	}
+#endif
+	
+	// init UART
+	UCSR0B = (1<<TXEN0);//|(1<<RXEN0);
+	UCSR1B = (1<<TXEN1);
+	UBRR0  = BAUD_UART0;
+	UBRR1  = BAUD_UART1;
+	
+	// init timer
+	TCCR1B |= (1<<WGM12)|(1<<CS10);	// timer1 ctc mode, no prescaler
+	TIMSK1 |= (1<<OCIE1A);			// enable ctc interrupt
+	OCR1A   = F_CPU / RTCFREQ - 1;	// ctc value
 }

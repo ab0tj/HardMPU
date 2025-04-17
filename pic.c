@@ -1,7 +1,7 @@
 /*
  *  Copyright (C) 2002-2012  The DOSBox Team
  *  Copyright (C) 2013-2014  bjt
- *  Copyright (C) 2015		 ab0tj
+ *  Copyright (C) 2015-2025  ab0tj
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -85,7 +85,7 @@ void PIC_Init(void)
         /* SOFTMPU: Zero countdown timers */
         for (i=0;i<NUM_EVENTS;i++)
         {
-                PIC_RemoveEvents(i);
+                PIC_RemoveEvents((EventID)i);
         }
 }
 
