@@ -86,44 +86,44 @@ void PIC_Init(void)
 
 void PIC_Update()
 {
-        Bit8u i;
+    Bit8u i;
 
-        /* if (blocking)
-        {
-                _delay_us(250);
-        } */
+    /* if (blocking)
+    {
+        _delay_us(250);
+    } */
 
-        /* SOFTMPU: Decrement sysex delay used in midi.c */
-        if (MIDI_sysex_delaytime > 0)
-        {
-                MIDI_sysex_delaytime--;
-        }
+    /* SOFTMPU: Decrement sysex delay used in midi.c */
+    if (MIDI_sysex_delaytime > 0)
+    {
+        MIDI_sysex_delaytime--;
+    }
 
-        /* SOFTMPU: Decrement countdown timers and dispatch as needed */
-        for (i=0;i<NUM_EVENTS;i++)
+    /* SOFTMPU: Decrement countdown timers and dispatch as needed */
+    for (i=0;i<NUM_EVENTS;i++)
+    {
+        if (event_countdown[i] > 0)
         {
-                if (event_countdown[i] > 0)
+            event_countdown[i]--;
+
+            if (event_countdown[i]==0)
+            {
+                /* Dispatch */
+                switch (i)
                 {
-                        event_countdown[i]--;
-
-                        if (event_countdown[i]==0)
-                        {
-                                /* Dispatch */
-                                switch (i)
-                                {
-                                        case MPU_EVENT:
-                                                MPU401_Event();
-                                                break;
-                                        case RESET_DONE:
-                                                MPU401_ResetDone();
-                                                break;
-                                        case EOI_HANDLER:
-                                                MPU401_EOIHandler();
-                                                break;
-                                        default:
-                                                break;
-                                }
-                        }
+                    case MPU_EVENT:
+                        MPU401_Event();
+                        break;
+                    case RESET_DONE:
+                        MPU401_ResetDone();
+                        break;
+                    case EOI_HANDLER:
+                        MPU401_EOIHandler();
+                        break;
+                    default:
+                        break;
                 }
+            }
         }
+    }
 }

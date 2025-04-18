@@ -159,7 +159,7 @@ void AVR_Init()
     PORTE.DIR = DEFAULT_DIRE;
     SetPinCtrl(&PORTF, PORTF_CTRL);
     PORTF.OUT = DEFAULT_OUTF;
-    PORTF.DIR = DEFAULT_DIRE;
+    PORTF.DIR = DEFAULT_DIRF;
     
     // Set idle state (reading CPLD flag register)
     PORT_IRW.OUTCLR = PIN_IWR;
@@ -173,11 +173,10 @@ void AVR_Init()
     UART0.CTRLB = 0b11000000;   // Enable RX, TX, Normal mode
     UART1.BAUD = BAUD_UART1;
     UART1.CTRLC = 3;
-    UART1.CTRLB = 0b11000000;    
+    UART1.CTRLB = 0b11000000;
     
     // Set default active UART from INTEXT pin
-    active_uart = ~PORT_INTEXT.IN & PIN_INTEXT;
-    if (active_uart) active_uart = 1;
+    active_uart = !(PORT_INTEXT.IN & PIN_INTEXT);
     
     // Init Timers
     TCA0.SINGLE.PER = F_CPU / RTCFREQ - 1;
