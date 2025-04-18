@@ -32,8 +32,8 @@
 #include "export.h"
 
 /* HardMPU includes */
-#include "config.h"
-#include <util/delay.h>
+#include "hardmpu.h"
+#include <avr/pgmspace.h>
 
 /* SOFTMPU: Additional defines, typedefs etc. for C */
 typedef unsigned long Bit32u;
@@ -44,7 +44,7 @@ typedef int Bits;
 /* RAWBUF: This is the buffer for outgoing MIDI data. The larger the buffer,
 	the less likely it is to overrun when SysEx delay is enabled and large SysEx
 	transfers are occurring. */
-#define RAWBUF  14336
+#define RAWBUF  4096
 
 typedef struct ring_buffer {
 	unsigned char buffer[RAWBUF];
@@ -58,11 +58,11 @@ static ring_buffer midi_out_buff = { {0}, 0, 0 };
 #define MAX_TRACKED_CHANNELS 16
 #define MAX_TRACKED_NOTES 8
 
-static const char* MIDI_welcome_msg = "\xf0\x41\x10\x16\x12\x20\x00\x00  *** HardMPU ***   \x13\xf7";	// message to show on MT-32 display
+const char MIDI_welcome_msg[] PROGMEM = "\xf0\x41\x10\x16\x12\x20\x00\x00  *** HardMPU ***   \x13\xf7";	// message to show on MT-32 display
 
 static Bit8u MIDI_note_off[3] = { 0x80,0x00,0x00 }; /* SOFTMPU */
 
-static const Bit8u MIDI_evt_len[256] = {
+const Bit8u MIDI_evt_len[256] PROGMEM = {
   0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0,  // 0x00
   0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0,  // 0x10
   0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0,  // 0x20
@@ -166,7 +166,7 @@ void MIDI_RawOutByte(Bit8u data) {
 	if (data&0x80) {
 		midi.status=data;
 		midi.cmd_pos=0;
-		midi.cmd_len=MIDI_evt_len[data];
+		midi.cmd_len=pgm_read_byte(MIDI_evt_len + data);
 	}
 	if (midi.cmd_len) {
 		midi.cmd_buf[midi.cmd_pos++]=data;
@@ -221,7 +221,7 @@ void send_midi_byte() {
 	if (uart_tx_status()) return;	// can't send yet
 	//loop_until_bit_is_set(UCSR0A, UDRE0);
 	if (midi.sysex.delay && MIDI_sysex_delaytime) {	// still waiting for sysex delay
-		_delay_us(320);
+		Sysex_Delay();
 		return;
 	}
 	Bit8u data = midi_out_buff.buffer[midi_out_buff.tail];
@@ -298,7 +298,7 @@ void MIDI_Init(bool delaysysex,bool fakeallnotesoff){
     /* SOFTMPU: Display welcome message on MT-32 */
     for (i=0;i<30;i++)
     {
-		send_midi_byte_now(MIDI_welcome_msg[i]);
+		send_midi_byte_now(pgm_read_byte(MIDI_welcome_msg + i));
     }
 		
 	/* HardMPU: Turn off any stuck notes */

@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alex/MPLABXProjects/HardMPU/HardMPU.c</file>
+            <file>file:/home/alex/MPLABXProjects/HardMPU/main.c</file>
+            <file>file:/home/alex/MPLABXProjects/HardMPU/hardmpu.h</file>
+            <file>file:/home/alex/MPLABXProjects/HardMPU/export.h</file>
+            <file>file:/home/alex/MPLABXProjects/HardMPU/config.h</file>
+            <file>file:/home/alex/MPLABXProjects/HardMPU/pic.c</file>
+            <file>file:/home/alex/MPLABXProjects/HardMPU/hardmpu.c</file>
+            <file>file:/home/alex/MPLABXProjects/HardMPU/midi.c</file>
+            <file>file:/home/alex/MPLABXProjects/HardMPU/mpu401.c</file>
         </group>
     </open-files>
 </project-private>

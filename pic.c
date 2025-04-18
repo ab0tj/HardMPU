@@ -31,45 +31,40 @@
 /* SOFTMPU: Moved exported functions & types to header */
 #include "export.h"
 
-// HardMPU includes
-#include "config.h"
-//#include <util/delay.h>
-#include <avr/interrupt.h>
-
 void MPU401_Event(void);
 void MPU401_ResetDone(void);
 void MPU401_EOIHandler(void);
 
 /* SOFTMPU: Event countdown timers */
 static Bitu event_countdown[NUM_EVENTS];
-extern Bitu MIDI_sysex_delaytime; /* SOFTMPU: Initialised in midi.c */
+extern Bitu MIDI_sysex_delaytime; /* SOFTMPU: Initialized in midi.c */
 
 void PIC_AddEvent(EventID event, Bitu delay)
 {
-        /* Dispatch event immediately on zero delay */
-        /* Watch out for blocking loops here... */
-        if (delay==0)
+    /* Dispatch event immediately on zero delay */
+    /* Watch out for blocking loops here... */
+    if (delay==0)
+    {
+        switch (event)
         {
-                switch (event)
-                {
-                case MPU_EVENT:
-                        /* Don't dispatch immediately as we'll enter an
-                        infinite loop if tempo is high enough */
-                        delay=1; /* Enforce minimum delay */
-                        break;
-                case RESET_DONE:
-                        MPU401_ResetDone();
-                        break;
-                case EOI_HANDLER:
-                        MPU401_EOIHandler();
-                        break;
-                default:
-                        break;
-                }
+            case MPU_EVENT:
+                /* Don't dispatch immediately as we'll enter an
+                infinite loop if tempo is high enough */
+                delay=1; /* Enforce minimum delay */
+                break;
+            case RESET_DONE:
+                MPU401_ResetDone();
+                break;
+            case EOI_HANDLER:
+                MPU401_EOIHandler();
+                break;
+            default:
+                break;
         }
+    }
 
-        /* SOFTMPU: Set the countdown timer */
-        event_countdown[event]=delay;
+    /* SOFTMPU: Set the countdown timer */
+    event_countdown[event]=delay;
 }
 
 void PIC_RemoveEvents(EventID event)
@@ -89,8 +84,7 @@ void PIC_Init(void)
         }
 }
 
-//void PIC_Update(bool blocking)
-ISR(TIMER1_COMPA_vect)
+void PIC_Update()
 {
         Bit8u i;
 

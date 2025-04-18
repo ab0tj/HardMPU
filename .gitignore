@@ -6,3 +6,5 @@
 /debug/
 /out/
 .generated/
+*.log
+*.log.inx
