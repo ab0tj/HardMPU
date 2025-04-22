@@ -53,7 +53,8 @@ LOCKBITS = 0xC5; // {LB=NOLOCK}
 #endif
 
 // running config variables
-uint8_t active_uart = 0;
+uint8_t midi_uart = UART_EXT;
+volatile uint8_t led_timeout[2];
 
 // function definitions
 void SetPinCtrl(const PORT_t* port, const uint8_t* arr);
@@ -86,37 +87,38 @@ void send_isa_byte(const Bit8u byte)
 
 unsigned char recv_isa_byte()
 {
-	unsigned char temp;
+	unsigned char val;
 	cli();							// disable interrupts
     
 #if defined (HARDMPU_HW_OLD)
 	PORT_IRW &= ~PIN_IDR;			// lower IDR
 	__builtin_avr_delay_cycles(3);	// wait for i/o to settle
-	temp = PINS_DATA;				// capture what we find there
+	val = PINS_DATA;				// capture what we find there
 	POR_IRW |= PIN_IDR;				// raise IDR
 #elif defined (HARDMPU_HW_NEW)
     PORT_ADDR.OUTCLR = PIN_IA0;     // select data register
     __builtin_avr_delay_cycles(3);	// wait for logic to stabilize
-    temp = PORT_DATA.IN;            // capture what we find there
+    val = PORT_DATA.IN;             // capture what we find there
     PORT_ADDR.OUTSET = PIN_IA0;     // go back to flag register (idle state)
 #endif
 
 	sei();							// re-enable interrupts
-	return temp;					// report back with the results
+	return val;					// report back with the results
 }
 
 unsigned char GetFlags()
 {
 #if defined (HARDMPU_HW_OLD)
-    uint8_t flags = PINS_FLAGS;
+    return PINS_FLAGS;
 #elif defined (HARDMPU_HW_NEW)
-    uint8_t flags = PORT_FLAGS.IN;
+    return PORT_FLAGS.IN;
 #endif
-    return flags;
 }
 
 void AVR_Init()
 {
+    cli();
+    
 #if defined (HARDMPU_HW_OLD)
     // Init GPIO
     PORTA = DEFAULT_PORTA;
@@ -131,8 +133,8 @@ void AVR_Init()
     // init UART
 	UCSR0B = (1<<TXEN0);//|(1<<RXEN0);
 	UCSR1B = (1<<TXEN1);
-	UBRR0  = BAUD_UART0;
-	UBRR1  = BAUD_UART1;
+	UBRR0  = BAUD_EXT;
+	UBRR1  = BAUD_INT;
 	
 	// init timer
 	TCCR1B |= (1<<WGM12)|(1<<CS10);	// timer1 ctc mode, no prescaler
@@ -141,8 +143,9 @@ void AVR_Init()
     
 #elif defined (HARDMPU_HW_NEW)
     // Init Clock
-    _PROTECTED_WRITE(CLKCTRL.MCLKCTRLA, 3);  // Select external clock, no CLKOUT
-    _PROTECTED_WRITE(CLKCTRL.MCLKCTRLB, 0);  // No prescaler    
+    _PROTECTED_WRITE(CLKCTRL.MCLKCTRLA, 3);         // Select external clock, no CLKOUT
+    _PROTECTED_WRITE(CLKCTRL.MCLKCTRLB, 0);         // No prescaler
+    loop_until_bit_is_clear(CLKCTRL.MCLKSTATUS, 0); // Wait for the switch to complete
     
     // Init GPIO
     SetPinCtrl(&PORTA, PORTA_CTRL);
@@ -167,22 +170,49 @@ void AVR_Init()
     PORT_IRW.OUTSET = PIN_IRD;
     
     // Init UARTs
-    PORTMUX.USARTROUTEA = 0b11001101;   // UART0 on PA4-5
-    UART0.BAUD = BAUD_UART0;
-    UART0.CTRLC = 3;            // Async, 8N1
-    UART0.CTRLB = 0b11000000;   // Enable RX, TX, Normal mode
-    UART1.BAUD = BAUD_UART1;
-    UART1.CTRLC = 3;
-    UART1.CTRLB = 0b11000000;
+    PORTMUX.USARTROUTEA = 0b11001101;           // UART0 on PA4-5
+    PHYS_UART_EXT.BAUD = BAUD_EXT;
+    PHYS_UART_EXT.CTRLC = 3;                    // Async, 8N1
+    PHYS_UART_EXT.CTRLB = 0b11000000;           // Enable RX, TX, Normal mode
+    PHYS_UART_INT.BAUD = BAUD_INT;
+    PHYS_UART_INT.CTRLC = 3;
+    PHYS_UART_INT.CTRLB = 0b11000000;
+#if defined (ENABLE_AUX_UART)
+    PHYS_UART_AUX.BAUD = BAUD_AUX;
+    PHYS_UART_AUX.CTRLC = 3;
+    PHYS_UART_AUX.CTRLB = 0b11000000;
+#endif
     
-    // Set default active UART from INTEXT pin
-    active_uart = !(PORT_INTEXT.IN & PIN_INTEXT);
+    // Reset MIDI devices
+    midi_uart = UART_EXT;
+    output_midi(0xff);
+    midi_uart = UART_INT;
+    output_midi(0xff);
     
     // Init Timers
+    // RTC Timer
     TCA0.SINGLE.PER = F_CPU / RTCFREQ - 1;
-    TCA0.SINGLE.CTRLA = 1;
-    TCA0.SINGLE.INTCTRL = 1;
+    TCA0.SINGLE.CTRLA = 1;                      // No prescaler, enable timer
+    TCA0.SINGLE.INTCTRL = TCA_SINGLE_OVF_bm;    // Enable overflow interrupt
+    // Wait State Generator
+    TCB0.CCMP = WAIT_TIME;
+    TCB0.CTRLB =  0b01010110;       // Async, output enable, single-shot mode
+    EVSYS.CHANNEL0 = 0b01000111;    // Connect trigger input to event channel 0
+    EVSYS.USERTCB0 = 1;             // Connect TCB0 to event channel 0
+    TCB0.EVCTRL = 1;                // Enable capture event
+    // SysEx Delay Timer
+    TCB1.CCMP = SYSEX_DELAY;
+    TCB1.CTRLB = 0b01000110;        // Async, no output, single-shot mode
+    EVSYS.USERTCB1 = 2;             // Connect TCB1 to event channel 1
+    TCB1.EVCTRL = 1;                // Enable capture event
+    TCB1.CNT = SYSEX_DELAY;         // Prevent timer from starting immediately
+    TCB1.INTCTRL = 1;               // Enable interrupt
+    TCB1.CTRLA = 1;                 // Enable timer
+    TCB1.INTFLAGS = 1;              // Clear interrupt flag
 #endif
+    
+    // Set default active UART
+    midi_uart = GetDefaultMidiPort();
 }
 
 void TestMode()
@@ -221,88 +251,170 @@ void SetPinCtrl(const PORT_t* port, const uint8_t* arr)
     return;
 }
 
-void SetActiveUart(uint8_t port)
+void SetMidiUart(uint8_t port)
 {
-    if (port > (NUM_UARTS - 1)) port = (NUM_UARTS - 1); 
-    active_uart = port;
+    if (port > MAX_UART) port = UART_EXT;
+    midi_uart = port;
 }
 
-/* Send a byte out into the world from the UART */
-void output_to_uart(const uint8_t val)
+uint8_t GetDefaultMidiPort()
 {
-#if defined (HARDMPU_HW_OLD)
-	if (active_uart == 0)
-	{
-		UDR0 = val;
-	}
-	else
-	{
-		UDR1 = val;
-	}
-#elif defined (HARDMPU_HW_NEW)
-    if (active_uart == 0)
+#if defined (HARDMPU_HW_NEW)
+    if (PORT_INTEXT.IN & PIN_INTEXT)
     {
-        UART0.TXDATAL = val;
+        return UART_EXT;
     }
     else
     {
-        UART1.TXDATAL = val;
+        return UART_INT;
+    }
+#else
+    return UART_EXT;
+#endif
+}
+
+/* Send a byte to the active MIDI port */
+void output_midi(const uint8_t val)
+{
+    output_to_uart(midi_uart, val);
+    /* midi.c doesn't send bytes during SysEx delay, so
+     * we can disable the wait state generator now. */
+    TCB0.CTRLA = 0;
+}
+
+/* Send a byte out into the world from a UART */
+void output_to_uart(const uint8_t uart, const uint8_t val)
+{
+#if defined (HARDMPU_HW_OLD)
+	switch (uart)
+    {
+        case UART_EXT:
+            UDR0 = val;
+            break;
+        case UART_INT:
+        case UART_USR:
+            UDR1 = val;
+            break;
+	}
+#elif defined (HARDMPU_HW_NEW)
+    switch (uart)
+    {
+        case UART_EXT:
+            PHYS_UART_EXT.TXDATAL = val;
+            PORT_LED.OUTSET = PIN_LED1;
+            led_timeout[0] = LED_TIMEOUT;
+            break;
+        case UART_INT:
+            PHYS_UART_INT.TXDATAL = val;
+            PORT_LED.OUTSET = PIN_LED2;
+            led_timeout[1] = LED_TIMEOUT;
+            break;
+        case UART_USR:
+            PHYS_UART_USR.TXDATAL = val;
+            break;
+#if defined (ENABLE_AUX_UART)
+        case UART_AUX:
+            UART_AUX.TXDATAL = val;
+#endif
+            break;
     }
 #endif
+}
+
+/* Wait for active MIDI uart TX buffer to be empty */
+void wait_for_midi_uart()
+{
+    wait_for_uart(midi_uart);
 }
 
 /* Wait for UART TX buffer to be empty */
-void wait_for_uart()
+void wait_for_uart(const uint8_t uart)
 {
 #if defined (HARDMPU_HW_OLD)
-	if (active_uart == 0)
+	switch (uart)
 	{
-		loop_until_bit_is_set(UCSR0A, UDRE0);
-	}
-	else
-	{
-		loop_until_bit_is_set(UCSR1A, UDRE1);
+        case UART_EXT:
+            loop_until_bit_is_set(UCSR0A, UDRE0);
+            break;
+        case UART_INT:
+        case UART_USR:
+            loop_until_bit_is_set(UCSR1A, UDRE1);
+            break;
 	}
 #elif defined (HARDMPU_HW_NEW)
-    if (active_uart == 0)
+    switch (uart)
     {
-        loop_until_bit_is_set(UART0.STATUS, DREIF);
-    }
-    else
-    {
-        loop_until_bit_is_set(UART1.STATUS, DREIF);
+        case UART_EXT:
+            loop_until_bit_is_set(PHYS_UART_EXT.STATUS, DREIF);
+            break;
+        case UART_INT:
+        case UART_USR:
+            loop_until_bit_is_set(PHYS_UART_INT.STATUS, DREIF);
+            break;
+#if defined (ENABLE_AUX_UART)
+        case UART_AUX:
+            loop_until_bit_is_set(PHYS_UART_AUX.STATUS, DREIF);
+            break;
+#endif
     }
 #endif
+}
+
+/* Check MIDI UART TX status, returns 0 for ready */
+uint8_t midi_tx_status()
+{
+    return uart_tx_status(midi_uart);
 }
 
 /* Check UART TX status, returns 0 for ready */
-uint8_t uart_tx_status()
+uint8_t uart_tx_status(const uint8_t uart)
 {
 #if defined (HARDMPU_HW_OLD)
-	if (active_uart == 0)
+	switch (uart)
 	{
-		return bit_is_clear(UCSR0A, UDRE0);
-	}
-	else
-	{
-		return bit_is_clear(UCSR1A, UDRE1);
+        case UART_EXT:
+            return bit_is_clear(UCSR0A, UDRE0);
+        case UART_INT:
+        case UART_USR:
+            return bit_is_clear(UCSR1A, UDRE1);
 	}
 #elif defined (HARDMPU_HW_NEW)
-    if (active_uart == 0)
+    switch (uart)
     {
-        return bit_is_clear(UART0.STATUS, DREIF);
-    }
-    else
-    {
-        return bit_is_clear(UART1.STATUS, DREIF);
+        case UART_EXT:
+            return bit_is_clear(PHYS_UART_EXT.STATUS, DREIF);
+        case UART_INT:
+        case UART_USR:
+            return bit_is_clear(PHYS_UART_INT.STATUS, DREIF);
+#if defined (ENABLE_AUX_UART)
+        case UART_AUX:
+            return bit_is_clear(PHYS_UART_AUX.STATUS, DREIF);
+#endif
+        default:
+            return 1;
     }
 #endif
 }
 
-void Sysex_Delay()
+/* Attempt to slow down the host system to help avoid buffer overruns */
+void Sysex_Tarpit()
 {
-    // TODO: Wait State based delay on new hw
-    _delay_us(320);
+#if defined (HARDMPU_HW_OLD)
+    _delay_us(320);             // no wait state generator on v1 hardware
+#elif defined (HARDMPU_HW_NEW)
+    if (!(TCB0.CTRLA & 1))      // Wait state generator not enabled
+    {
+        TCB0.CNT = WAIT_TIME;   // Prevent timer from running immediately
+        TCB0.CTRLA = 1;         // Enable wait state generator
+        //EVSYS.STROBE = 2;     // Trigger the delay timer
+    }
+#endif
+}
+
+/* Return the hardware revision to be reported to the host system */
+uint8_t MPU_Revision()
+{
+    return MPU_REVISION;
 }
 
 /* Periodic timer interrupt */
@@ -312,7 +424,27 @@ ISR(TIMER1_OVF_vect)
 #elif defined (HARDMPU_HW_NEW)
 ISR(TCA0_OVF_vect)
 {
-    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;
+    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;   // Clear interrupt flag
+    
+    if (led_timeout[0] != 0)
+    {
+        led_timeout[0]--;
+        if (led_timeout[0] == 0) PORT_LED.OUTCLR = PIN_LED1;
+    }
+    if (led_timeout[1] != 0)
+    {
+        led_timeout[1]--;
+        if (led_timeout[1] == 0) PORT_LED.OUTCLR = PIN_LED2;
+    }
 #endif
     PIC_Update();
 }
+
+/* Sysex Delay Timer Expired */
+//#if defined (HARDMPU_HW_NEW)
+//ISR(TCB1_INT_vect)
+//{
+//    TCB1.INTFLAGS = 1;      // Clear interrupt flag
+//    TCB0.CTRLA = 0;         // Disable wait-state generator
+//}
+//#endif

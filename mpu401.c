@@ -57,7 +57,6 @@ static void MPU401_Reset(void);
 static void MPU401_EOIHandlerDispatch(void);
 
 #define MPU401_VERSION  0x15
-#define MPU401_REVISION 0x01
 #define MPU401_QUEUE 32
 #define MPU401_TIMECONSTANT 58000 /* SOFTMPU: Was 60000 */
 #define MPU401_RESETBUSY 27*(RTCFREQ/1000) /* SOFTMPU */
@@ -253,7 +252,7 @@ void MPU401_WriteCommand(Bit8u val) { /* SOFTMPU */
 			return;
 		case 0xad:      /* Request revision */
 			QueueByte(MSG_MPU_ACK);
-			QueueByte(MPU401_REVISION);
+			QueueByte(MPU_Revision());
 			return;
 		case 0xae:		/* HardMPU: Request config */
 			QueueByte(MSG_MPU_ACK);
@@ -379,6 +378,14 @@ void MPU401_WriteData(Bit8u val) { /* SOFTMPU */
 		case 0xfe: /* Config byte */
 			mpu.state.command_byte=0;
 			mpu.config=val;
+            if (CONFIG_MIDIPORT)
+            {
+                SetMidiUart(UART_INT);
+            }
+            else
+            {
+                SetMidiUart(UART_EXT);
+            }
 			MPU401_Init();
 			QueueByte(MSG_MPU_ACK);
 			return;
@@ -668,14 +675,8 @@ static void MPU401_Reset(void) {
 /* SoftMPU: Initialisation */
 void MPU401_Init()
 {
-    Bit8u uart = 0;
-    
 	/* Initalise PIC code */
 	PIC_Init();
-    
-    /* Set active UART */
-    if (CONFIG_MIDIPORT) uart = 1;
-    SetActiveUart(uart);
 
 	/* Initialise MIDI handler */
         MIDI_Init(CONFIG_SYSEXDELAY,CONFIG_FAKEALLNOTESOFF);

@@ -25,6 +25,7 @@
 #if defined (__AVR_ATmega4809__)
 // Hardware ver. 2.1
 #define HARDMPU_HW_NEW
+#define MPU_REVISION 2
 // Default port values
 #define DEFAULT_OUTA 0b00000000     // TRIG, SPR4, RX0, TX0, IA1, WAIT, IA0, CLK
 #define DEFAULT_DIRA 0b00011110
@@ -125,20 +126,28 @@ const unsigned char PORTF_CTRL[8] PROGMEM =
 };
 // clock parameters
 #define F_CPU		20000000UL
-#define BAUD_UART0	2560            // 2560 = 31250 (MIDI standard)
-#define BAUD_UART1	2560            // 694 = 115200-ish
+#define LED_TIMEOUT 40                  // 40 = 10ms
+#define WAIT_TIME   300                 // 300 = 15us (ISA spec says 15.6us max))
+#define SYSEX_DELAY 6400                // 6400 = 320us
 // CPLD register addresses
 #define ADDR_DATA 0
 #define ADDR_CTRL 1
 // UART definitions
-#define NUM_UARTS 2
-#define UART0 USART0
-#define UART1 USART2
+#define PHYS_UART_EXT   USART0          // J1 MIDI Port
+#define PHYS_UART_INT   USART2          // Wavetable header
+#define PHYS_UART_USR   PHYS_UART_INT   // User port pins 1,3 (shared with INT)
+#define PHYS_UART_AUX   USART1          // User port pins 9,10
+//#define ENABLE_AUX_UART               // Uncomment to use UART on USR0,1 instead of GPIO
+#define BAUD_EXT        2560            // 2560 = 31250 (MIDI standard)
+#define BAUD_INT        2560            // 8333 = 9600-ish
+#define BAUD_USR        BAUD_INT        // 694  = 115200-ish
+#define BAUD_AUX        694             // (F_CPU*64)/(BAUD*16)
 #define DREIF 5
 
 #else
 // Hardware ver. 1.1 or 2.0
 #define HARDMPU_HW_OLD
+#define MPU_REVISION 1
 // Default port values/pullups
 #define DEFAULT_PORTA 0b11111111    // Internal Data Bus
 #define DEFAULT_DDRA  0b00000000
@@ -174,10 +183,9 @@ const unsigned char PORTF_CTRL[8] PROGMEM =
 #define PIN_USR3    (1<<7)
 // clock parameters
 #define F_CPU		20000000UL
-#define BAUD_UART0	39              // 39 = 31250 (MIDI standard)
-#define BAUD_UART1	39              // 10 = 115200-ish
 // UART definitions
-#define NUM_UARTS = 2
+#define BAUD_EXT        39          // 39 = 31250 (MIDI standard)
+#define BAUD_INT        39          // 10 = 115200-ish
 #endif
 
 #endif

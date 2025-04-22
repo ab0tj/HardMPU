@@ -37,6 +37,7 @@ Bit8u MPU401_ReadData(void);
 void MPU401_WriteData(Bit8u val);
 Bit8u QueueUsed();
 void send_midi_byte();
+bool midi_buffer_avail();
 void PIC_Update();
 
 #define EXPORT_H

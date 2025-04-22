@@ -25,12 +25,12 @@ int main(void)
 		if (QueueUsed() && (flags & FLAG_DSR)) {
 			send_isa_byte(MPU401_ReadData());		// send data if there's any in the buffer
 		}
-		if (flags & FLAG_CRR) {		// isa control input latch is full
-			MPU401_WriteCommand(recv_isa_byte());
-		}
-		if (flags & FLAG_DRR) {		// isa data input latch is full
-			MPU401_WriteData(recv_isa_byte());
-		}
+        if (flags & FLAG_DRR) {		// isa data input latch is full
+            MPU401_WriteData(recv_isa_byte());
+        }
+        else if (flags & FLAG_CRR) {		// isa control input latch is full
+            MPU401_WriteCommand(recv_isa_byte());
+        }
         
 		// do midi i/o
 		send_midi_byte();				// see if we need to send a byte	
