@@ -659,7 +659,7 @@ static void MPU401_Reset(void) {
 	mpu.state.command_byte=0;
 	mpu.state.block_ack=false;
 	mpu.clock.tempo=mpu.clock.old_tempo=100;
-        mpu.clock.timebase=mpu.clock.old_timebase=120/(RTCFREQ/1000);
+    mpu.clock.timebase=mpu.clock.old_timebase=120/(RTCFREQ/1000);
 	mpu.clock.tempo_rel=mpu.clock.old_tempo_rel=40;
 	mpu.clock.tempo_grad=0;
 	mpu.clock.clock_to_host=false;
@@ -675,20 +675,27 @@ static void MPU401_Reset(void) {
 /* SoftMPU: Initialisation */
 void MPU401_Init()
 {
+    static bool first_init = true;
+    
 	/* Initalise PIC code */
 	PIC_Init();
 
 	/* Initialise MIDI handler */
-        MIDI_Init(CONFIG_SYSEXDELAY,CONFIG_FAKEALLNOTESOFF);
+    MIDI_Init(CONFIG_SYSEXDELAY,CONFIG_FAKEALLNOTESOFF);
 	if (!MIDI_Available()) return;
 
 	mpu.queue_used=0;
 	mpu.queue_pos=0;
 	mpu.mode=M_UART;
 
-        mpu.intelligent=true; /* Default is on */
-	if (!mpu.intelligent) return;
+    mpu.intelligent=true; /* Default is on */
+    
+    if (first_init)
+    {
+        first_init = false;
+        if (GetDefaultMidiPort() == UART_INT) mpu.config |= 0x10;
+    }
 
-        /* SOFTMPU: Moved IRQ 9 handler init to asm */
+    /* SOFTMPU: Moved IRQ 9 handler init to asm */
 	MPU401_Reset();
 }

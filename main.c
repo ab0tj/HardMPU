@@ -8,9 +8,6 @@ int main(void)
     
     // init hardware
     AVR_Init();
-    
-    // check if we need to be in test mode
-    TestMode();
 	
 	// init emulator
 	MPU401_Init();

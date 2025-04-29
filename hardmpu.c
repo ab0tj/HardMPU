@@ -58,7 +58,9 @@ volatile uint8_t led_timeout[2];
 
 // function definitions
 void SetPinCtrl(const PORT_t* port, const uint8_t* arr);
+void TestMode();
 
+// Send a byte to the host sytem
 void send_isa_byte(const Bit8u byte)
 {
 	cli();							// disable interrupts
@@ -85,6 +87,7 @@ void send_isa_byte(const Bit8u byte)
 	sei();							// re-enable interrupts
 }
 
+// Get a byte from the host system
 unsigned char recv_isa_byte()
 {
 	unsigned char val;
@@ -103,21 +106,24 @@ unsigned char recv_isa_byte()
 #endif
 
 	sei();							// re-enable interrupts
-	return val;					// report back with the results
+	return val;                     // report back with the results
 }
 
+// Read the handshaking status flags
+// See FLAG* defs for description
 unsigned char GetFlags()
 {
 #if defined (HARDMPU_HW_OLD)
-    return PINS_FLAGS;
+    return PINS_FLAGS;              // Read directly from GPIO port
 #elif defined (HARDMPU_HW_NEW)
-    return PORT_FLAGS.IN;
+    return PORT_FLAGS.IN;           // Data bus has flags in idle state
 #endif
 }
 
+// Initialize the hardware
 void AVR_Init()
 {
-    cli();
+    cli();                          // Disable interrupts for now
     
 #if defined (HARDMPU_HW_OLD)
     // Init GPIO
@@ -140,6 +146,9 @@ void AVR_Init()
 	TCCR1B |= (1<<WGM12)|(1<<CS10);	// timer1 ctc mode, no prescaler
 	TIMSK1 |= (1<<OCIE1A);			// enable ctc interrupt
 	OCR1A   = F_CPU / RTCFREQ - 1;	// ctc value
+    
+    // Go to test mode if applicable
+    TestMode();
     
 #elif defined (HARDMPU_HW_NEW)
     // Init Clock
@@ -183,11 +192,9 @@ void AVR_Init()
     PHYS_UART_AUX.CTRLB = 0b11000000;
 #endif
     
-    // Reset MIDI devices
-    midi_uart = UART_EXT;
-    output_midi(0xff);
-    midi_uart = UART_INT;
-    output_midi(0xff);
+    // Reset MIDI devices (and get the UARTs rolling)
+    output_to_uart(UART_INT, 0xff);
+    output_to_uart(UART_EXT, 0xff);
     
     // Init Timers
     // RTC Timer
@@ -232,10 +239,22 @@ void TestMode()
 			_delay_ms(125);
 		}
 	}
+#elif defined (HARDMPU_HW_NEW)
+    if (~PORT_TEST.IN & PIN_TEST)
+    {
+        for (;;)
+        {
+            PORT_LED.OUTSET = PIN_LED1;
+            _delay_ms(125);
+            PORT_LED.OUTCLR = PIN_LED1;
+            _delay_ms(125);
+        }
+    }
 #endif
     return;
 }
 
+// Set pin control settings on a GPIO port
 void SetPinCtrl(const PORT_t* port, const uint8_t* arr)
 {
 #if defined (HARDMPU_HW_NEW)
@@ -251,15 +270,18 @@ void SetPinCtrl(const PORT_t* port, const uint8_t* arr)
     return;
 }
 
+// Set the active UART for MIDI messages
 void SetMidiUart(uint8_t port)
 {
     if (port > MAX_UART) port = UART_EXT;
     midi_uart = port;
 }
 
+// Returns the (logical) UART selected as the default (by a jumper or otherwise)
 uint8_t GetDefaultMidiPort()
 {
 #if defined (HARDMPU_HW_NEW)
+    // Get default from jumper value
     if (PORT_INTEXT.IN & PIN_INTEXT)
     {
         return UART_EXT;
@@ -269,6 +291,7 @@ uint8_t GetDefaultMidiPort()
         return UART_INT;
     }
 #else
+    // This hardware has no way to set a default (yet))
     return UART_EXT;
 #endif
 }
@@ -277,9 +300,11 @@ uint8_t GetDefaultMidiPort()
 void output_midi(const uint8_t val)
 {
     output_to_uart(midi_uart, val);
+#if defined (HARDMPU_HW_NEW)
     /* midi.c doesn't send bytes during SysEx delay, so
      * we can disable the wait state generator now. */
     TCB0.CTRLA = 0;
+#endif
 }
 
 /* Send a byte out into the world from a UART */
@@ -321,7 +346,7 @@ void output_to_uart(const uint8_t uart, const uint8_t val)
 #endif
 }
 
-/* Wait for active MIDI uart TX buffer to be empty */
+/* Wait for active MIDI UART TX buffer to be empty */
 void wait_for_midi_uart()
 {
     wait_for_uart(midi_uart);
@@ -377,6 +402,8 @@ uint8_t uart_tx_status(const uint8_t uart)
         case UART_INT:
         case UART_USR:
             return bit_is_clear(UCSR1A, UDRE1);
+        default:
+            return 1;
 	}
 #elif defined (HARDMPU_HW_NEW)
     switch (uart)
@@ -426,6 +453,7 @@ ISR(TCA0_OVF_vect)
 {
     TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm;   // Clear interrupt flag
     
+    // Check if it's time to shut off LEDs
     if (led_timeout[0] != 0)
     {
         led_timeout[0]--;
@@ -437,6 +465,8 @@ ISR(TCA0_OVF_vect)
         if (led_timeout[1] == 0) PORT_LED.OUTCLR = PIN_LED2;
     }
 #endif
+    
+    // Do MPU401 things
     PIC_Update();
 }
 

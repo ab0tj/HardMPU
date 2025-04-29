@@ -22,7 +22,7 @@
       </runprofile>
     </conf>
     <conf name="Debug" type="2">
-      <platformToolSN>:=MPLABComm-USB-Microchip:=&lt;vid>03EB:=&lt;pid>2141:=&lt;rev>0101:=&lt;man>Atmel Corp.:=&lt;prod>Atmel-ICE CMSIS-DAP:=&lt;sn>J41800096681:=&lt;drv>x:=&lt;xpt>h:=end</platformToolSN>
+      <platformToolSN>:=MPLABComm-USB-Microchip:=&lt;vid>03EB:=&lt;pid>2141:=&lt;rev>0101:=&lt;man>&lt;cannot_open>03EB:2141:=&lt;prod>&lt;cannot_open>03EB:2141:=&lt;sn>?:=&lt;drv>x:=&lt;xpt>b:=end</platformToolSN>
       <languageToolchainDir>/usr/bin</languageToolchainDir>
       <mdbdebugger version="1">
         <placeholder1>place holder 1</placeholder1>

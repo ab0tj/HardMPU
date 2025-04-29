@@ -26,7 +26,7 @@
 // Hardware ver. 2.1
 #define HARDMPU_HW_NEW
 #define MPU_REVISION 2
-// Default port values
+// Default port output values
 #define DEFAULT_OUTA 0b00000000     // TRIG, SPR4, RX0, TX0, IA1, WAIT, IA0, CLK
 #define DEFAULT_DIRA 0b00011110
 #define DEFAULT_OUTC 0b00000000     // N/A, N/A, /IRD, /IWR, USR3..0
@@ -35,7 +35,7 @@
 #define DEFAULT_DIRD 0b00000000
 #define DEFAULT_OUTE 0b00000000     // N/A, N/A, N/A, N/A, LED1, LED2, SPR2, SPR1
 #define DEFAULT_DIRE 0b00001100
-#define DEFAULT_OUTF 0b00000001     // N/A, /RST, SPR3, NC, NC, /INT, RX1, TX1
+#define DEFAULT_OUTF 0b00000001     // N/A, /RST, SPR3, /TEST, NC, /INT, RX1, TX1
 #define DEFAULT_DIRF 0b00000000
 // port definitions
 #define PORT_DATA   PORTD           // Internal Data Bus
@@ -45,21 +45,23 @@
 #define PORT_LED    PORTE           // LED Control
 #define PORT_INTEXT PORTF           // Internal/External MIDI Jumper
 #define PORT_ADDR   PORTA           // Internal Address
+#define PORT_TEST   PORTF           // Test pin
 // pin definitions
-#define PIN_USR0    (1<<0)
+#define PIN_USR0    (1<<0)          // User port pins
 #define PIN_USR1    (1<<1)
 #define PIN_USR2    (1<<2)
 #define PIN_USR3    (1<<3)
 #define PIN_IWR     (1<<4)          // Write to CPLD
 #define PIN_IRD     (1<<5)          // Read from CPLD
-#define PIN_DSR		(1<<0)          // isa data out flip-flop
-#define PIN_DRR		(1<<1)          // isa data in flip-flop
-#define PIN_CRR		(1<<2)          // isa command in flip-flop;
-#define PIN_LED1    (1<<3)
-#define PIN_LED2    (1<<2)
-#define PIN_INTEXT  (1<<2)
-#define PIN_IA0     (1<<1)
-#define PIN_IA1     (1<<3)
+#define PIN_DSR		(1<<0)          // ISA data out ready
+#define PIN_DRR		(1<<1)          // ISA data in ready
+#define PIN_CRR		(1<<2)          // ISA command in ready
+#define PIN_LED1    (1<<3)          // MIDI1 LED
+#define PIN_LED2    (1<<2)          // MIDI2 LED
+#define PIN_INTEXT  (1<<2)          // INT/EXT Jumper
+#define PIN_IA0     (1<<1)          // Internal Address bit 0
+#define PIN_IA1     (1<<3)          // Internal Address bit 1
+#define PIN_TEST    (1<<4)          // Test pin
 // pin control
 #define PC_INVEN        (1<<7)
 #define PC_PULLUPEN     (1<<3)
@@ -119,15 +121,15 @@ const unsigned char PORTF_CTRL[8] PROGMEM =
     PC_PULLUPEN,
     PC_PULLUPEN,
     (PC_PULLUPEN|PC_INPUT_DIS),
-    (PC_PULLUPEN|PC_INPUT_DIS),
+    PC_PULLUPEN,
     (PC_PULLUPEN|PC_INPUT_DIS),
     0,
     PC_INPUT_DIS
 };
 // clock parameters
-#define F_CPU		20000000UL
+#define F_CPU		20000000UL          // 20MHz
 #define LED_TIMEOUT 40                  // 40 = 10ms
-#define WAIT_TIME   300                 // 300 = 15us (ISA spec says 15.6us max))
+#define WAIT_TIME   300                 // 300 = 15us (ISA spec says 15.6us max)
 #define SYSEX_DELAY 6400                // 6400 = 320us
 // CPLD register addresses
 #define ADDR_DATA 0
@@ -139,10 +141,10 @@ const unsigned char PORTF_CTRL[8] PROGMEM =
 #define PHYS_UART_AUX   USART1          // User port pins 9,10
 //#define ENABLE_AUX_UART               // Uncomment to use UART on USR0,1 instead of GPIO
 #define BAUD_EXT        2560            // 2560 = 31250 (MIDI standard)
-#define BAUD_INT        2560            // 8333 = 9600-ish
-#define BAUD_USR        BAUD_INT        // 694  = 115200-ish
-#define BAUD_AUX        694             // (F_CPU*64)/(BAUD*16)
-#define DREIF 5
+#define BAUD_INT        2560            //   8333 = 9600-ish
+#define BAUD_USR        BAUD_INT        //   694  = 115200-ish
+#define BAUD_AUX        694             //   (F_CPU*64)/(BAUD*16)
+#define DREIF           5
 
 #else
 // Hardware ver. 1.1 or 2.0
